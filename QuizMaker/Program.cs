@@ -8,29 +8,40 @@ namespace QuizMaker
         {
             UIMethods.PrintWelcome();
 
-            UIMethods.InsertQuizQuestion();
-            List <QuizQuestion> quizzes = new List<QuizQuestion>();
+            List<QuizQuestion> quizzes = new List<QuizQuestion>();
 
+            while (true)
+            {
+                UIMethods.InsertQuizQuestion();
 
-            QuizQuestion quiz = new QuizQuestion();
+                QuizQuestion quiz = new QuizQuestion();
 
-            //Insert Quiz Question
-            string insertedQuestion = Console.ReadLine().Trim();
-            insertedQuestion = quiz.question;
+                //Insert Quiz Question
+                string insertedQuestion = Console.ReadLine().Trim();
+                insertedQuestion = quiz.question;
 
-            //Insert Quiz Options
-            UIMethods.InsertQuizOptions();
-            quiz.options = Console.ReadLine().Trim();
+                //Insert Quiz Options
+                UIMethods.InsertQuizOptions();
+                quiz.options = Logics.GetQuizOptions();
 
+                //Insert Quiz Options
+                UIMethods.InsertCorrectOption();
+                
+                quiz.correctOption = Console.ReadLine().Trim();
 
-            //Insert Quiz Options
-            UIMethods.InsertCorrectOption();
+                //Add each quiz into List Quizzes
+                quizzes.Add(quiz);
 
-            quizzes.Add(quiz);
+                Console.WriteLine("Do you want to add another question? (y/n)");
+                string addMoreQuestion = Console.ReadLine().Trim().ToLower();
+
+                if (addMoreQuestion != "y")
+                {
+                    break;
+                }
+            }
 
         }
     }
 
 }
-
-
