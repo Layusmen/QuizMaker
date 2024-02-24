@@ -8,5 +8,8 @@ namespace QuizMaker
 {
     internal class QuizQuestion
     {
+        public string question;
+        public string options;
+        public string correctOption;
     }
 }
