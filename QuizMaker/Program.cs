@@ -1,25 +1,37 @@
-﻿namespace QuizMaker
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace QuizMaker
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            UIMethods.PrintWelcome();
+            while (true)
+            {
+                UIMethods.PrintWelcome();
 
-            UIMethods.InsertQuizQuestion();
+                List<string> keepQuestions = new List<string>();
+                do
+                {
+                    UIMethods.InsertQuizQuestion();
 
-            List<string> keepQuestions = new List<string>();
+                    string insertQuiz = Console.Read().ToString().Trim();
 
-            string insertQuiz = Console.ReadLine().Trim();
+                    keepQuestions.Add(insertQuiz);
 
-            keepQuestions.Add(insertQuiz);
-            Console.WriteLine($"Question added: {insertQuiz}");
+                    Console.WriteLine($"Question added: {insertQuiz}");
 
-            Console.WriteLine("\nDo you want to add another question? (y/n):");
-            string answer = Console.ReadLine().Trim().ToLower();
-
-            Console.WriteLine(keepQuestions);
-
+                    Console.WriteLine("Do you want to Add more question? " +
+                        "Press Y, no continue, any other key to discontinue");
+                }
+                while (Console.ReadKey().Key == ConsoleKey.Y);
+                UIMethods.ListQuizQuestions(keepQuestions);
+                Console.WriteLine("All questions listed. Press any key to exit.");
+                Console.ReadKey();
+            }
         }
+
     }
 }
+
+
