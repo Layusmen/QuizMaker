@@ -11,23 +11,34 @@ namespace QuizMaker
         {
             Console.WriteLine("\nPlease insert the questions, and follow the prompts as required. \n");
         }
-
-        public static void ListQuizQuestions(List<string> questions)
+        public static List<string> Request()
         {
-            if (questions.Count == 5)
+            List<string> keepQuestions = new List<string>();
+
+            while (true)
             {
-                Console.WriteLine("No questions have been added yet.");
-            }
-            else
-            {
-                Console.WriteLine("Here are the quiz questions:");
-                foreach (string question in questions)
+                UIMethods.InsertQuizQuestion();
+
+                string insertQuiz = Console.ReadLine().Trim();
+
+                if (string.IsNullOrEmpty(insertQuiz))
                 {
-                    Console.WriteLine(question);
+                    break; 
+                }
+
+                keepQuestions.Add(insertQuiz);
+
+               
+                Console.WriteLine("Do you want to add another question? (y/n)");
+                string addMore = Console.ReadLine().Trim().ToLower();
+
+                if (addMore != "y")
+                {
+                    break;
                 }
             }
-        }
 
-        
+            return keepQuestions;
+        }
     }
 }

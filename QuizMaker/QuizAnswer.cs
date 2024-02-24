@@ -8,6 +8,6 @@ namespace QuizMaker
 {
     internal class QuizAnswer
     {
-        public string answer;
+        
     }
 }
