@@ -10,28 +10,31 @@ namespace QuizMaker
 
             while (true)
             {
-                Console.WriteLine("Enter an option (or leave blank to finish):");
-                bool validOption = false;
-               
-                    string option = Console.ReadLine().Trim();
-
-                    if (string.IsNullOrEmpty(option))
-                    {
-                        break; // Exit loop if empty option is entered
-                    }
-                while (!validOption)
+                Console.WriteLine("Enter an option or Press enter to leave blank:");
+                string option = Console.ReadLine().Trim();
+                if (string.IsNullOrEmpty(option))
                 {
-                    validOption = GetQuizOptions().Contains(option);
-                    if (!validOption)
-                    {
-                        Console.WriteLine("Error: The entered correct option is not present in the options list. Please enter a valid option:");
-                    }
-                    options.Add(option);
+                    break; 
                 }
+                options.Add(option);
             }
-
             return options;
         }
 
+        public static void DisplayQuizzes(List<QuizQuestion> quizzes)
+        {
+            Console.WriteLine("Created Quizzes:");
+            foreach (var quiz in quizzes)
+            {
+                Console.WriteLine($"Question: {quiz.question}");
+                Console.WriteLine("Options:");
+                foreach (var option in quiz.options)
+                {
+                    Console.WriteLine($"{option}");
+                }
+                Console.WriteLine("\tCorrect Option: {quiz.correctOption}");
+                Console.WriteLine();
+            }
+        }
     }
 }

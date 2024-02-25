@@ -14,11 +14,11 @@ namespace QuizMaker
         }
         public static void InsertQuizOptions()
         {
-            Console.WriteLine("\nPlease insert options\n");
+            //Console.WriteLine("\nPlease insert options\n");
         }
         public static void InsertCorrectOption() 
         { 
-            Console.WriteLine("Inserted the right Option"); 
+            Console.WriteLine("Insert the right Option"); 
         }
     }
 }

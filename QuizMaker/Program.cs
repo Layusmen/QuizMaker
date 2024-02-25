@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.FileIO;
+using System;
 
 namespace QuizMaker
 {
@@ -8,7 +9,7 @@ namespace QuizMaker
         {
             UIMethods.PrintWelcome();
 
-            List<QuizQuestion> quizzes = new List<QuizQuestion>();
+            List<QuizQuestion> quizes = new List<QuizQuestion>();
 
             while (true)
             {
@@ -26,11 +27,10 @@ namespace QuizMaker
 
                 //Insert Quiz Options
                 UIMethods.InsertCorrectOption();
-                
                 quiz.correctOption = Console.ReadLine().Trim();
 
                 //Add each quiz into List Quizzes
-                quizzes.Add(quiz);
+                quizes.Add(quiz);
 
                 Console.WriteLine("Do you want to add another question? (y/n)");
                 string addMoreQuestion = Console.ReadLine().Trim().ToLower();
@@ -38,9 +38,8 @@ namespace QuizMaker
                 if (addMoreQuestion != "y")
                 {
                     break;
-                }
+                }  
             }
-
         }
     }
 
