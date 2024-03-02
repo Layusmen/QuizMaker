@@ -3,7 +3,8 @@
 
 namespace QuizMaker
 {
-    internal class Constants
+    public class Constants
     {
+        public const int maxOptions = 5;
     }
 }

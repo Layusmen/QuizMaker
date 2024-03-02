@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic.FileIO;
-using System;
+﻿using System;
 
 namespace QuizMaker
 {
@@ -8,39 +7,68 @@ namespace QuizMaker
         static void Main(string[] args)
         {
             UIMethods.PrintWelcome();
-
-            List<QuizQuestion> quizes = new List<QuizQuestion>();
-
-            while (true)
+            UIMethods.InsertQuizQuestion();
+            //Insert Quiz Question            
+            List<QuizQuestion> quizzes = new List<QuizQuestion>();
+            string insertQuestion = Console.ReadLine().Trim();
+            if (insertQuestion != "")
             {
-                UIMethods.InsertQuizQuestion();
 
                 QuizQuestion quiz = new QuizQuestion();
+                quiz.question = insertQuestion;
+                quizzes.Add(quiz);
+                //quizzes.Add(new QuizQuestion { question = quiz.question });
+            }
 
-                //Insert Quiz Question
-                string insertedQuestion = Console.ReadLine().Trim();
-                insertedQuestion = quiz.question;
 
-                //Insert Quiz Options
-                UIMethods.InsertQuizOptions();
-                quiz.options = Logics.GetQuizOptions();
+            //Print Options
+            int counter = 0;
 
-                //Insert Quiz Options
-                UIMethods.InsertCorrectOption();
-                quiz.correctOption = Console.ReadLine().Trim();
+            QuizQuestion options = new QuizQuestion();
+            options.questionOption = new List<string>();
 
-                //Add each quiz into List Quizzes
-                quizes.Add(quiz);
-
-                Console.WriteLine("Do you want to add another question? (y/n)");
-                string addMoreQuestion = Console.ReadLine().Trim().ToLower();
-
-                if (addMoreQuestion != "y")
+            string insertedOption;
+            string prompt;
+            while (counter < Constants.maxOptions)
+            {
+                if (counter == 0)
                 {
-                    break;
-                }  
+                    prompt = "\nEnter an option or Press enter to leave blank:";
+                }
+                else
+                {
+                    prompt = $"\nEnter option {counter + 1}  or Press enter to leave blank:";
+                }
+                Console.WriteLine(prompt);
+
+                insertedOption = Console.ReadLine().Trim();
+
+                if (insertedOption != "")
+                {
+                    counter++;
+                    options.questionOption.Add(insertedOption);
+                    Console.WriteLine($"\nOption {counter} inserted: {insertedOption}");
+
+                }
+
+            }
+            //Quiz Question Print
+            Console.WriteLine("\nQuestion added:");
+
+            foreach (QuizQuestion quiz in quizzes)
+            {
+                Console.WriteLine(quiz.question);
+            }
+
+            //Quiz Options Print
+            Console.WriteLine("\nEntered options for this question:");
+
+            // Print all options from the list
+            foreach (var option in options.questionOption)
+            {
+                Console.WriteLine(option);
             }
         }
-    }
 
+    }
 }

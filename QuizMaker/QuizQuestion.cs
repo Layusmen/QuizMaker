@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace QuizMaker
 {
-    internal class QuizQuestion
+    public class QuizQuestion
     {
-        public string question;
-        public List<string> options;
-        public string correctOption;
+        public string question { get; set; }
+        public List<string> questionOption { get; set; }
+        public string correctOption { get; set; }
+
+
     }
 }
