@@ -86,5 +86,13 @@ namespace QuizMaker
             }
         }
        
+        public static void PrintCorrectOption(List<QuizQuestion> quizzes)
+        {
+
+            foreach (QuizQuestion correctAnswer in quizzes)
+            {
+                Console.WriteLine(correctAnswer.correctOption);
+            }
+        }
     }
 }

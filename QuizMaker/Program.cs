@@ -27,19 +27,15 @@ namespace QuizMaker
             Logics.CollectRightOption(quizzes);
 
 
-                //Print Quiz Questions
-                Logics.PrintQuizQuestions(quizzes);
+            //Print Quiz Questions
+            Logics.PrintQuizQuestions(quizzes);
 
             //Print Quiz Options
             Logics.PrintQuizOptions(options);
 
             //Correct Answer
-            Console.WriteLine("\nCorrect Answer is:");
-
-            foreach (QuizQuestion correctAnswer in quizzes)
-            {
-                Console.WriteLine(correctAnswer.correctOption);
-            }
+            UIMethods.PromptCorrectOption();
+            Logics.PrintCorrectOption(quizzes);
 
         }
     }
