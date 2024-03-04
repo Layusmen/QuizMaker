@@ -15,10 +15,11 @@ namespace QuizMaker
                 quizzes.Add(quiz);
             }
         }
+      
         public static void CollectOptions(QuizQuestion options)
         {
             int counter = 0;
-            options.questionOption = new List<string>();
+            
             string insertedOption;
             string prompt;
 
@@ -26,7 +27,7 @@ namespace QuizMaker
             {
                 if (counter == 0)
                 {
-                    prompt = "\nEnter an option or Press enter to leave blank:";
+                    prompt = UIMethods.InsertQuizOptions();//"\nEnter an option or Press enter to leave blank:";
                 }
                 else
                 {
@@ -44,13 +45,28 @@ namespace QuizMaker
                 }
                 else
                 {
-                    // If user enters nothing, break the loop to avoid exceeding maxOptions
+                   
                     break;
                 }
             }
         }
+
+        public static void CollectRightOption(List<QuizQuestion> quizzes)
+        {
+            string rightOption = Console.ReadLine().Trim();
+            QuizQuestion correct;
+            if (rightOption != "")
+            {
+                correct = new QuizQuestion();
+                correct.correctOption = rightOption;
+                quizzes.Add(correct);
+            }
+        }
+
         public static void PrintQuizQuestions(List<QuizQuestion> quizzes)
         {
+
+
             //Quiz Question Print
             Console.WriteLine("\nQuestion added:");
 
@@ -69,5 +85,6 @@ namespace QuizMaker
                 Console.WriteLine(option);
             }
         }
+       
     }
 }

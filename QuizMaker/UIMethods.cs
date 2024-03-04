@@ -12,13 +12,15 @@ namespace QuizMaker
         {
             Console.WriteLine("\nPlease insert the questions, and follow the prompts as required. \n");
         }
-        public static void InsertQuizOptions()
+        public static string InsertQuizOptions()
         {
-            //Console.WriteLine("\nPlease insert options\n");
+           Console.WriteLine("\nPlease insert options\n");
+            
+            return "";
         }
         public static void InsertCorrectOption() 
         { 
-            Console.WriteLine("Insert the right Option"); 
+            Console.WriteLine("Insert the right Option:"); 
         }
     }
 }
