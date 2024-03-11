@@ -1,7 +1,4 @@
-﻿using Microsoft.VisualBasic.FileIO;
-using System;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
+﻿using System;
 
 namespace QuizMaker
 {
@@ -21,20 +18,21 @@ namespace QuizMaker
             options.questionOption = new List<string>();
 
             Logics.CollectOptions(options);
-            //Logics.CollectRightOption(quizzes);
-
+            
             Console.WriteLine("\nWhich of the Options is correct?");
-            Logics.CollectRightOption(quizzes);
-
-
+            
+            Logics.CollectRightOption(options, quizzes);
+            
             //Print Quiz Questions
             Logics.PrintQuizQuestions(quizzes);
 
             //Print Quiz Options
             Logics.PrintQuizOptions(options);
 
+
+
             //Correct Answer
-            UIMethods.PromptCorrectOption();
+            Console.WriteLine("\nCorrect Answer is:");
             Logics.PrintCorrectOption(quizzes);
 
         }

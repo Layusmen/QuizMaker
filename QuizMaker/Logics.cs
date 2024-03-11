@@ -19,12 +19,12 @@ namespace QuizMaker
         public static void CollectOptions(QuizQuestion options)
         {
             int counter = 0;
-            
             string insertedOption;
             string prompt;
 
             while (counter < Constants.maxOptions)
             {
+               
                 if (counter == 0)
                 {
                     prompt = UIMethods.InsertQuizOptions();//"\nEnter an option or Press enter to leave blank:";
@@ -35,7 +35,7 @@ namespace QuizMaker
                 }
                 Console.WriteLine(prompt);
 
-                insertedOption = Console.ReadLine().Trim();
+               insertedOption = Console.ReadLine().Trim();
 
                 if (insertedOption != "")
                 {
@@ -45,28 +45,33 @@ namespace QuizMaker
                 }
                 else
                 {
-                   
                     break;
                 }
             }
         }
 
-        public static void CollectRightOption(List<QuizQuestion> quizzes)
+        public static void CollectRightOption(QuizQuestion option, List<QuizQuestion>quizzes)
         {
-            string rightOption = Console.ReadLine().Trim();
-            QuizQuestion correct;
-            if (rightOption != "")
+            string rightOption;
+           
+            rightOption = Console.ReadLine().Trim();
+            foreach (string opt in option.questionOption)
             {
-                correct = new QuizQuestion();
-                correct.correctOption = rightOption;
-                quizzes.Add(correct);
+               if (option.questionOption.Contains(rightOption))
+                {
+                    QuizQuestion correct;
+                    if (rightOption != "")
+                    {
+                        correct = new QuizQuestion();
+                        correct.correctOption = rightOption;
+                        quizzes.Add(correct);
+                    }
+                }
             }
+          
         }
-
         public static void PrintQuizQuestions(List<QuizQuestion> quizzes)
         {
-
-
             //Quiz Question Print
             Console.WriteLine("\nQuestion added:");
 
@@ -79,6 +84,7 @@ namespace QuizMaker
         {
             //Quiz Options Print
             Console.WriteLine("\nEntered options for this question:");
+
             // Print all options from the list
             foreach (var option in options.questionOption)
             {
@@ -94,5 +100,6 @@ namespace QuizMaker
                 Console.WriteLine(correctAnswer.correctOption);
             }
         }
+
     }
 }

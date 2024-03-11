@@ -22,7 +22,6 @@ namespace QuizMaker
         {
             Console.WriteLine("Insert the right Option:");
         }
-
         public static void PromptCorrectOption()
         {
             Console.WriteLine("\nCorrect Answer is:");
