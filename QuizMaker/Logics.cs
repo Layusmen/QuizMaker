@@ -15,7 +15,6 @@ namespace QuizMaker
                 quizzes.Add(quiz);
             }
         }
-      
         public static void CollectOptions(QuizQuestion options)
         {
             int counter = 0;
@@ -24,7 +23,7 @@ namespace QuizMaker
 
             while (counter < Constants.maxOptions)
             {
-               
+
                 if (counter == 0)
                 {
                     prompt = UIMethods.InsertQuizOptions();//"\nEnter an option or Press enter to leave blank:";
@@ -35,7 +34,7 @@ namespace QuizMaker
                 }
                 Console.WriteLine(prompt);
 
-               insertedOption = Console.ReadLine().Trim();
+                insertedOption = Console.ReadLine().Trim();
 
                 if (insertedOption != "")
                 {
@@ -49,26 +48,28 @@ namespace QuizMaker
                 }
             }
         }
-
-        public static void CollectRightOption(QuizQuestion option, List<QuizQuestion>quizzes)
+        public static void CollectRightOption(QuizQuestion option, List<QuizQuestion> quizzes)
         {
             string rightOption;
-           
-            rightOption = Console.ReadLine().Trim();
-            foreach (string opt in option.questionOption)
+            while (true)
             {
-               if (option.questionOption.Contains(rightOption))
+                QuizQuestion correct;
+                rightOption = Console.ReadLine().Trim();
+                if (rightOption == "")
                 {
-                    QuizQuestion correct;
-                    if (rightOption != "")
-                    {
-                        correct = new QuizQuestion();
-                        correct.correctOption = rightOption;
-                        quizzes.Add(correct);
-                    }
+                    Console.WriteLine("Please enter a valid option.");
+                    continue;
+                }
+
+                if (option.questionOption.Contains(rightOption))
+                {
+                    Console.WriteLine("Correct Answer Found in the Options Bank");
+                    correct = new QuizQuestion();
+                    correct.correctOption = rightOption;
+                    quizzes.Add(correct);
+                    break;
                 }
             }
-          
         }
         public static void PrintQuizQuestions(List<QuizQuestion> quizzes)
         {
@@ -91,7 +92,6 @@ namespace QuizMaker
                 Console.WriteLine(option);
             }
         }
-       
         public static void PrintCorrectOption(List<QuizQuestion> quizzes)
         {
 
@@ -100,6 +100,5 @@ namespace QuizMaker
                 Console.WriteLine(correctAnswer.correctOption);
             }
         }
-
     }
 }
