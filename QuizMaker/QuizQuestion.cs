@@ -12,6 +12,5 @@ namespace QuizMaker
         public string question { get; set; }
         public List<string> questionOption { get; set; }
         public string correctOption { get; set; }
-
     }
 }
