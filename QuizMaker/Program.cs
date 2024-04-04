@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Serialization;
 
 namespace QuizMaker
 {
@@ -34,6 +35,14 @@ namespace QuizMaker
             //Correct Answer
             Console.WriteLine("\nCorrect Answer is:");
             Logics.PrintCorrectOption(quizzes);
+
+            //Serialization
+            XmlSerializer writer = new XmlSerializer(typeof(List<QuizQuestion>));
+            var path = @"C:\Users\ola\source\repos\QuizMaker\QuestionBank";
+            using (FileStream file = File.Create(path))
+            {
+                writer.Serialize(file, quizzes);
+            }
 
         }
     }
