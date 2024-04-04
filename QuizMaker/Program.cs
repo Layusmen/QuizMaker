@@ -44,6 +44,9 @@ namespace QuizMaker
                 writer.Serialize(file, quizzes);
             }
 
+            writer.Serialize(Console.Out, quizzes);
+            Console.WriteLine();
+            Console.ReadLine();
         }
     }
 }

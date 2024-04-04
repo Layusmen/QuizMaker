@@ -102,8 +102,5 @@ namespace QuizMaker
                 Console.WriteLine(correctAnswer.correctOption);
             }
         }
-
-
-        
     }
 }
