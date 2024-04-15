@@ -4,6 +4,6 @@
     <question>What is your name?</question>
   </QuizQuestion>
   <QuizQuestion>
-    <correctOption>Adigun</correctOption>
+    <correctOption>Jide</correctOption>
   </QuizQuestion>
 </ArrayOfQuizQuestion>

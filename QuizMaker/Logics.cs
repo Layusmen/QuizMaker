@@ -14,6 +14,9 @@ namespace QuizMaker
             {
                 QuizQuestion quiz = new QuizQuestion();
                 quiz.question = insertQuestion;
+                quiz.questionOption = ;
+                quiz.correctOption = "";
+
                 quizzes.Add(quiz);
             }
         }

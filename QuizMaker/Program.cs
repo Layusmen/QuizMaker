@@ -12,7 +12,8 @@ namespace QuizMaker
 
             //Insert Quiz Question            
             List<QuizQuestion> quizzes = new List<QuizQuestion>();
-            Logics.CollectQuiz(quizzes);
+            QuizQuestion quiz = UIMethod.CollectQuiz(); Logics.CollectQuiz(quizzes);
+            quizzes.Add(quiz);
 
             //Quiz Question object
             QuizQuestion options = new QuizQuestion();
@@ -29,8 +30,6 @@ namespace QuizMaker
 
             //Print Quiz Options
             Logics.PrintQuizOptions(options);
-
-
 
             //Correct Answer
             Console.WriteLine("\nCorrect Answer is:");
