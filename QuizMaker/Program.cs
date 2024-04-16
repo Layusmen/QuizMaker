@@ -16,25 +16,14 @@ namespace QuizMaker
             
             
             //QuizQuestion quiz = Logics.CollectQuiz(quiz);
-                Logics.CollectQuiz(quizzes);
+            Logics.CollectQuiz(quizzes);
           
-            
-            //quizzes.Add(quiz);
-            
-            
-            //Print Quiz Questions
-            Logics.PrintQuizQuestions(quizzes);
-
-
-
-
 
             //Quiz Question object
-            QuizQuestion options = new QuizQuestion();
-            options.questionOption = new List<string>();
-
-            Logics.CollectOptions(options);
             
+            Logics.CollectOptions();
+
+
             Console.WriteLine("\nWhich of the Options is correct?");
             
             Logics.CollectRightOption(options, quizzes);
