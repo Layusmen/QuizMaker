@@ -14,18 +14,24 @@ namespace QuizMaker
             {
                 QuizQuestion quiz = new QuizQuestion();
                 quiz.question = insertQuestion;
-                quiz.questionOption = ;
-                quiz.correctOption = "";
+
+             
+             
+             //   quiz.correctOption = "";
 
                 quizzes.Add(quiz);
             }
         }
-        public static void CollectOptions(QuizQuestion options)
+        public static void CollectOptions(List <QuizQuestion> quizzes)
         {
             int counter = 0;
             string insertedOption;
-            string prompt;
+            //List<string> insertedOptionList = new List<string>() { };
+            QuizQuestion quiz = new QuizQuestion();
+            quiz.question = insertOption;
 
+            string prompt;
+            //QuizQuestion quiz = new QuizQuestion();
             while (counter < Constants.maxOptions)
             {
 
@@ -44,7 +50,7 @@ namespace QuizMaker
                 if (insertedOption != "")
                 {
                     counter++;
-                    options.questionOption.Add(insertedOption);
+                    quizzes.Add(insertedOption);
                     Console.WriteLine($"\nOption {counter} inserted: {insertedOption}");
                 }
                 else

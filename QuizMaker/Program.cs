@@ -12,8 +12,19 @@ namespace QuizMaker
 
             //Insert Quiz Question            
             List<QuizQuestion> quizzes = new List<QuizQuestion>();
-            QuizQuestion quiz = UIMethod.CollectQuiz(); Logics.CollectQuiz(quizzes);
-            quizzes.Add(quiz);
+            //QuizQuestion quiz = Logics.CollectQuiz(quiz);
+                Logics.CollectQuiz(quizzes);
+          
+            
+            //quizzes.Add(quiz);
+            
+            
+            //Print Quiz Questions
+            Logics.PrintQuizQuestions(quizzes);
+
+
+
+
 
             //Quiz Question object
             QuizQuestion options = new QuizQuestion();
