@@ -13,12 +13,7 @@ namespace QuizMaker
             if (insertQuestion != "")
             {
                 QuizQuestion quiz = new QuizQuestion();
-                quiz.question = insertQuestion;
-
-             
-             
-             //   quiz.correctOption = "";
-
+                insertQuestion = quiz.question;
                 quizzes.Add(quiz);
             }
         }
@@ -28,8 +23,7 @@ namespace QuizMaker
             string insertedOption;
             //List<string> insertedOptionList = new List<string>() { };
             QuizQuestion quiz = new QuizQuestion();
-            quiz.question = insertOption;
-
+            
             string prompt;
             //QuizQuestion quiz = new QuizQuestion();
             while (counter < Constants.maxOptions)
@@ -50,7 +44,10 @@ namespace QuizMaker
                 if (insertedOption != "")
                 {
                     counter++;
-                    quizzes.Add(insertedOption);
+
+                    insertedOption = quiz.questionOption;
+
+                    quizzes.Add(quiz);
                     Console.WriteLine($"\nOption {counter} inserted: {insertedOption}");
                 }
                 else

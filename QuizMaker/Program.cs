@@ -12,6 +12,9 @@ namespace QuizMaker
 
             //Insert Quiz Question            
             List<QuizQuestion> quizzes = new List<QuizQuestion>();
+            
+            
+            
             //QuizQuestion quiz = Logics.CollectQuiz(quiz);
                 Logics.CollectQuiz(quizzes);
           
