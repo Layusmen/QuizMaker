@@ -16,7 +16,7 @@ namespace QuizMaker
             
             
             //QuizQuestion quiz = Logics.CollectQuiz(quiz);
-            Logics.CollectQuiz(quizzes);
+            Logics.CollectQuiz(quizzes, options);
           
 
             //Quiz Question object
@@ -26,13 +26,13 @@ namespace QuizMaker
 
             Console.WriteLine("\nWhich of the Options is correct?");
             
-            Logics.CollectRightOption(options, quizzes);
+            //Logics.CollectRightOption(options, quizzes);
             
             //Print Quiz Questions
             Logics.PrintQuizQuestions(quizzes);
 
             //Print Quiz Options
-            Logics.PrintQuizOptions(options);
+            //Logics.PrintQuizOptions(options);
 
             //Correct Answer
             Console.WriteLine("\nCorrect Answer is:");

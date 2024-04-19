@@ -6,14 +6,15 @@ namespace QuizMaker
 {
     internal class Logics
     {
-        public static void CollectQuiz(List<QuizQuestion> quizzes)
+        public static void CollectQuiz(List<QuizQuestion> quizzes, List<string> options)
         {
             string insertQuestion = Console.ReadLine().Trim();
 
             if (insertQuestion != "")
             {
                 QuizQuestion quiz = new QuizQuestion();
-                quiz.question = insertQuestion;
+                //quiz.question = insertQuestion;
+                //quiz.questionOption = CollectOptions();
                 quizzes.Add(quiz);
             }
             
