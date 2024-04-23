@@ -3,7 +3,4 @@
   <QuizQuestion>
     <question>What is your name?</question>
   </QuizQuestion>
-  <QuizQuestion>
-    <correctOption>Jide</correctOption>
-  </QuizQuestion>
 </ArrayOfQuizQuestion>

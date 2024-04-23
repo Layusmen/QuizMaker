@@ -7,24 +7,26 @@ namespace QuizMaker
     {
         static void Main(string[] args)
         {
+    
             UIMethods.PrintWelcome();
             UIMethods.InsertQuizQuestion();
 
             //Insert Quiz Question            
             List<QuizQuestion> quizzes = new List<QuizQuestion>();
             
+            //Collect Quizzes;
+            Logics.CollectQuiz(quizzes);
+  
+            List<string> options = Logics.CollectOptions();
             
-            
-            //QuizQuestion quiz = Logics.CollectQuiz(quiz);
-            Logics.CollectQuiz(quizzes, options);
-          
-
-            //Quiz Question object
-            
-            Logics.CollectOptions();
+            foreach (string option in options)
+            {
+                Console.WriteLine(option);
+            }
+            Console.WriteLine(Logics.CollectOptions());
 
 
-            Console.WriteLine("\nWhich of the Options is correct?");
+    /*            Console.WriteLine("\nWhich of the Options is correct?");
             
             //Logics.CollectRightOption(options, quizzes);
             
@@ -49,6 +51,8 @@ namespace QuizMaker
             writer.Serialize(Console.Out, quizzes);
             Console.WriteLine();
             Console.ReadLine();
-        }
+    */
+
+            }
     }
 }

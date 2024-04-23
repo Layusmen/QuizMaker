@@ -6,35 +6,29 @@ namespace QuizMaker
 {
     internal class Logics
     {
-        public static void CollectQuiz(List<QuizQuestion> quizzes, List<string> options)
+        public static List<QuizQuestion> CollectQuiz(List<QuizQuestion> quizzes)
         {
             string insertQuestion = Console.ReadLine().Trim();
 
             if (insertQuestion != "")
             {
                 QuizQuestion quiz = new QuizQuestion();
-                //quiz.question = insertQuestion;
+                quiz.question = insertQuestion;
                 //quiz.questionOption = CollectOptions();
                 quizzes.Add(quiz);
             }
-            
-
+            return quizzes;
         }
-
-
-
         public static List<string> CollectOptions()
         {
             int counter = 0;
             string insertedOption;
 
-            //QuizQuestion quiz = new QuizQuestion();
             List<string> options = new List<string>();
             string prompt;
-            
+
             while (counter < Constants.maxOptions)
             {
-
                 if (counter == 0)
                 {
                     prompt = UIMethods.InsertQuizOptions();//"\nEnter an option or Press enter to leave blank:";
@@ -50,7 +44,7 @@ namespace QuizMaker
                 if (insertedOption != "")
                 {
                     counter++;
-
+                    
                     options.Add(insertedOption);
                     Console.WriteLine($"\nOption {counter} inserted: {insertedOption}");
                 }
