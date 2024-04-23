@@ -14,11 +14,12 @@ namespace QuizMaker
             {
                 QuizQuestion quiz = new QuizQuestion();
                 quiz.question = insertQuestion;
-                //quiz.questionOption = CollectOptions();
+                quiz.questionOption = CollectOptions();               
                 quizzes.Add(quiz);
             }
             return quizzes;
         }
+
         public static List<string> CollectOptions()
         {
             int counter = 0;

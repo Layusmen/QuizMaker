@@ -17,16 +17,10 @@ namespace QuizMaker
             //Collect Quizzes;
             Logics.CollectQuiz(quizzes);
   
-            List<string> options = Logics.CollectOptions();
             
-            foreach (string option in options)
-            {
-                Console.WriteLine(option);
-            }
-            Console.WriteLine(Logics.CollectOptions());
 
 
-    /*            Console.WriteLine("\nWhich of the Options is correct?");
+    /*           Console.WriteLine("\nWhich of the Options is correct?");
             
             //Logics.CollectRightOption(options, quizzes);
             
