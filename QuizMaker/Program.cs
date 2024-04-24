@@ -7,26 +7,26 @@ namespace QuizMaker
     {
         static void Main(string[] args)
         {
-    
+            //Insert Quiz Question            
+            List<QuizQuestion> quizzes = new List<QuizQuestion>();
+
             UIMethods.PrintWelcome();
 
             UIMethods.InsertQuizQuestion();
             
-            //Insert Quiz Question            
-            List<QuizQuestion> quizzes = new List<QuizQuestion>();
+            
             
             //Collect Quizzes;
             Logics.CollectQuiz(quizzes);
-           
-            //Select Right Option
-            Logics.CollectRightOption();
-            Console.WriteLine(quizzes.Count);
+            
+         
 
 
+/*
 
-            /* 
-             //Print Quiz Questions
-             Logics.PrintQuizQuestions(quizzes);
+            //Print Quiz Questions
+            Logics.PrintQuizQuestions(quizzes);
+
 
              //Print Quiz Options
              //Logics.PrintQuizOptions(options);

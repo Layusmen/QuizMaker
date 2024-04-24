@@ -33,15 +33,13 @@ namespace QuizMaker
             {
                 if (counter == 0)
                 {
-                    prompt = UIMethods.InsertQuizOptions();
+                   UIMethods.InsertQuizOptions();
                 }
                 else
                 {
                     prompt = $"\nEnter option {counter + 1} or Press enter to leave blank:";
                 }
-                Console.WriteLine(prompt);
-
-
+         
                 insertedOption = Console.ReadLine().Trim();
 
                 if (insertedOption != "")
@@ -64,10 +62,16 @@ namespace QuizMaker
         {
             Console.WriteLine("\nNow Enter the Correct Option of the options inserted");
             string rightOption = Console.ReadLine().Trim();
-                while (rightOption != "" && CollectOptions().Contains(rightOption))
+
+            bool foundCorrectOption = false;
+            while (rightOption != "" && !foundCorrectOption)
+            {
+                if (CollectOptions().Contains(rightOption))
                 {
-                 Console.WriteLine("Correct Answer Found in the Options Bank");
+                    foundCorrectOption = true;
+                    Console.WriteLine("Correct Answer Found in the Options Bank");
                 }
+            }
             return rightOption;
         }
 
