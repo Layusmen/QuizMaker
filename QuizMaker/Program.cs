@@ -16,6 +16,7 @@ namespace QuizMaker
 
             Console.Write("\nWhat do you want to do?:");
             char gameOption;
+
             while (true)
             {
                 Console.Write("(A) Answer Quiz Questions.");
@@ -30,13 +31,11 @@ namespace QuizMaker
                     Logics.AddQuizToBank(quizzes, insertMoreQuiz);
                     break;
                 }
-               else if (gameOption == Constants.INSERT_MORE_QUIZ)
+                else if (gameOption == Constants.INSERT_MORE_QUIZ)
                 {
                     Console.WriteLine("Add More to the Quiz Bank");
-                }
-                
+                }   
             }
-
         }
     }
 }
