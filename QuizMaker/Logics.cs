@@ -12,14 +12,13 @@ namespace QuizMaker
         {
             string insertQuestion = Console.ReadLine().Trim();
             QuizQuestion quiz = new QuizQuestion();
-
+            string userInput;
             while (insertQuestion != "")
             {
 
                 quiz.question = insertQuestion;
                 break;
             }
-
             quiz.questionOption = CollectOptions();
             quiz.correctOption = CollectRightOption(quiz);
             quizzes.Add(quiz);
@@ -97,7 +96,7 @@ namespace QuizMaker
                 Console.WriteLine(quiz.correctOption);
             }
         }
-        
+
         public static void PrintCorrectOption(List<QuizQuestion> quizzes)
         {
 
