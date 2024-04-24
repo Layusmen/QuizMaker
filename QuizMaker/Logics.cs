@@ -96,14 +96,18 @@ namespace QuizMaker
                 Console.WriteLine(quiz.correctOption);
             }
         }
-
-        public static void PrintCorrectOption(List<QuizQuestion> quizzes)
+        public static void SaveSerialize(List<QuizQuestion> quizzes)
         {
-
-            foreach (QuizQuestion correctAnswer in quizzes)
+            //Serialization [Outputing for programming sake, to clear off latter]
+            Console.WriteLine("Quizzes saved to file:");
+            XmlSerializer writer = new XmlSerializer(typeof(List<QuizQuestion>));
+            var path = @"C:\Users\ola\source\repos\QuizMaker\QuestionBank";
+            using (FileStream file = File.Create(path))
             {
-                Console.WriteLine(correctAnswer.correctOption);
+                writer.Serialize(file, quizzes);
             }
+            writer.Serialize(Console.Out, quizzes);
         }
+
     }
 }

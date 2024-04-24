@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Xml.Serialization;
 
 namespace QuizMaker
@@ -34,15 +36,8 @@ namespace QuizMaker
                 Console.Clear();
             }
 
-            //Serialization [Outputing for programming sake, to clear off latter]
-            Console.WriteLine("Quizzes saved to file:");
-            XmlSerializer writer = new XmlSerializer(typeof(List<QuizQuestion>));
-            var path = @"C:\Users\ola\source\repos\QuizMaker\QuestionBank";
-            using (FileStream file = File.Create(path))
-            {
-                writer.Serialize(file, quizzes);
-            }
-            writer.Serialize(Console.Out, quizzes);
+            //Call SaveSerialize Method
+            Logics.SaveSerialize(quizzes);
 
         }
     }
