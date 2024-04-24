@@ -112,7 +112,7 @@ namespace QuizMaker
             insertMoreQuiz = key.KeyChar == 'y' || key.KeyChar == 'Y';
             return true;
         }
-        public static void PlayQuiz(List<QuizQuestion> quizzes, bool insertMoreQuiz)
+        public static void AddQuizToBank(List<QuizQuestion> quizzes, bool insertMoreQuiz)
         {
             while (insertMoreQuiz)
             {

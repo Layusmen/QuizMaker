@@ -27,7 +27,7 @@ namespace QuizMaker
                 if (gameOption == Constants.PLAY_QUIZ)
                 {
                     //Play Quiz Functionality Selected
-                    Logics.PlayQuiz(quizzes, insertMoreQuiz);
+                    Logics.AddQuizToBank(quizzes, insertMoreQuiz);
                     break;
                 }
                else if (gameOption == Constants.INSERT_MORE_QUIZ)
