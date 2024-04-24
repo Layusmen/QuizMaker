@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.FileIO;
+using System;
 using System.Data;
 using System.Xml.Serialization;
 
@@ -6,19 +7,22 @@ namespace QuizMaker
 {
     internal class Logics
     {
-    
+
         public static List<QuizQuestion> CollectQuiz(List<QuizQuestion> quizzes)
         {
             string insertQuestion = Console.ReadLine().Trim();
+            QuizQuestion quiz = new QuizQuestion();
 
-            if (insertQuestion != "")
+            while (insertQuestion != "")
             {
-                QuizQuestion quiz = new QuizQuestion();
+
                 quiz.question = insertQuestion;
-                quiz.questionOption = CollectOptions();
-                quiz.correctOption = CollectRightOption();
-                quizzes.Add(quiz);
+                break;
             }
+
+            quiz.questionOption = CollectOptions();
+            quiz.correctOption = CollectRightOption(quiz);
+            quizzes.Add(quiz);
             return quizzes;
         }
 
@@ -33,13 +37,13 @@ namespace QuizMaker
             {
                 if (counter == 0)
                 {
-                   UIMethods.InsertQuizOptions();
+                    UIMethods.InsertQuizOptions();
                 }
                 else
                 {
                     prompt = $"\nEnter option {counter + 1} or Press enter to leave blank:";
                 }
-         
+
                 insertedOption = Console.ReadLine().Trim();
 
                 if (insertedOption != "")
@@ -52,13 +56,13 @@ namespace QuizMaker
                 if (counter == Constants.maxOptions)
                 {
                     Console.WriteLine("Needed Options Inserted");
-                    break; 
+                    break;
                 }
             }
             return options;
         }
 
-        public static string CollectRightOption()
+        public static string CollectRightOption(QuizQuestion quiz)
         {
             Console.WriteLine("\nNow Enter the Correct Option of the options inserted");
             string rightOption = Console.ReadLine().Trim();
@@ -66,7 +70,7 @@ namespace QuizMaker
             bool foundCorrectOption = false;
             while (rightOption != "" && !foundCorrectOption)
             {
-                if (CollectOptions().Contains(rightOption))
+                if (quiz.questionOption.Contains(rightOption))
                 {
                     foundCorrectOption = true;
                     Console.WriteLine("Correct Answer Found in the Options Bank");
@@ -84,19 +88,16 @@ namespace QuizMaker
             foreach (QuizQuestion quiz in quizzes)
             {
                 Console.WriteLine(quiz.question);
+                Console.WriteLine("\nThe Following are the Options Inserted: ");
+                foreach (string option in quiz.questionOption)
+                {
+                    Console.WriteLine(option);
+                }
+                Console.WriteLine("\nThe Correct Option is:");
+                Console.WriteLine(quiz.correctOption);
             }
         }
-        public static void PrintQuizOptions(QuizQuestion options)
-        {
-            //Quiz Options Print
-            Console.WriteLine("\nEntered options for this question:");
-
-            // Print all options from the list
-            foreach (var option in options.questionOption)
-            {
-                Console.WriteLine(option);
-            }
-        }
+        
         public static void PrintCorrectOption(List<QuizQuestion> quizzes)
         {
 

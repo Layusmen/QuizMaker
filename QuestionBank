@@ -2,5 +2,13 @@
 <ArrayOfQuizQuestion xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <QuizQuestion>
     <question>What is your name?</question>
+    <questionOption>
+      <string>Dele</string>
+      <string>Jide</string>
+      <string>Wale</string>
+      <string>Wunmi</string>
+      <string>Kunle</string>
+    </questionOption>
+    <correctOption>Kunle</correctOption>
   </QuizQuestion>
 </ArrayOfQuizQuestion>

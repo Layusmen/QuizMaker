@@ -13,40 +13,26 @@ namespace QuizMaker
             UIMethods.PrintWelcome();
 
             UIMethods.InsertQuizQuestion();
-            
-            
-            
+
             //Collect Quizzes;
             Logics.CollectQuiz(quizzes);
-            
-         
 
-
-/*
-
-            //Print Quiz Questions
+            //Print Quiz Questions and Options
             Logics.PrintQuizQuestions(quizzes);
 
 
-             //Print Quiz Options
-             //Logics.PrintQuizOptions(options);
+            //Serialization
+            XmlSerializer writer = new XmlSerializer(typeof(List<QuizQuestion>));
+            var path = @"C:\Users\ola\source\repos\QuizMaker\QuestionBank";
+            using (FileStream file = File.Create(path))
+            {
+                writer.Serialize(file, quizzes);
+            }
 
-             //Correct Answer
-             Console.WriteLine("\nCorrect Answer is:");
-             Logics.PrintCorrectOption(quizzes);
-
-             //Serialization
-             XmlSerializer writer = new XmlSerializer(typeof(List<QuizQuestion>));
-             var path = @"C:\Users\ola\source\repos\QuizMaker\QuestionBank";
-             using (FileStream file = File.Create(path))
-             {
-                 writer.Serialize(file, quizzes);
-             }
-
-             writer.Serialize(Console.Out, quizzes);
-             Console.WriteLine();
-             Console.ReadLine();
-     */
+            writer.Serialize(Console.Out, quizzes);
+            Console.WriteLine();
+            Console.ReadLine();
+     
 
         }
     }
