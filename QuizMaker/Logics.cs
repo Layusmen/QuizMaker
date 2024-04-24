@@ -6,6 +6,7 @@ namespace QuizMaker
 {
     internal class Logics
     {
+    
         public static List<QuizQuestion> CollectQuiz(List<QuizQuestion> quizzes)
         {
             string insertQuestion = Console.ReadLine().Trim();
@@ -25,11 +26,9 @@ namespace QuizMaker
         {
             int counter = 0;
             string insertedOption;
-
             List<string> options = new List<string>();
 
             string prompt;
-
             while (counter < Constants.maxOptions)
             {
                 if (counter == 0)
@@ -48,7 +47,6 @@ namespace QuizMaker
                 if (insertedOption != "")
                 {
                     counter++;
-
                     options.Add(insertedOption);
                     Console.WriteLine($"\nOption {counter} inserted: {insertedOption}");
                 }
@@ -56,30 +54,21 @@ namespace QuizMaker
                 if (counter == Constants.maxOptions)
                 {
                     Console.WriteLine("Needed Options Inserted");
-                    break;
-                    //return options;
-                   
+                    break; 
                 }
             }
             return options;
-
         }
-
-
 
         public static string CollectRightOption()
         {
-            Console.WriteLine("Now Enter the Correct Option of the options inserted");
-            string rightOption;
-            while (true)
-            {
-                rightOption = Console.ReadLine().Trim();
-
-                if (rightOption != "" && CollectOptions().Contains(rightOption))
+            Console.WriteLine("\nNow Enter the Correct Option of the options inserted");
+            string rightOption = Console.ReadLine().Trim();
+                while (rightOption != "" && CollectOptions().Contains(rightOption))
                 {
-                    Console.WriteLine("Correct Answer Found in the Options Bank");
+                 Console.WriteLine("Correct Answer Found in the Options Bank");
                 }
-            }
+            return rightOption;
         }
 
 

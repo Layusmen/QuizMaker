@@ -20,7 +20,7 @@ namespace QuizMaker
            
             //Select Right Option
             Logics.CollectRightOption();
-
+            Console.WriteLine(quizzes.Count);
 
 
 
