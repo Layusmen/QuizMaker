@@ -7,7 +7,6 @@ namespace QuizMaker
 {
     internal class Logics
     {
-
         public static List<QuizQuestion> CollectQuiz(List<QuizQuestion> quizzes)
         {
             string insertQuestion = Console.ReadLine().Trim();
@@ -24,7 +23,6 @@ namespace QuizMaker
             quizzes.Add(quiz);
             return quizzes;
         }
-
         public static List<string> CollectOptions()
         {
             int counter = 0;
@@ -60,7 +58,6 @@ namespace QuizMaker
             }
             return options;
         }
-
         public static string CollectRightOption(QuizQuestion quiz)
         {
             Console.WriteLine("\nNow Enter the Correct Option of the options inserted");
@@ -77,8 +74,6 @@ namespace QuizMaker
             }
             return rightOption;
         }
-
-
         public static void PrintQuizQuestions(List<QuizQuestion> quizzes)
         {
             //Quiz Question Print
@@ -108,6 +103,33 @@ namespace QuizMaker
             }
             writer.Serialize(Console.Out, quizzes);
         }
+        public static bool MoreQuizPrompt(bool insertMoreQuiz)
+        {
+            Console.Write("\nDo you want to add more quiz: 'y' for yes, any other key for no): ");
+            ConsoleKeyInfo key = Console.ReadKey();
 
+            // Check if the pressed key is 'y' for yes
+            insertMoreQuiz = key.KeyChar == 'y' || key.KeyChar == 'Y';
+            return true;
+        }
+        public static void PlayQuiz(List<QuizQuestion> quizzes, bool insertMoreQuiz)
+        {
+            while (insertMoreQuiz)
+            {
+                UIMethods.InsertQuizQuestion();
+
+                //Collect Quizzes;
+                Logics.CollectQuiz(quizzes);
+
+                //Print Quiz Questions and Options
+                Logics.PrintQuizQuestions(quizzes);
+
+                Logics.MoreQuizPrompt(insertMoreQuiz);
+                // Clear the console for the next round
+                Console.Clear();
+                //Call SaveSerialize Method
+                Logics.SaveSerialize(quizzes);
+            }
+        }
     }
 }
