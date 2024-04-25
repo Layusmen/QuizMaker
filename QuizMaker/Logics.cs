@@ -30,7 +30,7 @@ namespace QuizMaker
             List<string> options = new List<string>();
 
             string prompt;
-            while (counter < Constants.maxOptions)
+            while (counter < Constants.MAX_OPTIONS)
             {
                 if (counter == 0)
                 {
@@ -50,7 +50,7 @@ namespace QuizMaker
                     Console.WriteLine($"\nOption {counter} inserted: {insertedOption}");
                 }
 
-                if (counter == Constants.maxOptions)
+                if (counter == Constants.MAX_OPTIONS)
                 {
                     Console.WriteLine("Needed Options Inserted");
                     break;
@@ -103,33 +103,6 @@ namespace QuizMaker
             }
             writer.Serialize(Console.Out, quizzes);
         }
-        public static bool MoreQuizPrompt(bool insertMoreQuiz)
-        {
-            Console.Write("\nDo you want to add more quiz: 'y' for yes, any other key for no): ");
-            ConsoleKeyInfo key = Console.ReadKey();
-
-            // Check if the pressed key is 'y' for yes
-            insertMoreQuiz = key.KeyChar == 'y' || key.KeyChar == 'Y';
-            return true;
-        }
-        public static void AddQuizToBank(List<QuizQuestion> quizzes, bool insertMoreQuiz)
-        {
-            while (insertMoreQuiz)
-            {
-                UIMethods.InsertQuizQuestion();
-
-                //Collect Quizzes;
-                Logics.CollectQuiz(quizzes);
-
-                //Print Quiz Questions and Options
-                Logics.PrintQuizQuestions(quizzes);
-
-                Logics.MoreQuizPrompt(insertMoreQuiz);
-                // Clear the console for the next round
-                Console.Clear();
-                //Call SaveSerialize Method
-                Logics.SaveSerialize(quizzes);
-            }
-        }
+       
     }
 }

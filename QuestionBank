@@ -4,33 +4,11 @@
     <question>What is your name?</question>
     <questionOption>
       <string>Dele</string>
-      <string>Wale</string>
-      <string>Kunle</string>
-      <string>Adio</string>
+      <string>Alao</string>
+      <string>Amao</string>
       <string>Adigun</string>
+      <string>Alari</string>
     </questionOption>
     <correctOption>Adigun</correctOption>
-  </QuizQuestion>
-  <QuizQuestion>
-    <question>How old are you?</question>
-    <questionOption>
-      <string>10</string>
-      <string>20</string>
-      <string>30</string>
-      <string>40</string>
-      <string>50</string>
-    </questionOption>
-    <correctOption>50</correctOption>
-  </QuizQuestion>
-  <QuizQuestion>
-    <question>Where are you from?</question>
-    <questionOption>
-      <string>Ibadan</string>
-      <string>Oyo</string>
-      <string>Ogun</string>
-      <string>Ila</string>
-      <string>Iseyin</string>
-    </questionOption>
-    <correctOption>Iseyin</correctOption>
   </QuizQuestion>
 </ArrayOfQuizQuestion>

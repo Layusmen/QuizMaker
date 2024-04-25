@@ -1,12 +1,19 @@
 ﻿using System;
-using System.Diagnostics;
 namespace QuizMaker
 {
     internal class UIMethods
     {
         public static void PrintWelcome()
         {
-            Console.WriteLine("Welcome to the Quiz Maker");
+            Console.WriteLine("\nWelcome to the Quiz Maker");
+            Console.Write("\nWhat do you want to do?:");
+        }
+
+        public static void QuizmakerPrompt()
+        {
+            Console.Write("(A) Answer Quiz Questions.");
+            Console.Write("(B) To Add More to the question Bank.");
+            Console.Write("\nPlease choose an Option (A or B): ");
         }
         public static void InsertQuizQuestion()
         {
@@ -14,8 +21,7 @@ namespace QuizMaker
         }
         public static void InsertQuizOptions()
         {
-            
-               Console.WriteLine("\nPlease insert options\n");
+            Console.WriteLine("\nPlease insert options\n");
         }
         public static void InsertCorrectOption()
         {

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using System.Xml.Serialization;
 
 namespace QuizMaker
@@ -10,32 +8,52 @@ namespace QuizMaker
         static void Main(string[] args)
         {
             bool insertMoreQuiz = true;
+
             //Insert Quiz Question Instances        
             List<QuizQuestion> quizzes = new List<QuizQuestion>();
+
             UIMethods.PrintWelcome();
 
-            Console.Write("\nWhat do you want to do?:");
             char gameOption;
+            
+            UIMethods.QuizmakerPrompt();
 
-            while (true)
+            gameOption = char.ToUpper(Console.ReadKey().KeyChar);
+
+            if (gameOption == Constants.PLAY_QUIZ)
             {
-                Console.Write("(A) Answer Quiz Questions.");
-                Console.Write("(B) To Add More to the question Bank.");
-                Console.Write("\nPlease choose an Option (A or B): ");
-                gameOption = char.ToUpper(Console.ReadKey().KeyChar);
-                Console.WriteLine();
-
-                if (gameOption == Constants.PLAY_QUIZ)
-                {
-                    //Play Quiz Functionality Selected
-                    Logics.AddQuizToBank(quizzes, insertMoreQuiz);
-                    break;
-                }
-                else if (gameOption == Constants.INSERT_MORE_QUIZ)
-                {
-                    Console.WriteLine("Add More to the Quiz Bank");
-                }   
+                Console.WriteLine("Add More to the Quiz Bank");
             }
+            else if (gameOption == Constants.INSERT_MORE_QUIZ)
+            {
+
+                while (insertMoreQuiz)
+                {
+                    //Insert More Quizzes to the Question Bank
+                    UIMethods.InsertQuizQuestion();
+
+                    //Collect Quizzes;
+                    Logics.CollectQuiz(quizzes);
+
+                    //Print Quiz Questions and Options
+                    Logics.PrintQuizQuestions(quizzes);
+
+                    Console.Write("\nDo you want to add more quiz: 'y' for yes, any other key for no): ");
+                    ConsoleKeyInfo key = Console.ReadKey();
+
+                    // Check if the pressed key is 'y' for yes
+                    insertMoreQuiz = key.KeyChar == 'y' || key.KeyChar == 'Y';
+
+                    // Clear the console for the next round
+                    Console.Clear();
+
+                    // Call SaveSerialize Method
+                    Logics.SaveSerialize(quizzes);
+            
+                    // Logics.AddQuizToBank(quizzes, insertMoreQuiz);
+                }
+            }
+
         }
     }
 }
