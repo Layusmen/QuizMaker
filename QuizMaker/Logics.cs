@@ -103,6 +103,54 @@ namespace QuizMaker
             }
             writer.Serialize(Console.Out, quizzes);
         }
-       
+
+        public static bool PromptToAddMoreQuiz(bool insertMoreQuiz)
+        {
+            Console.Write("\nDo you want to add more quiz: 'y' for yes, any other key for no): ");
+            ConsoleKeyInfo key = Console.ReadKey();
+
+            // Check if the pressed key is 'y' for yes
+            insertMoreQuiz = key.KeyChar == 'y' || key.KeyChar == 'Y';
+            if (insertMoreQuiz = key.KeyChar == 'y' || key.KeyChar == 'Y')
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public static void QuestionPrompt(bool insertMoreQuiz, List<QuizQuestion> quizzes)
+        {
+            while (insertMoreQuiz)
+            {
+
+                // Insert More Quizzes to the Question Bank
+                UIMethods.InsertQuizPrompt();
+
+                // Collect Quizzes;
+                Logics.CollectQuiz(quizzes);
+
+                // Print Quiz Questions and Options
+                Logics.PrintQuizQuestions(quizzes);
+
+                //Add More Quizzes Prompt
+                Console.Write("\nDo you want to add more quiz: 'y' for yes, any other key for no): ");
+
+                ConsoleKeyInfo key = Console.ReadKey();
+
+                // Check if the pressed key is 'y' for yes
+                insertMoreQuiz = key.KeyChar == 'y' || key.KeyChar == 'Y';
+
+                // Clear the console for the next round
+                Console.Clear();
+
+                // Call SaveSerialize Method
+                Logics.SaveSerialize(quizzes);
+
+            }
+        }
     }
 }

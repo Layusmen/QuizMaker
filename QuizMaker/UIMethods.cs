@@ -7,15 +7,11 @@ namespace QuizMaker
         {
             Console.WriteLine("\nWelcome to the Quiz Maker");
             Console.Write("\nWhat do you want to do?:");
-        }
-
-        public static void QuizmakerPrompt()
-        {
             Console.Write("(A) Answer Quiz Questions.");
             Console.Write("(B) To Add More to the question Bank.");
             Console.Write("\nPlease choose an Option (A or B): ");
         }
-        public static void InsertQuizQuestion()
+        public static void InsertQuizPrompt()
         {
             Console.WriteLine("\nPlease insert the questions, and follow the prompts as required. \n");
         }

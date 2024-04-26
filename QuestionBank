@@ -4,11 +4,11 @@
     <question>What is your name?</question>
     <questionOption>
       <string>Dele</string>
-      <string>Alao</string>
+      <string>Wale</string>
+      <string>Kunle</string>
+      <string>Adio</string>
       <string>Amao</string>
-      <string>Adigun</string>
-      <string>Alari</string>
     </questionOption>
-    <correctOption>Adigun</correctOption>
+    <correctOption>Amao</correctOption>
   </QuizQuestion>
 </ArrayOfQuizQuestion>
