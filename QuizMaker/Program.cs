@@ -20,16 +20,14 @@ namespace QuizMaker
 
                if (gameOption == Constants.PLAY_QUIZ)
                 {
-                    List<QuizQuestion> Quizzes = new List<QuizQuestion>();
+                    List<QuizQuestion> quizzes = new List<QuizQuestion>();
                     //Play Quiz Prompt
                     Console.WriteLine("\nPlay Quiz Prompt");
 
-                    List<QuizQuestion> loadedQuizzes = Logics.LoadDeserialize(Quizzes);
+                    List<QuizQuestion> loadedQuizzes= Logics.LoadDeserialize(quizzes);
                     Console.WriteLine("\nDo you want to play game?");
 
                     Logics.PrintQuizDeserialize(loadedQuizzes);
-
-
                     break;
                 }
 

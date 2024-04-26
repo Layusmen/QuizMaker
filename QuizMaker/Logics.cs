@@ -106,8 +106,7 @@ namespace QuizMaker
             }
             writer.Serialize(Console.Out, quizzes);
         }
-
-        public static List<QuizQuestion> LoadDeserialize(List<QuizQuestion> Quizzes)
+        public static List<QuizQuestion> LoadDeserialize(List<QuizQuestion> quizzes)
         {
             // Deserialization
             var path = @"C:\Users\ola\source\repos\QuizMaker\QuestionBank";
@@ -124,20 +123,17 @@ namespace QuizMaker
                 using (FileStream file = File.OpenRead(path))
                 {
                     XmlSerializer reader = new XmlSerializer(typeof(List<QuizQuestion>));
-                    Quizzes = (List<QuizQuestion>)reader.Deserialize(file);
+                    quizzes = (List<QuizQuestion>)reader.Deserialize(file);
                 }
             }
-            return Quizzes;
+            return quizzes;
         }
-
-        public static void PrintQuizDeserialize (List<QuizQuestion> Quizzes)
+        public static void PrintQuizDeserialize (List<QuizQuestion> quizzes)
         {
-            
-
-            if (Quizzes != null && Quizzes.Any())
+            if (quizzes != null && quizzes.Any())
             {
                 Console.WriteLine("Loaded Quiz Questions:");
-                foreach (var quiz in Quizzes)
+                foreach (var quiz in quizzes)
                 {
                     // Access and display question
                     Console.WriteLine("Question: {0}", quiz.question);
@@ -154,9 +150,7 @@ namespace QuizMaker
             {
                 Console.WriteLine("No quizzes found in the file.");
             }
-
         }
-
         public static bool PromptToAddMoreQuiz(bool insertMoreQuiz)
         {
             Console.Write("\nDo you want to add more quiz: 'y' for yes, any other key for no): ");
@@ -173,7 +167,6 @@ namespace QuizMaker
                 return false;
             }
         }
-
         public static void PopulateQuizBank(bool insertMoreQuiz, List<QuizQuestion> quizzes)
         {
             while (insertMoreQuiz)
@@ -201,11 +194,6 @@ namespace QuizMaker
                 // Call SaveSerialize Method
                 Logics.SaveSerialize(quizzes);
             }
-        }
-
-        public static void PlayQuizPrompt()
-        {
-
         }
 
     }
