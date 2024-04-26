@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Xml.Serialization;
 
 namespace QuizMaker
@@ -9,23 +10,40 @@ namespace QuizMaker
         static void Main(string[] args)
         {
             bool insertMoreQuiz= true;
-            
-            // Insert Quiz Question Instances        
-            List<QuizQuestion> quizzes = new List<QuizQuestion>();
 
-            UIMethods.PrintWelcome();
-
-            char gameOption = char.ToUpper(Console.ReadKey().KeyChar);
-
-            if (gameOption == Constants.PLAY_QUIZ)
+            char gameOption;
+            do
             {
-                //Console.WriteLine("Play Quiz Prompt");
-            }
-            else if (gameOption == Constants.INSERT_MORE_QUIZ)
-            {
-                //Add More Quiz to the Quiz Bank Prompt 
-                Logics.PopulateQuizBank(insertMoreQuiz, quizzes);
-            }
+                UIMethods.PrintWelcome();
+
+                gameOption = char.ToUpper(Console.ReadKey().KeyChar);
+
+               if (gameOption == Constants.PLAY_QUIZ)
+                {
+                    List<QuizQuestion> Quizzes = new List<QuizQuestion>();
+                    //Play Quiz Prompt
+                    Console.WriteLine("\nPlay Quiz Prompt");
+
+                    List<QuizQuestion> loadedQuizzes = Logics.LoadDeserialize(Quizzes);
+                    Console.WriteLine("\nDo you want to play game?");
+
+                    Logics.PrintQuizDeserialize(loadedQuizzes);
+
+
+                    break;
+                }
+
+                if (gameOption == Constants.INSERT_MORE_QUIZ)
+                {
+                    // Insert Quiz Question Instances        
+                    List<QuizQuestion> quizzes = new List<QuizQuestion>();
+
+                    //Add More Quiz to the Quiz Bank Prompt 
+                    Logics.PopulateQuizBank(insertMoreQuiz, quizzes);
+                    break;
+                }
+
+            } while (true);
 
         }
     }

@@ -95,13 +95,66 @@ namespace QuizMaker
         {
             //Serialization [Outputing for programming sake, to clear off latter]
             Console.WriteLine("Quizzes saved to file:");
+
             XmlSerializer writer = new XmlSerializer(typeof(List<QuizQuestion>));
+
             var path = @"C:\Users\ola\source\repos\QuizMaker\QuestionBank";
+
             using (FileStream file = File.Create(path))
             {
                 writer.Serialize(file, quizzes);
             }
             writer.Serialize(Console.Out, quizzes);
+        }
+
+        public static List<QuizQuestion> LoadDeserialize(List<QuizQuestion> Quizzes)
+        {
+            // Deserialization
+            var path = @"C:\Users\ola\source\repos\QuizMaker\QuestionBank";
+
+            if (!File.Exists(path)) // Check if file exists
+            {
+                Console.WriteLine("File Path Does Not Exist");
+                return null;
+            }
+            else
+            {
+                Console.WriteLine("File Path Found");
+
+                using (FileStream file = File.OpenRead(path))
+                {
+                    XmlSerializer reader = new XmlSerializer(typeof(List<QuizQuestion>));
+                    Quizzes = (List<QuizQuestion>)reader.Deserialize(file);
+                }
+            }
+            return Quizzes;
+        }
+
+        public static void PrintQuizDeserialize (List<QuizQuestion> Quizzes)
+        {
+            
+
+            if (Quizzes != null && Quizzes.Any())
+            {
+                Console.WriteLine("Loaded Quiz Questions:");
+                foreach (var quiz in Quizzes)
+                {
+                    // Access and display question
+                    Console.WriteLine("Question: {0}", quiz.question);
+                    Console.WriteLine("Options:");
+                    foreach (var option in quiz.questionOption)
+                    {
+                        Console.WriteLine("- {0}", option);
+                    }
+                    Console.WriteLine("Answer: {0}", quiz.correctOption);
+                    Console.WriteLine("..."); 
+                }
+            }
+            else
+            {
+                Console.WriteLine("No quizzes found in the file.");
+            }
+
         }
 
         public static bool PromptToAddMoreQuiz(bool insertMoreQuiz)
@@ -119,14 +172,12 @@ namespace QuizMaker
             {
                 return false;
             }
-
         }
 
         public static void PopulateQuizBank(bool insertMoreQuiz, List<QuizQuestion> quizzes)
         {
             while (insertMoreQuiz)
             {
-
                 // Insert More Quizzes to the Question Bank
                 UIMethods.InsertQuizPrompt();
 
@@ -149,10 +200,13 @@ namespace QuizMaker
 
                 // Call SaveSerialize Method
                 Logics.SaveSerialize(quizzes);
-
             }
         }
 
+        public static void PlayQuizPrompt()
+        {
+
+        }
 
     }
 }
