@@ -19,12 +19,12 @@ namespace QuizMaker
 
             if (gameOption == Constants.PLAY_QUIZ)
             {
-                //Console.WriteLine("Add More to the Quiz Bank");
+                //Console.WriteLine("Play Quiz Prompt");
             }
             else if (gameOption == Constants.INSERT_MORE_QUIZ)
             {
                 //Add More Quiz to the Quiz Bank Prompt 
-                Logics.QuestionPrompt(insertMoreQuiz, quizzes);
+                Logics.PopulateQuizBank(insertMoreQuiz, quizzes);
             }
 
         }

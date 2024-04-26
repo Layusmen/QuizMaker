@@ -122,7 +122,7 @@ namespace QuizMaker
 
         }
 
-        public static void QuestionPrompt(bool insertMoreQuiz, List<QuizQuestion> quizzes)
+        public static void PopulateQuizBank(bool insertMoreQuiz, List<QuizQuestion> quizzes)
         {
             while (insertMoreQuiz)
             {
@@ -152,5 +152,7 @@ namespace QuizMaker
 
             }
         }
+
+
     }
 }
