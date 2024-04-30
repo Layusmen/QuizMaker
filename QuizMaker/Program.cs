@@ -18,28 +18,11 @@ namespace QuizMaker
 
                 gameOption = char.ToUpper(Console.ReadKey().KeyChar);
 
-               if (gameOption == Constants.PLAY_QUIZ)
-                {
-                    List<QuizQuestion> quizzes = new List<QuizQuestion>();
-                    //Play Quiz Prompt
-                    Console.WriteLine("\nPlay Quiz Prompt");
+                //Play Quizzes Prompt
+                Logics.PlayQuiz(insertMoreQuiz, gameOption);
 
-                    List<QuizQuestion> loadedQuizzes= Logics.LoadDeserialize(quizzes);
-                    Console.WriteLine("\nDo you want to play game?");
-
-                    Logics.PrintQuizDeserialize(loadedQuizzes);
-                    break;
-                }
-
-                if (gameOption == Constants.INSERT_MORE_QUIZ)
-                {
-                    // Insert Quiz Question Instances        
-                    List<QuizQuestion> quizzes = new List<QuizQuestion>();
-
-                    //Add More Quiz to the Quiz Bank Prompt 
-                    Logics.PopulateQuizBank(insertMoreQuiz, quizzes);
-                    break;
-                }
+               //Insert Nore Quiz Logic
+                Logics.AddMoreQuiz(insertMoreQuiz, gameOption);
 
             } while (true);
 

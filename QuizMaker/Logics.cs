@@ -1,13 +1,14 @@
 ﻿using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Data;
+using System.Security.Cryptography.X509Certificates;
 using System.Xml.Serialization;
 
 namespace QuizMaker
 {
     internal class Logics
     {
-        public static List<QuizQuestion> CollectQuiz(List<QuizQuestion> quizzes)
+        public static List<QuizQuestion> CollectQuizzes(List<QuizQuestion> quizzes)
         {
             string insertQuestion = Console.ReadLine().Trim();
             QuizQuestion quiz = new QuizQuestion();
@@ -34,7 +35,7 @@ namespace QuizMaker
             {
                 if (counter == 0)
                 {
-                    UIMethods.InsertQuizOptions();
+                    UIMethods.PrintQuizOptionsPrompt();
                 }
                 else
                 {
@@ -74,20 +75,21 @@ namespace QuizMaker
             }
             return rightOption;
         }
-        public static void PrintQuizQuestions(List<QuizQuestion> quizzes)
+        public static void PrintQuiz(List<QuizQuestion> quizzes)
         {
             //Quiz Question Print
-            Console.WriteLine("\nQuestion added:");
-
+            UIMethods.QuestionAddedPrint();
             foreach (QuizQuestion quiz in quizzes)
             {
                 Console.WriteLine(quiz.question);
-                Console.WriteLine("\nThe Following are the Options Inserted: ");
+
+                UIMethods.InsertedOptionsPrint();
+
                 foreach (string option in quiz.questionOption)
                 {
                     Console.WriteLine(option);
                 }
-                Console.WriteLine("\nThe Correct Option is:");
+                UIMethods.CorrectionOptionPrint();
                 Console.WriteLine(quiz.correctOption);
             }
         }
@@ -128,7 +130,7 @@ namespace QuizMaker
             }
             return quizzes;
         }
-        public static void PrintQuizDeserialize (List<QuizQuestion> quizzes)
+        public static void PrintQuizDeserialize(List<QuizQuestion> quizzes)
         {
             if (quizzes != null && quizzes.Any())
             {
@@ -143,7 +145,7 @@ namespace QuizMaker
                         Console.WriteLine("- {0}", option);
                     }
                     Console.WriteLine("Answer: {0}", quiz.correctOption);
-                    Console.WriteLine("..."); 
+                    Console.WriteLine("...");
                 }
             }
             else
@@ -172,13 +174,13 @@ namespace QuizMaker
             while (insertMoreQuiz)
             {
                 // Insert More Quizzes to the Question Bank
-                UIMethods.InsertQuizPrompt();
+                UIMethods.PrintInsertQuizPrompt();
 
                 // Collect Quizzes;
-                Logics.CollectQuiz(quizzes);
+                Logics.CollectQuizzes(quizzes);
 
                 // Print Quiz Questions and Options
-                Logics.PrintQuizQuestions(quizzes);
+                Logics.PrintQuiz(quizzes);
 
                 //Add More Quizzes Prompt
                 Console.Write("\nDo you want to add more quiz: 'y' for yes, any other key for no): ");
@@ -196,5 +198,38 @@ namespace QuizMaker
             }
         }
 
+
+        public static void AddMoreQuiz(bool insertMoreQuiz, char gameOption)
+
+        {
+            if (gameOption == Constants.INSERT_MORE_QUIZ)
+            {
+                // Insert Quiz Question Instances        
+                List<QuizQuestion> quizzes = new List<QuizQuestion>();
+
+                //Add More Quiz to the Quiz Bank Prompt 
+                Logics.PopulateQuizBank(insertMoreQuiz, quizzes);
+            }
+        }
+
+            public static void PlayQuiz(bool insertMoreQuiz, char gameOption)
+
+            {
+
+                if (gameOption == Constants.PLAY_QUIZ)
+                {
+                    List<QuizQuestion> quizzes = new List<QuizQuestion>();
+                    //Play Quiz Prompt
+                    Console.WriteLine("\nPlay Quiz Prompt");
+
+                    List<QuizQuestion> loadedQuizzes = Logics.LoadDeserialize(quizzes);
+                    Console.WriteLine("\nDo you want to play game?");
+
+                    Logics.PrintQuizDeserialize(loadedQuizzes);
+
+                }
+
+            }
+ 
     }
 }
