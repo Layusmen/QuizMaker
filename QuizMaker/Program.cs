@@ -9,23 +9,35 @@ namespace QuizMaker
     {
         static void Main(string[] args)
         {
-            bool insertMoreQuiz= true;
-
+            bool insertMoreQuiz = true;
             char gameOption;
-            do
+            bool keepPlaying = true;
+
+            while (keepPlaying)
             {
-                UIMethods.PrintWelcome();
+                keepPlaying  = Logics.StopPlay(insertMoreQuiz);
+                Console.WriteLine($"Returning: {insertMoreQuiz}");
+                if (keepPlaying)
+                {
+                    //Welcome Message
+                    UIMethods.PrintWelcome();
 
-                gameOption = char.ToUpper(Console.ReadKey().KeyChar);
+                    //Select what to do
+                    gameOption = char.ToUpper(Console.ReadKey().KeyChar);
 
-                //Play Quizzes Prompt
-                Logics.PlayQuiz(insertMoreQuiz, gameOption);
+                    //Play Quizzes Logic
+                    Logics.PlayQuizSelection(gameOption);
 
-               //Insert Nore Quiz Logic
-                Logics.AddMoreQuiz(insertMoreQuiz, gameOption);
-
-            } while (true);
-
+                    List<QuizQuestion> quizzes = new List<QuizQuestion>();
+                    //Insert More Quiz Logic
+                    Logics.SelectAddMoreQuiz(gameOption, quizzes);
+                }
+                else
+                {
+                    Console.Clear();
+                    break;
+                }
+            }
         }
     }
 }

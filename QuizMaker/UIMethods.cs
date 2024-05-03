@@ -35,7 +35,6 @@ namespace QuizMaker
         {
             Console.WriteLine("\nThe Following are the Options Inserted: ");
         }
-
         public static void CorrectionOptionPrint()
         {
             Console.WriteLine("\nThe Correct Option is:");
