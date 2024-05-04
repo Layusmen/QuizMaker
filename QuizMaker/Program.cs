@@ -11,15 +11,17 @@ namespace QuizMaker
             bool insertMoreQuiz = true;
             char gameOption;
             bool keepPlaying = true;
-
+            List<string> options = new List<string>();
             while (keepPlaying)
             {
-                keepPlaying = Logics.StopPlay(insertMoreQuiz);
+                keepPlaying = Logics.StopPlayPrompt(insertMoreQuiz);
                 Console.WriteLine($"Returning: {insertMoreQuiz}");
                 if (keepPlaying)
                 {
                     //Welcome Message
                     UIMethods.PrintWelcome();
+
+                    List<QuizQuestion> quizzes = new List<QuizQuestion>();
 
                     //Select what to do
                     gameOption = char.ToUpper(Console.ReadKey().KeyChar);
@@ -27,9 +29,8 @@ namespace QuizMaker
                     //Play Quizzes Logic
                     Logics.PlayQuizSelection(gameOption);
 
-                    List<QuizQuestion> quizzes = new List<QuizQuestion>();
                     //Insert More Quiz Logic
-                    Logics.SelectAddMoreQuiz(gameOption, quizzes);
+                    Logics.SelectAddMoreQuiz(gameOption, quizzes, options);
                 }
                 else
                 {

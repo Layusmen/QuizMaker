@@ -176,4 +176,15 @@
     </questionOption>
     <correctOption>judge</correctOption>
   </QuizQuestion>
+  <QuizQuestion>
+    <question>How are you today?</question>
+    <questionOption>
+      <string>Calm</string>
+      <string>sad</string>
+      <string>bad</string>
+      <string>good</string>
+      <string>ok</string>
+    </questionOption>
+    <correctOption>ok</correctOption>
+  </QuizQuestion>
 </ArrayOfQuizQuestion>

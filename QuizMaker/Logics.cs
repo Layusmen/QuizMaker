@@ -7,7 +7,7 @@ namespace QuizMaker
 {
     internal class Logics
     {
-        public static List<QuizQuestion> CollectQuizzes(List<QuizQuestion> quizzes)
+        public static List<QuizQuestion> CollectQuizzes(List<QuizQuestion> quizzes, List<string> options)
         {
             string insertQuestion = Console.ReadLine().Trim();
 
@@ -19,17 +19,17 @@ namespace QuizMaker
                 quiz.question = insertQuestion;
                 break;
             }
-            quiz.questionOption = CollectOptions();
-            quiz.correctOption = CollectRightOption(quiz);
+            quiz.questionOption = CollectOptions(options);
+            quiz.correctOption = CollectRightOption(options);
 
             quizzes.Add(quiz);
             return quizzes;
         }
-        public static List<string> CollectOptions()
+        public static List<string> CollectOptions(List<string> options)
         {
             int counter = 0;
             string insertedOption;
-            List<string> options = new List<string>();
+           
 
             string prompt;
             while (counter < Constants.MAX_OPTIONS)
@@ -60,21 +60,41 @@ namespace QuizMaker
             }
             return options;
         }
-        public static string CollectRightOption(QuizQuestion quiz)
+        public static string CollectRightOption(List<string> options)
         {
-            Console.WriteLine("\nNow Enter the Correct Option of the options inserted");
-            string rightOption = Console.ReadLine().Trim();
-
-            bool foundCorrectOption = false;
-            while (rightOption != "" && !foundCorrectOption)
+            
+            Console.WriteLine("\nNow Enter the Correct Option Index of the options inserted");
+            int selectedOption;
+            bool isValidInput = false;
+            do
             {
-                if (quiz.questionOption.Contains(rightOption))
+                Console.WriteLine("Enter a number between 1 and 5 (inclusive): ");
+                
+                string userInput = Console.ReadLine().Trim();
+
+                // Validate user input with TryParse
+                isValidInput = int.TryParse(userInput, out selectedOption);
+
+                if (!isValidInput)
                 {
-                    foundCorrectOption = true;
-                    Console.WriteLine("Correct Answer Found in the Options Bank");
+                    Console.WriteLine("Invalid input. Please enter a number between 1 and 5.");
                 }
+            } while (!isValidInput || selectedOption < 1 || selectedOption > Constants.MAX_OPTIONS);
+
+            string rightOption;
+            if (selectedOption >= 1 && selectedOption <= options.Count)
+            {
+                rightOption = options[selectedOption - 1]; 
+                Console.WriteLine("You selected: " + selectedOption);
+                return rightOption;
             }
-            return rightOption;
+
+            else
+            {
+                // possible out of range selectedOption
+                Console.WriteLine("An unexpected error occurred. No option selected.");
+                return null; 
+            }
         }
         public static void PrintQuiz(List<QuizQuestion> quizzes)
         {
@@ -171,13 +191,13 @@ namespace QuizMaker
             }
 
         }
-        public static void PopulateQuizBank(List<QuizQuestion> quizzes)
+        public static void PopulateQuizBank(List<QuizQuestion> quizzes, List<string> options)
         {
             // Insert More Quizzes to the Question Bank
             UIMethods.PrintInsertQuizPrompt();
 
             // Collect Quizzes;
-            Logics.CollectQuizzes(quizzes);
+            Logics.CollectQuizzes(quizzes, options);
 
             // Print Quiz Questions and Options
             Logics.PrintQuiz(quizzes);
@@ -190,7 +210,7 @@ namespace QuizMaker
             //PromptToAddMoreQuiz(insertMoreQuiz);
 
         }
-        public static void SelectAddMoreQuiz(char gameOption, List<QuizQuestion> quizzes)
+        public static void SelectAddMoreQuiz(char gameOption, List<QuizQuestion> quizzes, List <string> options)
         {
             if (gameOption == Constants.INSERT_MORE_QUIZ)
             {
@@ -211,7 +231,7 @@ namespace QuizMaker
                     quizzes = LoadDeserialize(quizzes);
                 }
                 //Add More Quiz to the Quiz Bank Prompt 
-                Logics.PopulateQuizBank(quizzes);
+                Logics.PopulateQuizBank(quizzes, options);
             }
         }
         public static void PlayQuizSelection(char gameOption)
@@ -224,12 +244,19 @@ namespace QuizMaker
                 Console.WriteLine("\nPlay Quiz Prompt");
 
                 List<QuizQuestion> loadedQuizzes = Logics.LoadDeserialize(quizzes);
-                Console.WriteLine("\nDo you want to play game?");
+                Console.WriteLine("\nYou have the opportunity to answer 5 Questions?");
+                QuizDisplay();
 
-                Logics.PrintQuizDeserialize(loadedQuizzes);
+
             }
         }
-        public static bool StopPlay(bool insertMoreQuiz)
+
+        public static List<QuizQuestion> QuizDisplay()
+        {
+            //Display Games Randomly
+
+        }
+        public static bool StopPlayPrompt(bool insertMoreQuiz)
         {
             Console.Write("\nDo you want to Go on with the Software? 'y' for yes, any other key for no): ");
             ConsoleKeyInfo key = Console.ReadKey(true);

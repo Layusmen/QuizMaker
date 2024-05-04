@@ -13,7 +13,7 @@ namespace QuizMaker
         }
         public static void PrintInsertQuizPrompt()
         {
-            Console.WriteLine("\nPlease insert the questions, and follow the prompts as required. \n");
+            Console.WriteLine("\nPlease insert the Quiz questions followed by five (5) options. \n");
         }
         public static void PrintQuizOptionsPrompt()
         {
