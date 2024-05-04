@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Xml.Serialization;
 
@@ -15,7 +14,7 @@ namespace QuizMaker
 
             while (keepPlaying)
             {
-                keepPlaying  = Logics.StopPlay(insertMoreQuiz);
+                keepPlaying = Logics.StopPlay(insertMoreQuiz);
                 Console.WriteLine($"Returning: {insertMoreQuiz}");
                 if (keepPlaying)
                 {

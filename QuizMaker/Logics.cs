@@ -1,9 +1,5 @@
 ﻿using Microsoft.VisualBasic.FileIO;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Data;
-using System.Reflection.Metadata.Ecma335;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml.Serialization;
 
@@ -236,16 +232,12 @@ namespace QuizMaker
         public static bool StopPlay(bool insertMoreQuiz)
         {
             Console.Write("\nDo you want to Go on with the Software? 'y' for yes, any other key for no): ");
-            ConsoleKeyInfo key = Console.ReadKey(true); 
+            ConsoleKeyInfo key = Console.ReadKey(true);
 
             // Check if the pressed key is any key except lowercase 'y'
             insertMoreQuiz = key.KeyChar == 'y' || key.KeyChar == 'Y';
             Console.WriteLine($"Pressed key: {key.KeyChar}");
             return insertMoreQuiz;
-
-           
-     
-
         }
         public static void PlayQuizSelection1(char gameOption)
         {
