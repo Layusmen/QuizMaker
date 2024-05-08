@@ -27,7 +27,7 @@ namespace QuizMaker
                     gameOption = char.ToUpper(Console.ReadKey().KeyChar);
 
                     //Play Quizzes Logic
-                    Logics.PlayQuizSelection(gameOption);
+                    Logics.PlayQuizSelection(gameOption, quizzes);
 
                     //Insert More Quiz Logic
                     Logics.SelectAddMoreQuiz(gameOption, quizzes, options);

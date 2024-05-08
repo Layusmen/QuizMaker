@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualBasic.FileIO;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml.Serialization;
 
@@ -29,7 +31,7 @@ namespace QuizMaker
         {
             int counter = 0;
             string insertedOption;
-           
+
 
             string prompt;
             while (counter < Constants.MAX_OPTIONS)
@@ -62,14 +64,14 @@ namespace QuizMaker
         }
         public static string CollectRightOption(List<string> options)
         {
-            
+
             Console.WriteLine("\nNow Enter the Correct Option Index of the options inserted");
             int selectedOption;
             bool isValidInput = false;
             do
             {
                 Console.WriteLine("Enter a number between 1 and 5 (inclusive): ");
-                
+
                 string userInput = Console.ReadLine().Trim();
 
                 // Validate user input with TryParse
@@ -84,7 +86,7 @@ namespace QuizMaker
             string rightOption;
             if (selectedOption >= 1 && selectedOption <= options.Count)
             {
-                rightOption = options[selectedOption - 1]; 
+                rightOption = options[selectedOption - 1];
                 Console.WriteLine("You selected: " + selectedOption);
                 return rightOption;
             }
@@ -93,7 +95,7 @@ namespace QuizMaker
             {
                 // possible out of range selectedOption
                 Console.WriteLine("An unexpected error occurred. No option selected.");
-                return null; 
+                return null;
             }
         }
         public static void PrintQuiz(List<QuizQuestion> quizzes)
@@ -210,12 +212,12 @@ namespace QuizMaker
             //PromptToAddMoreQuiz(insertMoreQuiz);
 
         }
-        public static void SelectAddMoreQuiz(char gameOption, List<QuizQuestion> quizzes, List <string> options)
+        public static void SelectAddMoreQuiz(char gameOption, List<QuizQuestion> quizzes, List<string> options)
         {
             if (gameOption == Constants.INSERT_MORE_QUIZ)
             {
 
-                PlayQuizSelection(gameOption);
+                PlayQuizSelection(gameOption, quizzes);
                 // Insert Quiz Question Instances
 
 
@@ -234,69 +236,76 @@ namespace QuizMaker
                 Logics.PopulateQuizBank(quizzes, options);
             }
         }
-        public static void PlayQuizSelection(char gameOption)
+        public static void PlayQuizSelection(char gameOption, List<QuizQuestion> quizzes)
         {
             if (gameOption == Constants.PLAY_QUIZ)
             {
-                List<QuizQuestion> quizzes = new List<QuizQuestion>();
+                //List<QuizQuestion> quizzes = new List<QuizQuestion>();
 
                 //Play Quiz Prompt
                 Console.WriteLine("\nPlay Quiz Prompt");
 
                 //List<QuizQuestion> loadedQuizzes = Logics.LoadDeserialize(quizzes);
-                
-                
+
                 Console.WriteLine("\nYou have the opportunity to answer 5 Questions?");
-                
                 QuizDisplay(quizzes);
-
-
-
             }
         }
 
         public static void QuizDisplay(List<QuizQuestion> quizzes)
         {
-            Console.WriteLine("Loaded first Quiz Question, option and correct option:");
-
-            foreach (var quiz in quizzes)
+            List<QuizQuestion> loadedQuizzes = LoadDeserialize(quizzes);
+            if (loadedQuizzes != null && loadedQuizzes.Any())
             {
-                // Access and display question
-                Console.WriteLine("Question: {0}", quiz.question);
+                var random = new Random();
+                var index = random.Next(loadedQuizzes.Count);
+                var quiz = loadedQuizzes[index];
+                Console.WriteLine("Question: {0}", quiz.question); 
                 Console.WriteLine("Options:");
+
+                string[] optionLabels = { "(A)", "(B)", "(C)", "(D)", "(E)" };
+
+                int i = 0;
                 foreach (var option in quiz.questionOption)
                 {
-                    Console.WriteLine("- {0}", option);
+                    Console.WriteLine("{0} {1}", optionLabels[i], option);
+                    i++;
                 }
+
                 Console.WriteLine("Answer: {0}", quiz.correctOption);
-                Console.WriteLine("...");
+            }
+            else
+            {
+                Console.WriteLine("No quizzes found in the file.");
             }
         }
 
         public static void QuizDisplay2(List<QuizQuestion> quizzes)
         {
-            Console.WriteLine("Loaded first Quiz Question, option and correct option:");
+            List<QuizQuestion> loadedQuizzes = LoadDeserialize(quizzes);
 
-            if (quizzes.Count == 0)
+           
+
+            if (loadedQuizzes != null && loadedQuizzes.Any())
             {
-                Console.WriteLine("No quiz questions found.");
-                return;
+                Console.WriteLine("Loaded Quiz Questions:");
+                foreach (var quiz in loadedQuizzes)
+                {
+                    // Access and display question
+                    Console.WriteLine("Question: {0}", quiz.question);
+                    Console.WriteLine("Options:");
+                    foreach (var option in quiz.questionOption)
+                    {
+                        Console.WriteLine("- {0}", option);
+                    }
+                    Console.WriteLine("Answer: {0}", quiz.correctOption);
+                    Console.WriteLine("...");
+                }
             }
-
-            // Access and display the first question
-            QuizQuestion firstQuestion = quizzes[0];
-
-            Console.WriteLine("Question: {0}", firstQuestion.question);
-            Console.WriteLine("Options:");
-
-            // Display options
-            foreach (var option in firstQuestion.questionOption)
+            else
             {
-                Console.WriteLine("- {0}", option);
+                Console.WriteLine("No quizzes found in the file.");
             }
-
-            Console.WriteLine("Answer: {0}", firstQuestion.correctOption);
-            Console.WriteLine("...");
         }
         public static bool StopPlayPrompt(bool insertMoreQuiz)
         {
@@ -308,6 +317,6 @@ namespace QuizMaker
             Console.WriteLine($"Pressed key: {key.KeyChar}");
             return insertMoreQuiz;
         }
-        
+
     }
 }
