@@ -255,12 +255,14 @@ namespace QuizMaker
         public static void QuizDisplay(List<QuizQuestion> quizzes)
         {
             List<QuizQuestion> loadedQuizzes = LoadDeserialize(quizzes);
+
             if (loadedQuizzes != null && loadedQuizzes.Any())
             {
                 var random = new Random();
                 var index = random.Next(loadedQuizzes.Count);
                 var quiz = loadedQuizzes[index];
-                Console.WriteLine("Question: {0}", quiz.question); 
+                Console.WriteLine("Question: {0}", quiz.question);
+
                 Console.WriteLine("Options:");
 
                 string[] optionLabels = { "(A)", "(B)", "(C)", "(D)", "(E)" };
@@ -272,7 +274,42 @@ namespace QuizMaker
                     i++;
                 }
 
-                Console.WriteLine("Answer: {0}", quiz.correctOption);
+                Console.WriteLine("\nSelect the Correct Option");
+
+                bool validKey = false;
+                string pressedKey = null;
+                Console.WriteLine("The correct option is" + quiz.correctOption);
+                while (!validKey)
+                {
+                    ConsoleKeyInfo keyInfo = Console.ReadKey();
+
+                    if (char.ToUpper(keyInfo.KeyChar) >= 'A' && char.ToUpper(keyInfo.KeyChar) <= 'E')
+                    {
+                        pressedKey = char.ToUpper(keyInfo.KeyChar).ToString();
+                        validKey = true;
+                    }
+                    else if (keyInfo.Key == ConsoleKey.Enter)
+                    {
+                        Console.WriteLine("\nPlease press a key between A, B, C, D, or E.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nInvalid key. Please press A, B, C, D, or E.");
+                    }
+                }
+
+                // comparing pressedKey with correctOption
+                if (pressedKey != null && pressedKey.Equals(quiz.correctOption))
+                {
+                    // If pressedKey is correct
+                    Console.WriteLine("Correct! You pressed " + pressedKey);
+                }
+                else
+                {
+                    // Handle incorrect key press (e.g., display error message)
+                    Console.WriteLine("Incorrect. The correct option was " + quiz.correctOption);
+                }
+
             }
             else
             {
@@ -284,7 +321,7 @@ namespace QuizMaker
         {
             List<QuizQuestion> loadedQuizzes = LoadDeserialize(quizzes);
 
-           
+
 
             if (loadedQuizzes != null && loadedQuizzes.Any())
             {
