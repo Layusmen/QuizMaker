@@ -1,190 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfQuizQuestion xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <QuizQuestion>
-    <question>What is your name?</question>
-    <questionOption>
-      <string>Dele</string>
-      <string>Wale</string>
-      <string>Alao</string>
-      <string>Adigun</string>
-      <string>Amao</string>
-    </questionOption>
-    <correctOption>Amao</correctOption>
-  </QuizQuestion>
-  <QuizQuestion>
-    <question>what is the name of your village?</question>
-    <questionOption>
-      <string>Akanran</string>
-      <string>Araro</string>
-      <string>Ijaye</string>
-      <string>Akinode</string>
-      <string>Fatikun</string>
-    </questionOption>
-    <correctOption>Fatikun</correctOption>
-  </QuizQuestion>
-  <QuizQuestion>
-    <question>Where do you live?</question>
-    <questionOption>
-      <string>Ibadan</string>
-      <string>Egba</string>
-      <string>Ogun</string>
-      <string>Ila</string>
-      <string>Ede</string>
-    </questionOption>
-    <correctOption>Ede</correctOption>
-  </QuizQuestion>
-  <QuizQuestion>
-    <question>Which school do you attend?</question>
-    <questionOption>
-      <string>Wesley</string>
-      <string>Methodist</string>
-      <string>Olubadan</string>
-      <string>Anglican</string>
-      <string>Headquarters</string>
-    </questionOption>
-    <correctOption>Headquarters</correctOption>
-  </QuizQuestion>
-  <QuizQuestion>
-    <question>Which school do you attend?</question>
-    <questionOption>
-      <string>Lautech</string>
-      <string>Laspotech</string>
-      <string>Osu</string>
-      <string>Ire</string>
-      <string>Ibadan Poly</string>
-    </questionOption>
-    <correctOption>Ibadan Poly</correctOption>
-  </QuizQuestion>
-  <QuizQuestion>
-    <question>Where are you now?</question>
-    <questionOption>
-      <string>Eko</string>
-      <string>Ire</string>
-      <string>Ila</string>
-      <string>Aja</string>
-      <string>Lekki</string>
-    </questionOption>
-    <correctOption>Lekki</correctOption>
-  </QuizQuestion>
-  <QuizQuestion>
-    <question>WHat is your village name?</question>
-    <questionOption>
-      <string>Ife</string>
-      <string>Oyo</string>
-      <string>Okuku</string>
-      <string>Eded</string>
-      <string>Osogbo</string>
-    </questionOption>
-    <correctOption>Eded</correctOption>
-  </QuizQuestion>
-  <QuizQuestion>
-    <question>Where is your field?</question>
-    <questionOption>
-      <string>Chelsea</string>
-      <string>Westham</string>
-      <string>London</string>
-      <string>Chichester</string>
-      <string>Munich</string>
-    </questionOption>
-    <correctOption>Munich</correctOption>
-  </QuizQuestion>
-  <QuizQuestion>
-    <question>Whose pair of shoes is this?</question>
-    <questionOption>
-      <string>Wunmi</string>
-      <string>Adunni</string>
-      <string>Aduke</string>
-      <string>Alari</string>
-      <string>Abeje</string>
-    </questionOption>
-    <correctOption>Abeje</correctOption>
-  </QuizQuestion>
-  <QuizQuestion>
-    <question>Who is your uncle?</question>
-    <questionOption>
-      <string>Sunmonu</string>
-      <string>Adila</string>
-      <string>Alani</string>
-      <string>Aja</string>
-      <string>Wole</string>
-    </questionOption>
-    <correctOption>Wole</correctOption>
-  </QuizQuestion>
-  <QuizQuestion>
-    <question>Which is yours?</question>
-    <questionOption>
-      <string>pen</string>
-      <string>biro</string>
-      <string>ink</string>
-      <string>chalk</string>
-      <string>mouse</string>
-    </questionOption>
-    <correctOption>mouse</correctOption>
-  </QuizQuestion>
-  <QuizQuestion>
     <question>when are you going?</question>
     <questionOption>
-      <string>today?</string>
-      <string>tomorrow</string>
-      <string>tonight</string>
-      <string>now</string>
-      <string>back</string>
+      <string>(A) today?</string>
+      <string>(B) tomorrow</string>
+      <string>(C) tonight</string>
+      <string>(D) now</string>
+      <string>(E) back</string>
     </questionOption>
-    <correctOption>now</correctOption>
+    <correctOption>(E) now</correctOption>
   </QuizQuestion>
   <QuizQuestion>
     <question>who is that?</question>
     <questionOption>
-      <string>Wale</string>
-      <string>Kunle</string>
-      <string>Jide</string>
-      <string>Wole</string>
-      <string>Amao</string>
+      <string>(A) table</string>
+      <string>(B) chair</string>
+      <string>(C) bench</string>
+      <string>(D) stoll</string>
+      <string>(E) Amao</string>
     </questionOption>
-    <correctOption>Amao</correctOption>
+    <correctOption>(E) Amao</correctOption>
   </QuizQuestion>
   <QuizQuestion>
     <question>in whose hand?</question>
     <questionOption>
-      <string>Jude</string>
-      <string>John</string>
-      <string>Moses</string>
-      <string>Dele</string>
-      <string>Danjo</string>
+      <string>(A) table</string>
+      <string>(B) chair</string>
+      <string>(C) bench</string>
+      <string>(D) stoll</string>
+      <string>(E) Danjo</string>
     </questionOption>
-    <correctOption>Danjo</correctOption>
+    <correctOption>(E) Danjo</correctOption>
   </QuizQuestion>
   <QuizQuestion>
     <question>Where are you seated?</question>
     <questionOption>
-      <string>table</string>
-      <string>chair</string>
-      <string>bench</string>
-      <string>stoll</string>
-      <string>cab</string>
+      <string>(A) table</string>
+      <string>(B) chair</string>
+      <string>(C) bench</string>
+      <string>(D) stoll</string>
+      <string>(E) cab</string>
     </questionOption>
-    <correctOption>cab</correctOption>
+    <correctOption>(E) cab</correctOption>
   </QuizQuestion>
   <QuizQuestion>
-    <question>when is it</question>
+    <question>when is it?</question>
     <questionOption>
-      <string>too</string>
-      <string>in</string>
-      <string>ilk</string>
-      <string>south</string>
-      <string>judge</string>
+      <string>(A) too</string>
+      <string>(B) in</string>
+      <string>(C) ilk</string>
+      <string>(D) south</string>
+      <string>(E) judge</string>
     </questionOption>
-    <correctOption>judge</correctOption>
+    <correctOption>(E) judge</correctOption>
   </QuizQuestion>
   <QuizQuestion>
     <question>How are you today?</question>
     <questionOption>
-      <string>Calm</string>
-      <string>sad</string>
-      <string>bad</string>
-      <string>good</string>
-      <string>ok</string>
+      <string>(A) Calm</string>
+      <string>(B) sad</string>
+      <string>(C) bad</string>
+      <string>(D) good</string>
+      <string>(E) ok</string>
     </questionOption>
-    <correctOption>ok</correctOption>
+    <correctOption>(E) ok</correctOption>
+  </QuizQuestion>
+  <QuizQuestion>
+    <question>who owns the book?</question>
+    <questionOption>
+      <string>(A) Wale</string>
+      <string>(B) Jide</string>
+      <string>(C) Adigun</string>
+      <string>(D) Amao</string>
+      <string>(E) Alao</string>
+    </questionOption>
+    <correctOption>(A) Wale</correctOption>
+  </QuizQuestion>
+  <QuizQuestion>
+    <question>To whom is it given?</question>
+    <questionOption>
+      <string>(A) Adisa</string>
+      <string>(B) Asake</string>
+      <string>(C) Amao</string>
+      <string>(D) Adigun</string>
+      <string>(E) alao</string>
+    </questionOption>
+    <correctOption>(E) alao</correctOption>
+  </QuizQuestion>
+  <QuizQuestion>
+    <question>Whose pen is it?</question>
+    <questionOption>
+      <string>(A) Dele</string>
+      <string>(B) Wale</string>
+      <string>(C) Adija</string>
+      <string>(D) Adigun</string>
+      <string>(E) Theophilus</string>
+    </questionOption>
+    <correctOption>(E) Theophilus</correctOption>
   </QuizQuestion>
 </ArrayOfQuizQuestion>

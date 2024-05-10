@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml.Serialization;
@@ -46,19 +47,36 @@ namespace QuizMaker
                 }
 
                 insertedOption = Console.ReadLine().Trim();
-
+               
+                string[] optionLabels = { "(A)", "(B)", "(C)", "(D)", "(E)" };
+                
                 if (insertedOption != "")
                 {
                     counter++;
-                    options.Add(insertedOption);
-                    Console.WriteLine($"\nOption {counter} inserted: {insertedOption}");
+                    string labeledOption = $"{optionLabels[counter - 1]} {insertedOption}";  //
+                    options.Add(labeledOption);
+                    Console.WriteLine($"\nOption {counter} inserted: {labeledOption}");
                 }
-
                 if (counter == Constants.MAX_OPTIONS)
                 {
                     Console.WriteLine("Needed Options Inserted");
                     break;
                 }
+
+                /* Console.WriteLine("\nSelect the Correct Option");
+                 if (insertedOption != "")
+                 {
+                     counter++;
+                     options.Add(insertedOption);
+                     Console.WriteLine($"\nOption {counter} inserted: {insertedOption}");
+                 }
+
+                 if (counter == Constants.MAX_OPTIONS)
+                 {
+                     Console.WriteLine("Needed Options Inserted");
+                     break;
+                 }
+                */
             }
             return options;
         }
@@ -240,12 +258,8 @@ namespace QuizMaker
         {
             if (gameOption == Constants.PLAY_QUIZ)
             {
-                //List<QuizQuestion> quizzes = new List<QuizQuestion>();
-
                 //Play Quiz Prompt
                 Console.WriteLine("\nPlay Quiz Prompt");
-
-                //List<QuizQuestion> loadedQuizzes = Logics.LoadDeserialize(quizzes);
 
                 Console.WriteLine("\nYou have the opportunity to answer 5 Questions?");
                 QuizDisplay(quizzes);
@@ -255,7 +269,7 @@ namespace QuizMaker
         public static void QuizDisplay(List<QuizQuestion> quizzes)
         {
             List<QuizQuestion> loadedQuizzes = LoadDeserialize(quizzes);
-
+            string[] optionLabels = { "(A)", "(B)", "(C)", "(D)", "(E)" };
             if (loadedQuizzes != null && loadedQuizzes.Any())
             {
                 var random = new Random();
@@ -263,14 +277,11 @@ namespace QuizMaker
                 var quiz = loadedQuizzes[index];
                 Console.WriteLine("Question: {0}", quiz.question);
 
-                Console.WriteLine("Options:");
-
-                string[] optionLabels = { "(A)", "(B)", "(C)", "(D)", "(E)" };
-
+                Console.WriteLine("Options:");            
                 int i = 0;
                 foreach (var option in quiz.questionOption)
                 {
-                    Console.WriteLine("{0} {1}", optionLabels[i], option);
+                    Console.WriteLine(option);
                     i++;
                 }
 
@@ -297,19 +308,14 @@ namespace QuizMaker
                         Console.WriteLine("\nInvalid key. Please press A, B, C, D, or E.");
                     }
                 }
-
-                // comparing pressedKey with correctOption
-                if (pressedKey != null && pressedKey.Equals(quiz.correctOption))
+                if (pressedKey == quiz.correctOption[1].ToString())
                 {
-                    // If pressedKey is correct
                     Console.WriteLine("Correct! You pressed " + pressedKey);
                 }
                 else
                 {
-                    // Handle incorrect key press (e.g., display error message)
                     Console.WriteLine("Incorrect. The correct option was " + quiz.correctOption);
                 }
-
             }
             else
             {
@@ -320,8 +326,6 @@ namespace QuizMaker
         public static void QuizDisplay2(List<QuizQuestion> quizzes)
         {
             List<QuizQuestion> loadedQuizzes = LoadDeserialize(quizzes);
-
-
 
             if (loadedQuizzes != null && loadedQuizzes.Any())
             {
