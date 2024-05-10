@@ -1,7 +1,5 @@
 ﻿using Microsoft.VisualBasic.FileIO;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml.Serialization;
@@ -32,8 +30,6 @@ namespace QuizMaker
         {
             int counter = 0;
             string insertedOption;
-
-
             string prompt;
             while (counter < Constants.MAX_OPTIONS)
             {
@@ -47,9 +43,9 @@ namespace QuizMaker
                 }
 
                 insertedOption = Console.ReadLine().Trim();
-               
+
                 string[] optionLabels = { "(A)", "(B)", "(C)", "(D)", "(E)" };
-                
+
                 if (insertedOption != "")
                 {
                     counter++;
@@ -62,21 +58,6 @@ namespace QuizMaker
                     Console.WriteLine("Needed Options Inserted");
                     break;
                 }
-
-                /* Console.WriteLine("\nSelect the Correct Option");
-                 if (insertedOption != "")
-                 {
-                     counter++;
-                     options.Add(insertedOption);
-                     Console.WriteLine($"\nOption {counter} inserted: {insertedOption}");
-                 }
-
-                 if (counter == Constants.MAX_OPTIONS)
-                 {
-                     Console.WriteLine("Needed Options Inserted");
-                     break;
-                 }
-                */
             }
             return options;
         }
@@ -265,99 +246,92 @@ namespace QuizMaker
                 QuizDisplay(quizzes);
             }
         }
-
         public static void QuizDisplay(List<QuizQuestion> quizzes)
         {
             List<QuizQuestion> loadedQuizzes = LoadDeserialize(quizzes);
             string[] optionLabels = { "(A)", "(B)", "(C)", "(D)", "(E)" };
+
             if (loadedQuizzes != null && loadedQuizzes.Any())
             {
                 var random = new Random();
-                var index = random.Next(loadedQuizzes.Count);
-                var quiz = loadedQuizzes[index];
-                Console.WriteLine("Question: {0}", quiz.question);
+                int numQuestions = 5; 
+                
+                // list of available question indices
+                List<int> availableIndexes = Enumerable.Range(0, loadedQuizzes.Count).ToList();
 
-                Console.WriteLine("Options:");            
-                int i = 0;
-                foreach (var option in quiz.questionOption)
+                for (int i = 0; i < numQuestions; i++)
                 {
-                    Console.WriteLine(option);
-                    i++;
-                }
-
-                Console.WriteLine("\nSelect the Correct Option");
-
-                bool validKey = false;
-                string pressedKey = null;
-                Console.WriteLine("The correct option is" + quiz.correctOption);
-                while (!validKey)
-                {
-                    ConsoleKeyInfo keyInfo = Console.ReadKey();
-
-                    if (char.ToUpper(keyInfo.KeyChar) >= 'A' && char.ToUpper(keyInfo.KeyChar) <= 'E')
+                    // Check if all questions have been displayed
+                    if (availableIndexes.Count == 0)
                     {
-                        pressedKey = char.ToUpper(keyInfo.KeyChar).ToString();
-                        validKey = true;
+                        Console.WriteLine("You have answered all questions! Restarting quiz...");
+                        availableIndexes = Enumerable.Range(0, loadedQuizzes.Count).ToList(); 
                     }
-                    else if (keyInfo.Key == ConsoleKey.Enter)
+
+                    // Select a random question from available ones
+                    int randomIndex = availableIndexes[random.Next(availableIndexes.Count)];
+
+                    // Display the question
+                    int money = 0;
+                    int total = 0;
+                    var quiz = loadedQuizzes[randomIndex];
+                    Console.WriteLine("Question: {0}", quiz.question);
+                    Console.WriteLine("Options:");
+                    int j = 0;
+                    foreach (var option in quiz.questionOption)
                     {
-                        Console.WriteLine("\nPlease press a key between A, B, C, D, or E.");
+                        Console.WriteLine(option);
+                        j++;
+                    }
+                    Console.WriteLine("\nSelect the Correct Option");
+                    bool validKey = false;
+                    string pressedKey = null;
+                    Console.WriteLine("The correct option is" + quiz.correctOption);
+                    while (!validKey)
+                    {
+                        ConsoleKeyInfo keyInfo = Console.ReadKey();
+
+                        if (char.ToUpper(keyInfo.KeyChar) >= 'A' && char.ToUpper(keyInfo.KeyChar) <= 'E')
+                        {
+                            pressedKey = char.ToUpper(keyInfo.KeyChar).ToString();
+                            validKey = true;
+                        }
+                        else if (keyInfo.Key == ConsoleKey.Enter)
+                        {
+                            Console.WriteLine("\nPlease press a key between A, B, C, D, or E.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nInvalid key. Please press A, B, C, D, or E.");
+                        }
+                    }
+                    if (pressedKey == quiz.correctOption[1].ToString())
+                    {
+                        money += 2;
+                        total = money;
+                        Console.WriteLine("Correct! You pressed " + pressedKey);
+                        Console.WriteLine($"You won {total}");
                     }
                     else
                     {
-                        Console.WriteLine("\nInvalid key. Please press A, B, C, D, or E.");
+                        Console.WriteLine("Incorrect. The correct option was " + quiz.correctOption);
                     }
-                }
-                if (pressedKey == quiz.correctOption[1].ToString())
-                {
-                    Console.WriteLine("Correct! You pressed " + pressedKey);
-                }
-                else
-                {
-                    Console.WriteLine("Incorrect. The correct option was " + quiz.correctOption);
-                }
+                                    }
             }
             else
             {
                 Console.WriteLine("No quizzes found in the file.");
             }
-        }
-
-        public static void QuizDisplay2(List<QuizQuestion> quizzes)
-        {
-            List<QuizQuestion> loadedQuizzes = LoadDeserialize(quizzes);
-
-            if (loadedQuizzes != null && loadedQuizzes.Any())
-            {
-                Console.WriteLine("Loaded Quiz Questions:");
-                foreach (var quiz in loadedQuizzes)
-                {
-                    // Access and display question
-                    Console.WriteLine("Question: {0}", quiz.question);
-                    Console.WriteLine("Options:");
-                    foreach (var option in quiz.questionOption)
-                    {
-                        Console.WriteLine("- {0}", option);
-                    }
-                    Console.WriteLine("Answer: {0}", quiz.correctOption);
-                    Console.WriteLine("...");
-                }
             }
-            else
+            public static bool StopPlayPrompt(bool insertMoreQuiz)
             {
-                Console.WriteLine("No quizzes found in the file.");
+                Console.Write("\nDo you want to Go on with the Software? 'y' for yes, any other key for no): ");
+                ConsoleKeyInfo key = Console.ReadKey(true);
+
+                // Check if the pressed key is any key except lowercase 'y'
+                insertMoreQuiz = key.KeyChar == 'y' || key.KeyChar == 'Y';
+                Console.WriteLine($"Pressed key: {key.KeyChar}");
+                return insertMoreQuiz;
             }
         }
-        public static bool StopPlayPrompt(bool insertMoreQuiz)
-        {
-            Console.Write("\nDo you want to Go on with the Software? 'y' for yes, any other key for no): ");
-            ConsoleKeyInfo key = Console.ReadKey(true);
-
-            // Check if the pressed key is any key except lowercase 'y'
-            insertMoreQuiz = key.KeyChar == 'y' || key.KeyChar == 'Y';
-            Console.WriteLine($"Pressed key: {key.KeyChar}");
-            return insertMoreQuiz;
-        }
-
     }
-}
