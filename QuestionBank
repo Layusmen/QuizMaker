@@ -3,24 +3,24 @@
   <QuizQuestion>
     <question>when are you going?</question>
     <questionOption>
-      <string>(A) today?</string>
+      <string>(A) today</string>
       <string>(B) tomorrow</string>
       <string>(C) tonight</string>
       <string>(D) now</string>
       <string>(E) back</string>
     </questionOption>
-    <correctOption>(E) now</correctOption>
+    <correctOption>(E) back</correctOption>
   </QuizQuestion>
   <QuizQuestion>
     <question>who is that?</question>
     <questionOption>
-      <string>(A) table</string>
-      <string>(B) chair</string>
-      <string>(C) bench</string>
-      <string>(D) stoll</string>
+      <string>(A) Ade</string>
+      <string>(B) Kunle</string>
+      <string>(C) Alani</string>
+      <string>(D) Asake</string>
       <string>(E) Amao</string>
     </questionOption>
-    <correctOption>(E) Amao</correctOption>
+    <correctOption>(D) Asake</correctOption>
   </QuizQuestion>
   <QuizQuestion>
     <question>in whose hand?</question>
@@ -42,7 +42,7 @@
       <string>(D) stoll</string>
       <string>(E) cab</string>
     </questionOption>
-    <correctOption>(E) cab</correctOption>
+    <correctOption>(D) stoll</correctOption>
   </QuizQuestion>
   <QuizQuestion>
     <question>when is it?</question>
@@ -61,10 +61,10 @@
       <string>(A) Calm</string>
       <string>(B) sad</string>
       <string>(C) bad</string>
-      <string>(D) good</string>
-      <string>(E) ok</string>
+      <string>(D) ok</string>
+      <string>(E) good</string>
     </questionOption>
-    <correctOption>(E) ok</correctOption>
+    <correctOption>(E) good</correctOption>
   </QuizQuestion>
   <QuizQuestion>
     <question>who owns the book?</question>
@@ -84,9 +84,9 @@
       <string>(B) Asake</string>
       <string>(C) Amao</string>
       <string>(D) Adigun</string>
-      <string>(E) alao</string>
+      <string>(E) Alao</string>
     </questionOption>
-    <correctOption>(E) alao</correctOption>
+    <correctOption>(D) Adigun</correctOption>
   </QuizQuestion>
   <QuizQuestion>
     <question>Whose pen is it?</question>
@@ -98,5 +98,16 @@
       <string>(E) Theophilus</string>
     </questionOption>
     <correctOption>(E) Theophilus</correctOption>
+  </QuizQuestion>
+  <QuizQuestion>
+    <question>Where are you from?</question>
+    <questionOption>
+      <string>(A) Soka</string>
+      <string>(B) Isolo</string>
+      <string>(C) Ibadan</string>
+      <string>(D) Eko</string>
+      <string>(E) Akure</string>
+    </questionOption>
+    <correctOption>(D) Eko</correctOption>
   </QuizQuestion>
 </ArrayOfQuizQuestion>

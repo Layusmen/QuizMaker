@@ -30,7 +30,7 @@ namespace QuizMaker
                     Logics.PlayQuizSelection(gameOption, quizzes);
 
                     //Insert More Quiz Logic
-                    Logics.SelectAddMoreQuiz(gameOption, quizzes, options);
+                    Logics.AddMoreQuizSelect(gameOption, quizzes, options);
                 }
                 else
                 {
