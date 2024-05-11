@@ -43,12 +43,12 @@ namespace QuizMaker
         public static void QuizDisplay(List<QuizQuestion> quizzes)
         {
             List<QuizQuestion> loadedQuizzes = Logics.DeserializeLoad(quizzes);
-            string[] optionLabels = { "(A)", "(B)", "(C)", "(D)", "(E)" };
+            //string[] optionLabels = { "(A)", "(B)", "(C)", "(D)", "(E)" };
 
             if (loadedQuizzes != null && loadedQuizzes.Any())
             {
                 var random = new Random();
-                int numQuestions = 5;
+                int numQuestions = Constants.MAX_OPTIONS;
                 int money = 0;
                 int total = 0;
                 // list of available question indices

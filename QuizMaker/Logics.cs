@@ -243,7 +243,7 @@ namespace QuizMaker
                 Console.WriteLine("\nPlay Quiz Prompt");
 
                 Console.WriteLine("\nYou have the opportunity to answer 5 Questions?");
-                QuizDisplay(quizzes);
+                UIMethods.QuizDisplay(quizzes);
             }
         }
         

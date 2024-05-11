@@ -6,12 +6,14 @@ namespace QuizMaker
 {
     internal class Program
     {
+        public static readonly string[] OptionLabels = new string[] { "(A)", "(B)", "(C)", "(D)", "(E)" };
         static void Main(string[] args)
         {
             bool insertMoreQuiz = true;
             char gameOption;
             bool keepPlaying = true;
             List<string> options = new List<string>();
+
             while (keepPlaying)
             {
                 keepPlaying = Logics.StopPlayPrompt(insertMoreQuiz);
