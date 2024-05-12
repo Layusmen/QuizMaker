@@ -6,18 +6,18 @@ namespace QuizMaker
 {
     internal class Program
     {
-        public static readonly string[] OptionLabels = new string[] { "(A)", "(B)", "(C)", "(D)", "(E)" };
         static void Main(string[] args)
         {
             bool insertMoreQuiz = true;
             char gameOption;
             bool keepPlaying = true;
             List<string> options = new List<string>();
-
+            
             while (keepPlaying)
             {
-                keepPlaying = Logics.StopPlayPrompt(insertMoreQuiz);
-                Console.WriteLine($"Returning: {insertMoreQuiz}");
+                
+                keepPlaying = UIMethods.StopPlayPrompt(insertMoreQuiz);
+                UIMethods.InsertMoreQuizReturn(insertMoreQuiz);
                 if (keepPlaying)
                 {
                     //Welcome Message
@@ -29,10 +29,10 @@ namespace QuizMaker
                     gameOption = char.ToUpper(Console.ReadKey().KeyChar);
 
                     //Play Quizzes Logic
-                    Logics.PlayQuizSelection(gameOption, quizzes);
+                    Logics.PlayQuizSelection(gameOption, quizzes, Constants.path);
 
                     //Insert More Quiz Logic
-                    Logics.AddMoreQuizSelect(gameOption, quizzes, options);
+                    Logics.AddMoreQuizSelect(gameOption, quizzes, options, Constants.path);
                 }
                 else
                 {
