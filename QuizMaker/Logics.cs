@@ -76,12 +76,12 @@ namespace QuizMaker
             }
         }
         
-        public static void AddMoreQuizSelect(char gameOption, List<QuizQuestion> quizzes, List<string> options, string path, XmlSerializer writer, bool insertMoreQuiz)
+        public static void AddMoreQuizSelect(char gameOption, List<QuizQuestion> quizzes, List<string> options, string path, XmlSerializer writer, bool insertMoreQuiz, Random random)
         {
             if (gameOption == Constants.START_ALPHABET)
             {
 
-                PlayQuizSelection(gameOption, quizzes, path, writer);
+                PlayQuizSelection(gameOption, quizzes, path, writer, random);
 
                 //Quiz XML File Path
                 CheckQuestionBankPath(path, quizzes, writer);
@@ -90,13 +90,13 @@ namespace QuizMaker
                 PopulateQuizBank(quizzes, options, path, writer, insertMoreQuiz);
             }
         }
-        public static void PlayQuizSelection(char gameOption, List<QuizQuestion> quizzes, string path, XmlSerializer writer)
+        public static void PlayQuizSelection(char gameOption, List<QuizQuestion> quizzes, string path, XmlSerializer writer, Random random)
         {
             if (gameOption == Constants.PLAY_QUIZ)
             {
                 //Play Quiz Prompt
                 UIMethods.NumberOfQuizToPlay();
-                UIMethods.QuizDisplay(quizzes, path, writer);
+                UIMethods.QuizDisplay(quizzes, path, writer, random);
             }
         }
         public static void PopulateQuizBank(List<QuizQuestion> quizzes, List<string> options, string path, XmlSerializer writer, bool insertMoreQuiz)

@@ -42,13 +42,13 @@ namespace QuizMaker
         {
             Console.WriteLine("\nThe Correct Option is:");
         }
-        public static void QuizDisplay(List<QuizQuestion> quizzes, string path, XmlSerializer writer)
+        public static void QuizDisplay(List<QuizQuestion> quizzes, string path, XmlSerializer writer, Random random)
         {
             List<QuizQuestion> loadedQuizzes = DeserializeLoad(quizzes, path, writer);
 
             if (loadedQuizzes != null && loadedQuizzes.Any())
             {
-                var random = new Random();
+                //var random = new Random();
                 int numQuestions = Constants.MAX_OPTIONS;
                 int money = 0;
                 int total = 0;
