@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Serialization;
 namespace QuizMaker
 {
     public class Constants
@@ -9,6 +10,6 @@ namespace QuizMaker
         public const char START_ALPHABET = 'A';
         public const char END_ALPHABET = 'E';
         public const string path = @"..\..\..\QuestionBank.xml";
-
+        
     }
 }

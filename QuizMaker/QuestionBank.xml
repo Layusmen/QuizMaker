@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfQuizQuestion xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <QuizQuestion>
-    <question>What is your name?</question>
+    <question>Who is your mother?</question>
     <questionOption>
-      <string>(A) Kill</string>
-      <string>(B) Sell</string>
-      <string>(C) Come</string>
-      <string>(D) Around</string>
-      <string>(E) Sodiq</string>
+      <string>(A) Alhaji</string>
+      <string>(B) Alhaja</string>
+      <string>(C) Mr and Mrs Yusuff</string>
+      <string>(D) Dele Fadoju</string>
+      <string>(E) Khalid</string>
+      <string>(A) Supoto</string>
+      <string>(B) Toyin Yusuff</string>
+      <string>(C) Alao</string>
+      <string>(D) Maryam</string>
+      <string>(E) Aduke</string>
     </questionOption>
-    <correctOption>(E) Sodiq</correctOption>
+    <correctOption>(B) Alhaja</correctOption>
   </QuizQuestion>
 </ArrayOfQuizQuestion>

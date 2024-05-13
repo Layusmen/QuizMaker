@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 using System.Xml.Serialization;
+using System.Text;
 
 namespace QuizMaker
 {
@@ -12,27 +13,34 @@ namespace QuizMaker
             char gameOption;
             bool keepPlaying = true;
             List<string> options = new List<string>();
+            XmlSerializer writer = new XmlSerializer(typeof(List<QuizQuestion>));
+
+            //XmlSerializer reader = new XmlSerializer(typeof(List<QuizQuestion>));
             
+
             while (keepPlaying)
             {
-                
+                //Start up the software//
                 keepPlaying = UIMethods.StopPlayPrompt(insertMoreQuiz);
+                
                 UIMethods.InsertMoreQuizReturn(insertMoreQuiz);
                 if (keepPlaying)
                 {
                     //Welcome Message
                     UIMethods.PrintWelcome();
 
+                    //Initialise QuizQuestion Class
                     List<QuizQuestion> quizzes = new List<QuizQuestion>();
 
                     //Select what to do
                     gameOption = char.ToUpper(Console.ReadKey().KeyChar);
 
                     //Play Quizzes Logic
-                    Logics.PlayQuizSelection(gameOption, quizzes, Constants.path);
+                    Logics.PlayQuizSelection(gameOption, quizzes, Constants.path, writer);
 
                     //Insert More Quiz Logic
-                    Logics.AddMoreQuizSelect(gameOption, quizzes, options, Constants.path);
+                    Logics.AddMoreQuizSelect(gameOption, quizzes, options, Constants.path, writer, insertMoreQuiz);
+
                 }
                 else
                 {

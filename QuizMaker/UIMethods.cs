@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Text;
 using System.Collections.Generic;
-using System.Diagnostics.Metrics;
 using System.Xml.Serialization;
 namespace QuizMaker
 {
@@ -42,9 +42,9 @@ namespace QuizMaker
         {
             Console.WriteLine("\nThe Correct Option is:");
         }
-        public static void QuizDisplay(List<QuizQuestion> quizzes, string path)
+        public static void QuizDisplay(List<QuizQuestion> quizzes, string path, XmlSerializer writer)
         {
-            List<QuizQuestion> loadedQuizzes = DeserializeLoad(quizzes, path);
+            List<QuizQuestion> loadedQuizzes = DeserializeLoad(quizzes, path, writer);
 
             if (loadedQuizzes != null && loadedQuizzes.Any())
             {
@@ -58,7 +58,7 @@ namespace QuizMaker
                 for (int i = 0; i < numQuestions; i++)
                 {
                     // Check if all questions have all been answered
-               
+
                     Logics.ResetIndexes(availableIndexes, loadedQuizzes);
                     // Select a random question from available ones
                     int randomIndex = availableIndexes[random.Next(availableIndexes.Count)];
@@ -155,12 +155,10 @@ namespace QuizMaker
                 return null;
             }
         }
-        public static void SerializeSave(List<QuizQuestion> quizzes, string path)
+        public static void SerializeSave1(List<QuizQuestion> quizzes, string path, XmlSerializer writer)
         {
             //Serialization [Outputing for programming sake, to clear off latter]
             Console.WriteLine("Quizzes saved to file:");
-
-            XmlSerializer writer = new XmlSerializer(typeof(List<QuizQuestion>));
 
             //var path = @"C:\Users\ola\source\repos\QuizMaker\QuestionBank";
 
@@ -170,7 +168,26 @@ namespace QuizMaker
             }
             writer.Serialize(Console.Out, quizzes);
         }
-        public static List<QuizQuestion> DeserializeLoad(List<QuizQuestion> quizzes, string path)
+
+        public static void SerializeSave(List<QuizQuestion> quizzes, string path, XmlSerializer writer)
+        {
+            // Create a new file
+            using (FileStream file = File.Create(path))
+            {
+                writer.Serialize(file, quizzes);
+            }
+
+            Console.WriteLine("Quizzes saved to file:");
+            writer.Serialize(Console.Out, quizzes);
+        }
+        public static bool AddMoreQuizRequest(bool insertMoreQuiz)
+        {
+            Console.Write("\nDo you want to add more quiz: 'y' for yes, any other key for no): ");
+            ConsoleKeyInfo key = Console.ReadKey();
+            // Check if the pressed key is 'y' for yes
+            return key.KeyChar == 'y' || key.KeyChar == 'Y';
+        }
+        public static List<QuizQuestion> DeserializeLoad(List<QuizQuestion> quizzes, string path, XmlSerializer writer)
         {
             if (!File.Exists(path)) // Check if file exists
             {
@@ -183,8 +200,8 @@ namespace QuizMaker
 
                 using (FileStream file = File.OpenRead(path))
                 {
-                    XmlSerializer reader = new XmlSerializer(typeof(List<QuizQuestion>));
-                    quizzes = (List<QuizQuestion>)reader.Deserialize(file);
+                    //XmlSerializer reader = new XmlSerializer(typeof(List<QuizQuestion>));
+                    quizzes = (List<QuizQuestion>)writer.Deserialize(file);
                 }
             }
             return quizzes;
@@ -212,7 +229,6 @@ namespace QuizMaker
                 Console.WriteLine("No quizzes found in the file.");
             }
         }
-
         public static bool StopPlayPrompt(bool insertMoreQuiz)
         {
             Console.Write("\nDo you want to Go on with the Software? 'y' for yes, any other key for no): ");
@@ -226,7 +242,7 @@ namespace QuizMaker
         public static ConsoleKeyInfo AskToAddQuiz()
         {
             Console.Write("\nDo you want to add more quiz: 'y' for yes, any other key for no): ");
-             ConsoleKeyInfo key = Console.ReadKey();
+            ConsoleKeyInfo key = Console.ReadKey();
             return key;
         }
         public static void EnterKeyPressed()
@@ -248,6 +264,8 @@ namespace QuizMaker
         {
             Console.WriteLine("You have answered all questions! Restarting quiz...");
         }
+
+        //Play Software return
         public static void InsertMoreQuizReturn(bool insertMoreQuiz)
         {
             Console.WriteLine($"Returning: {insertMoreQuiz}");
