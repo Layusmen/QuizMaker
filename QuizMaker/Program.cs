@@ -8,13 +8,14 @@ namespace QuizMaker
     internal class Program
     {
         public static readonly Random random = new Random();
+        public static List<QuizQuestion> quizzes = new List<QuizQuestion>();
         static void Main(string[] args)
         {
             
             bool insertMoreQuiz = true;
             char gameOption;
             bool keepPlaying = true;
-            List<string> options = new List<string>();
+            
             XmlSerializer writer = new XmlSerializer(typeof(List<QuizQuestion>));
 
             //XmlSerializer reader = new XmlSerializer(typeof(List<QuizQuestion>));
@@ -32,7 +33,7 @@ namespace QuizMaker
                     UIMethods.PrintWelcome();
 
                     //Initialise QuizQuestion Class
-                    List<QuizQuestion> quizzes = new List<QuizQuestion>();
+                    //List<QuizQuestion> quizzes = new List<QuizQuestion>();
 
                     //Select what to do
                     gameOption = char.ToUpper(Console.ReadKey().KeyChar);
@@ -41,7 +42,7 @@ namespace QuizMaker
                     Logics.PlayQuizSelection(gameOption, quizzes, Constants.path, writer, random);
 
                     //Insert More Quiz Logic
-                    Logics.AddMoreQuizSelect(gameOption, quizzes, options, Constants.path, writer, insertMoreQuiz, random);
+                    Logics.AddMoreQuizSelect(gameOption, quizzes, Constants.path, writer, insertMoreQuiz, random);
 
                 }
                 else

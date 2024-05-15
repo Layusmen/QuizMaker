@@ -171,12 +171,10 @@ namespace QuizMaker
 
         public static void SerializeSave(List<QuizQuestion> quizzes, string path, XmlSerializer writer)
         {
-            // Create a new file
             using (FileStream file = File.Create(path))
             {
                 writer.Serialize(file, quizzes);
             }
-
             Console.WriteLine("Quizzes saved to file:");
             writer.Serialize(Console.Out, quizzes);
         }
@@ -264,11 +262,14 @@ namespace QuizMaker
         {
             Console.WriteLine("You have answered all questions! Restarting quiz...");
         }
-
-        //Play Software return
+        
         public static void InsertMoreQuizReturn(bool insertMoreQuiz)
         {
             Console.WriteLine($"Returning: {insertMoreQuiz}");
+        }
+        public static void OptionRequiredInserted()
+        {
+            Console.WriteLine("Needed Options Inserted");
         }
     }
 }

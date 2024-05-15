@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfQuizQuestion xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <QuizQuestion>
-    <question>Who is your mother?</question>
+    <question>What is your name?</question>
     <questionOption>
-      <string>(A) Alhaji</string>
-      <string>(B) Alhaja</string>
-      <string>(C) Mr and Mrs Yusuff</string>
-      <string>(D) Dele Fadoju</string>
-      <string>(E) Khalid</string>
-      <string>(A) Supoto</string>
-      <string>(B) Toyin Yusuff</string>
-      <string>(C) Alao</string>
-      <string>(D) Maryam</string>
-      <string>(E) Aduke</string>
+      <string>(A) Dele</string>
+      <string>(B) Wale</string>
+      <string>(C) Kunle</string>
+      <string>(D) Olayode</string>
+      <string>(E) Adio</string>
     </questionOption>
-    <correctOption>(B) Alhaja</correctOption>
+    <correctOption>(E) Adio</correctOption>
+  </QuizQuestion>
+  <QuizQuestion>
+    <question>Where are you from?</question>
+    <questionOption>
+      <string>(A) Ede</string>
+      <string>(B) Ibadan</string>
+      <string>(C) Ila</string>
+      <string>(D) Ogun</string>
+      <string>(E) Oyo</string>
+    </questionOption>
+    <correctOption>(E) Oyo</correctOption>
   </QuizQuestion>
 </ArrayOfQuizQuestion>

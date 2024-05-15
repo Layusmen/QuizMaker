@@ -9,11 +9,11 @@ namespace QuizMaker
 {
     internal class Logics
     {
-        public static List<QuizQuestion> CollectQuizzes(List<QuizQuestion> quizzes, List<string> options)
+        public static List<QuizQuestion> CollectQuizzes(List<QuizQuestion> quizzes)
         {
-
+            //Console to insert quiz question 
             string insertQuestion = UIMethods.Inserted();
-
+            List<string> options = new List<string>();
             QuizQuestion quiz = new QuizQuestion();
 
             while (insertQuestion != "")
@@ -49,9 +49,10 @@ namespace QuizMaker
                     //Print Inserted Option
                     UIMethods.OptionInserted(counter, labeledOption);
                 }
+
                 if (counter == Constants.MAX_OPTIONS)
                 {
-                    Console.WriteLine("Needed Options Inserted");
+                    UIMethods.OptionRequiredInserted();
                     break;
                 }
             }
@@ -75,8 +76,7 @@ namespace QuizMaker
                 Console.WriteLine(quiz.correctOption);
             }
         }
-        
-        public static void AddMoreQuizSelect(char gameOption, List<QuizQuestion> quizzes, List<string> options, string path, XmlSerializer writer, bool insertMoreQuiz, Random random)
+        public static void AddMoreQuizSelect(char gameOption, List<QuizQuestion> quizzes, string path, XmlSerializer writer, bool insertMoreQuiz, Random random)
         {
             if (gameOption == Constants.START_ALPHABET)
             {
@@ -87,7 +87,7 @@ namespace QuizMaker
                 CheckQuestionBankPath(path, quizzes, writer);
 
                 //Add More Quiz to the Quiz Bank Prompt 
-                PopulateQuizBank(quizzes, options, path, writer, insertMoreQuiz);
+                PopulateQuizBank(quizzes, path, writer, insertMoreQuiz);
             }
         }
         public static void PlayQuizSelection(char gameOption, List<QuizQuestion> quizzes, string path, XmlSerializer writer, Random random)
@@ -99,16 +99,15 @@ namespace QuizMaker
                 UIMethods.QuizDisplay(quizzes, path, writer, random);
             }
         }
-        public static void PopulateQuizBank(List<QuizQuestion> quizzes, List<string> options, string path, XmlSerializer writer, bool insertMoreQuiz)
+        public static void PopulateQuizBank(List<QuizQuestion> quizzes, string path, XmlSerializer writer, bool insertMoreQuiz)
         {
             while (insertMoreQuiz)
             {
-
                 // Insert More Quizzes to the Question Bank
                 UIMethods.PrintInsertQuizPrompt();
 
                 // Collect Quizzes;
-                Logics.CollectQuizzes(quizzes, options);
+                Logics.CollectQuizzes(quizzes);
 
                 // Print Quiz Questions and Options
                 Logics.PrintQuiz(quizzes);
