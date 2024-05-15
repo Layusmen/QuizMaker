@@ -9,6 +9,11 @@ namespace QuizMaker
 {
     internal class Logics
     {
+        /// <summary>
+        /// Save Quizzes [Question, Option and Correct Option to Class]
+        /// </summary>
+        /// <param name="quizzes"></param>
+        /// <returns></returns>
         public static List<QuizQuestion> CollectQuizzes(List<QuizQuestion> quizzes)
         {
             //Console to insert quiz question 
@@ -27,6 +32,12 @@ namespace QuizMaker
             quizzes.Add(quiz);
             return quizzes;
         }
+
+        /// <summary>
+        /// Add Option to the Quiz
+        /// </summary>
+        /// <param name="options"></param>
+        /// <returns></returns>
         public static List<string> CollectOptions(List<string> options)
         {
             int counter = 0;
@@ -58,6 +69,11 @@ namespace QuizMaker
             }
             return options;
         }
+
+        /// <summary>
+        /// Print Quiz Question and Options
+        /// </summary>
+        /// <param name="quizzes"></param>
         public static void PrintQuiz(List<QuizQuestion> quizzes)
         {
             //Quiz Question Print
@@ -76,6 +92,19 @@ namespace QuizMaker
                 Console.WriteLine(quiz.correctOption);
             }
         }
+
+        /// <summary>
+        /// Add More Quiz to the Question Bank
+        /// </summary>
+        /// <param name="insertMoreQuiz"></param>
+        /// <returns></returns> 
+        /// </summary>
+        /// <param name="gameOption"></param>
+        /// <param name="quizzes"></param>
+        /// <param name="path"></param>
+        /// <param name="writer"></param>
+        /// <param name="insertMoreQuiz"></param>
+        /// <param name="random"></param>
         public static void AddMoreQuizSelect(char gameOption, List<QuizQuestion> quizzes, string path, XmlSerializer writer, bool insertMoreQuiz, Random random)
         {
             if (gameOption == Constants.START_ALPHABET)
@@ -84,12 +113,21 @@ namespace QuizMaker
                 PlayQuizSelection(gameOption, quizzes, path, writer, random);
 
                 //Quiz XML File Path
-                CheckQuestionBankPath(path, quizzes, writer);
+                UIMethods.CheckQuestionBankPath(path, quizzes, writer);
 
                 //Add More Quiz to the Quiz Bank Prompt 
                 PopulateQuizBank(quizzes, path, writer, insertMoreQuiz);
             }
         }
+        
+        /// <summary>
+        /// Selection to Play Quiz
+        /// </summary>
+        /// <param name="gameOption"></param>
+        /// <param name="quizzes"></param>
+        /// <param name="path"></param>
+        /// <param name="writer"></param>
+        /// <param name="random"></param>
         public static void PlayQuizSelection(char gameOption, List<QuizQuestion> quizzes, string path, XmlSerializer writer, Random random)
         {
             if (gameOption == Constants.PLAY_QUIZ)
@@ -99,6 +137,14 @@ namespace QuizMaker
                 UIMethods.QuizDisplay(quizzes, path, writer, random);
             }
         }
+        
+        /// <summary>
+        /// Populate Quiz Bank
+        /// </summary>
+        /// <param name="quizzes"></param>
+        /// <param name="path"></param>
+        /// <param name="writer"></param>
+        /// <param name="insertMoreQuiz"></param>
         public static void PopulateQuizBank(List<QuizQuestion> quizzes, string path, XmlSerializer writer, bool insertMoreQuiz)
         {
             while (insertMoreQuiz)
@@ -118,23 +164,11 @@ namespace QuizMaker
                 insertMoreQuiz = UIMethods.AddMoreQuizRequest(insertMoreQuiz);
             }
         }
-        public static void CheckQuestionBankPath(string path, List<QuizQuestion> quizzes, XmlSerializer writer)
-        {
-            if (string.IsNullOrEmpty(path))
-            {
-                Console.WriteLine("Path is empty");
-            }
-
-            if (!File.Exists(path))
-            {
-                Console.WriteLine("No already saved quizzes");
-            }
-            else
-            {
-                Console.WriteLine("\nSome Quizes already saved\n");
-                quizzes = UIMethods.DeserializeLoad(quizzes, path, writer);
-            }
-        }
+        
+        /// <summary>
+        /// Get Valid Key When Yes or otherwise is pressed
+        /// </summary>
+        /// <returns></returns>
         public static string GetValidKey()
         {
             bool isValid = false;
@@ -158,7 +192,14 @@ namespace QuizMaker
                 }
             }
             return pressedKey;
+            
         }
+
+        /// <summary>
+        /// Reset Available Indexes
+        /// </summary>
+        /// <param name="availableIndexes"></param>
+        /// <param name="loadedQuizzes"></param>
         public static void ResetIndexes(List<int> availableIndexes, List<QuizQuestion> loadedQuizzes)
         {
             if (availableIndexes.Count == 0)

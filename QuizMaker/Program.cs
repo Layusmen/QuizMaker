@@ -17,10 +17,7 @@ namespace QuizMaker
             bool keepPlaying = true;
             
             XmlSerializer writer = new XmlSerializer(typeof(List<QuizQuestion>));
-
-            //XmlSerializer reader = new XmlSerializer(typeof(List<QuizQuestion>));
             
-
             while (keepPlaying)
             {
                 //Start up the software//
