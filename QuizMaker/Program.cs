@@ -7,7 +7,7 @@ namespace QuizMaker
 {
     internal class Program
     {
-        public static readonly Random random = new Random();
+        
         public static List<QuizQuestion> quizzes = new List<QuizQuestion>();
         static void Main(string[] args)
         {
@@ -36,10 +36,10 @@ namespace QuizMaker
                     gameOption = char.ToUpper(Console.ReadKey().KeyChar);
 
                     //Play Quizzes Logic
-                    Logics.PlayQuizSelection(gameOption, quizzes, Constants.path, writer, random);
+                    Logics.PlayQuizSelection(gameOption, quizzes, Constants.path, writer);
 
                     //Insert More Quiz Logic
-                    Logics.AddMoreQuizSelect(gameOption, quizzes, Constants.path, writer, insertMoreQuiz, random);
+                    Logics.AddMoreQuizSelect(gameOption, quizzes, Constants.path, writer, insertMoreQuiz);
 
                 }
                 else

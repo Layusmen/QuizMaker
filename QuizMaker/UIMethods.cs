@@ -297,7 +297,7 @@ namespace QuizMaker
             {
                 Console.WriteLine("No quizzes found in the file.");
             }
-        }\
+        }
         /// <summary>
         /// Stop the software from running
         /// </summary>

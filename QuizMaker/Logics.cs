@@ -7,8 +7,10 @@ using System.Xml.Serialization;
 
 namespace QuizMaker
 {
+
     internal class Logics
     {
+        public static readonly Random random = new Random();
         /// <summary>
         /// Save Quizzes [Question, Option and Correct Option to Class]
         /// </summary>
@@ -105,12 +107,12 @@ namespace QuizMaker
         /// <param name="writer"></param>
         /// <param name="insertMoreQuiz"></param>
         /// <param name="random"></param>
-        public static void AddMoreQuizSelect(char gameOption, List<QuizQuestion> quizzes, string path, XmlSerializer writer, bool insertMoreQuiz, Random random)
+        public static void AddMoreQuizSelect(char gameOption, List<QuizQuestion> quizzes, string path, XmlSerializer writer, bool insertMoreQuiz)
         {
             if (gameOption == Constants.START_ALPHABET)
             {
 
-                PlayQuizSelection(gameOption, quizzes, path, writer, random);
+                PlayQuizSelection(gameOption, quizzes, path, writer);
 
                 //Quiz XML File Path
                 UIMethods.CheckQuestionBankPath(path, quizzes, writer);
@@ -128,7 +130,7 @@ namespace QuizMaker
         /// <param name="path"></param>
         /// <param name="writer"></param>
         /// <param name="random"></param>
-        public static void PlayQuizSelection(char gameOption, List<QuizQuestion> quizzes, string path, XmlSerializer writer, Random random)
+        public static void PlayQuizSelection(char gameOption, List<QuizQuestion> quizzes, string path, XmlSerializer writer)
         {
             if (gameOption == Constants.PLAY_QUIZ)
             {
