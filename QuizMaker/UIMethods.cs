@@ -14,9 +14,9 @@ namespace QuizMaker
         {
             Console.WriteLine("\nWelcome to the Quiz Maker");
             Console.Write("\nWhat do you want to do?:");
-            Console.Write("(P) Play Quiz Game.");
-            Console.Write("(A) To Add More to the question Bank.");
-            Console.Write("\nPlease choose an Option (P or A): ");
+            Console.Write($"({Constants.PLAY_QUIZ}) Play Quiz Game.");
+            Console.Write($"({Constants.START_ALPHABET}) To Add More to the question Bank.");
+            Console.Write($"\nPlease choose an Option ({Constants.PLAY_QUIZ} or {Constants.START_ALPHABET}): ");
         }
 
         /// <summary>
@@ -245,6 +245,7 @@ namespace QuizMaker
             // Check if the pressed key is 'y' for yes
             return key.KeyChar == 'y' || key.KeyChar == 'Y';
         }
+
         /// <summary>
         /// Deserialize Load the Quiz Questions from the XML File.
         /// </summary>
@@ -271,6 +272,7 @@ namespace QuizMaker
             }
             return quizzes;
         }
+        
         /// <summary>
         /// Print Deserialize Quiz Questions, Options and Correct Option  to the user.
         /// </summary>
@@ -298,6 +300,7 @@ namespace QuizMaker
                 Console.WriteLine("No quizzes found in the file.");
             }
         }
+
         /// <summary>
         /// Stop the software from running
         /// </summary>
@@ -313,6 +316,7 @@ namespace QuizMaker
             Console.WriteLine($"Pressed key: {key.KeyChar}");
             return insertMoreQuiz;
         }
+
         /// <summary>
         /// Inserted Key to Add to Quiz Bank
         /// </summary>
@@ -323,6 +327,7 @@ namespace QuizMaker
             ConsoleKeyInfo key = Console.ReadKey();
             return key;
         }
+
         /// <summary>
         /// Enter Key Pressed Prompt
         /// </summary>
@@ -330,6 +335,7 @@ namespace QuizMaker
         {
             Console.WriteLine("\nPlease press a key between A, B, C, D, or E.");
         }
+
         /// <summary>
         /// Indicate that an Invalid Key was Pressed
         /// </summary>
@@ -337,6 +343,7 @@ namespace QuizMaker
         {
             Console.WriteLine("\nInvalid key. Please press A, B, C, D, or E.");
         }
+
         /// <summary>
         /// Show how many quiz to play
         /// </summary>
@@ -345,6 +352,7 @@ namespace QuizMaker
             Console.WriteLine("\nPlay Quiz Prompt");
             Console.WriteLine("\nYou have the opportunity to answer 5 Questions?");
         }
+
         /// <summary>
         /// Print Restart Quiz Prompt
         /// </summary>
@@ -352,6 +360,7 @@ namespace QuizMaker
         {
             Console.WriteLine("You have answered all questions! Restarting quiz...");
         }
+
         /// <summary>
         /// Show Insert More Quiz is being inserted
         /// </summary>
@@ -359,6 +368,7 @@ namespace QuizMaker
         {
             Console.WriteLine($"Returning: {insertMoreQuiz}");
         }
+
         /// <summary>
         /// Required Option is being inserted
         /// </summary>
