@@ -82,7 +82,7 @@ namespace QuizMaker
         /// <param name="random"></param>
         public static void QuizDisplay(List<QuizQuestion> quizzes, string path, XmlSerializer writer, Random random)
         {
-            List<QuizQuestion> loadedQuizzes = DeserializeLoad(quizzes, path, writer);
+            List<QuizQuestion> loadedQuizzes = DeserializeLoad(quizzes, writer);
 
             if (loadedQuizzes != null && loadedQuizzes.Any())
             {
@@ -223,9 +223,9 @@ namespace QuizMaker
         /// <param name="quizzes"></param>
         /// <param name="path"></param>
         /// <param name="writer"></param>
-        public static void SerializeSave(List<QuizQuestion> quizzes, string path, XmlSerializer writer)
+        public static void SerializeSave(List<QuizQuestion> quizzes, XmlSerializer writer)
         {
-            using (FileStream file = File.Create(path))
+            using (FileStream file = File.Create(Constants.PATH))
             {
                 writer.Serialize(file, quizzes);
             }
@@ -252,9 +252,9 @@ namespace QuizMaker
         /// <param name="path"></param>
         /// <param name="writer"></param>
         /// <returns></returns>
-        public static List<QuizQuestion> DeserializeLoad(List<QuizQuestion> quizzes, string path, XmlSerializer writer)
+        public static List<QuizQuestion> DeserializeLoad(List<QuizQuestion> quizzes, XmlSerializer writer)
         {
-            if (!File.Exists(path)) // Check if file exists
+            if (!File.Exists(Constants.PATH)) // Check if file exists
             {
                 Console.WriteLine("File Path Does Not Exist");
                 return null;
@@ -263,7 +263,7 @@ namespace QuizMaker
             {
                 Console.WriteLine("File Path Found");
 
-                using (FileStream file = File.OpenRead(path))
+                using (FileStream file = File.OpenRead(Constants.PATH))
                 {
                     //XmlSerializer reader = new XmlSerializer(typeof(List<QuizQuestion>));
                     quizzes = (List<QuizQuestion>)writer.Deserialize(file);
@@ -373,21 +373,21 @@ namespace QuizMaker
         /// <param name="path"></param>
         /// <param name="quizzes"></param>
         /// <param name="writer"></param>
-        public static void CheckQuestionBankPath(string path, List<QuizQuestion> quizzes, XmlSerializer writer)
+        public static void CheckQuestionBankPath(List<QuizQuestion> quizzes, XmlSerializer writer)
         {
-            if (string.IsNullOrEmpty(path))
+            if (string.IsNullOrEmpty(Constants.PATH))
             {
                 Console.WriteLine("Path is empty");
             }
 
-            if (!File.Exists(path))
+            if (!File.Exists(Constants.PATH))
             {
                 Console.WriteLine("No already saved quizzes");
             }
             else
             {
                 Console.WriteLine("\nSome Quizes already saved\n");
-                quizzes = UIMethods.DeserializeLoad(quizzes, path, writer);
+                quizzes = UIMethods.DeserializeLoad(quizzes, writer);
             }
         }
 

@@ -107,18 +107,18 @@ namespace QuizMaker
         /// <param name="writer"></param>
         /// <param name="insertMoreQuiz"></param>
         /// <param name="random"></param>
-        public static void AddMoreQuizSelect(char gameOption, List<QuizQuestion> quizzes, string path, XmlSerializer writer, bool insertMoreQuiz)
+        public static void AddMoreQuizSelect(char gameOption, List<QuizQuestion> quizzes, XmlSerializer writer, bool insertMoreQuiz)
         {
             if (gameOption == Constants.START_ALPHABET)
             {
 
-                PlayQuizSelection(gameOption, quizzes, path, writer);
+                PlayQuizSelection(gameOption, quizzes, writer);
 
                 //Quiz XML File Path
-                UIMethods.CheckQuestionBankPath(path, quizzes, writer);
+                UIMethods.CheckQuestionBankPath(quizzes, writer);
 
                 //Add More Quiz to the Quiz Bank Prompt 
-                PopulateQuizBank(quizzes, path, writer, insertMoreQuiz);
+                PopulateQuizBank(quizzes, writer, insertMoreQuiz);
             }
         }
         
@@ -130,13 +130,13 @@ namespace QuizMaker
         /// <param name="path"></param>
         /// <param name="writer"></param>
         /// <param name="random"></param>
-        public static void PlayQuizSelection(char gameOption, List<QuizQuestion> quizzes, string path, XmlSerializer writer)
+        public static void PlayQuizSelection(char gameOption, List<QuizQuestion> quizzes, XmlSerializer writer)
         {
             if (gameOption == Constants.PLAY_QUIZ)
             {
                 //Play Quiz Prompt
                 UIMethods.NumberOfQuizToPlay();
-                UIMethods.QuizDisplay(quizzes, path, writer, random);
+                UIMethods.QuizDisplay(quizzes, Constants.PATH, writer, random);
             }
         }
         
@@ -147,7 +147,7 @@ namespace QuizMaker
         /// <param name="path"></param>
         /// <param name="writer"></param>
         /// <param name="insertMoreQuiz"></param>
-        public static void PopulateQuizBank(List<QuizQuestion> quizzes, string path, XmlSerializer writer, bool insertMoreQuiz)
+        public static void PopulateQuizBank(List<QuizQuestion> quizzes, XmlSerializer writer, bool insertMoreQuiz)
         {
             while (insertMoreQuiz)
             {
@@ -161,7 +161,7 @@ namespace QuizMaker
                 Logics.PrintQuiz(quizzes);
 
                 // Call SerializeSave Method
-                UIMethods.SerializeSave(quizzes, path, writer);
+                UIMethods.SerializeSave(quizzes, writer);
 
                 insertMoreQuiz = UIMethods.AddMoreQuizRequest(insertMoreQuiz);
             }
