@@ -36,10 +36,10 @@ namespace QuizMaker
                     gameOption = char.ToUpper(Console.ReadKey().KeyChar);
 
                     //Play Quizzes Logic
-                    Logics.PlayQuizSelection(gameOption, quizzes, Constants.path, writer);
+                    Logics.PlayQuizSelection(gameOption, quizzes, Constants.PATH, writer);
 
                     //Insert More Quiz Logic
-                    Logics.AddMoreQuizSelect(gameOption, quizzes, Constants.path, writer, insertMoreQuiz);
+                    Logics.AddMoreQuizSelect(gameOption, quizzes, Constants.PATH, writer, insertMoreQuiz);
 
                 }
                 else

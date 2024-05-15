@@ -103,7 +103,7 @@ namespace QuizMaker
         /// </summary>
         /// <param name="gameOption"></param>
         /// <param name="quizzes"></param>
-        /// <param name="path"></param>
+        /// <param name="PATH"></param>
         /// <param name="writer"></param>
         /// <param name="insertMoreQuiz"></param>
         /// <param name="random"></param>

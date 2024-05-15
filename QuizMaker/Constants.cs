@@ -9,7 +9,7 @@ namespace QuizMaker
         public const char PLAY_QUIZ = 'P';
         public const char START_ALPHABET = 'A';
         public const char END_ALPHABET = 'E';
-        public const string path = @"..\..\..\QuestionBank.xml";
+        public const string PATH = @"..\..\..\QuestionBank.xml";
         
     }
 }
