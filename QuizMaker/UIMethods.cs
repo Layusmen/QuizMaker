@@ -24,7 +24,7 @@ namespace QuizMaker
         /// </summary>
         public static void PrintInsertQuizPrompt()
         {
-            Console.WriteLine("\nPlease insert the Quiz questions followed by five (5) options. \n");
+            Console.WriteLine($"\nPlease insert the Quiz questions followed by five ({Constants.MAX_OPTIONS}) options. \n");
         }
         /// <summary>
         /// Print Insert Quiz Questions Prompt to the user
