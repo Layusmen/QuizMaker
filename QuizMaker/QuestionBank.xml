@@ -5,10 +5,65 @@
     <questionOption>
       <string>(A) Dele</string>
       <string>(B) Wale</string>
-      <string>(C) Wunmu</string>
-      <string>(D) Olayode</string>
-      <string>(E) Maryam</string>
+      <string>(C) Wunmi</string>
+      <string>(D) Maryam</string>
+      <string>(E) Adisa</string>
     </questionOption>
-    <correctOption>(E) Maryam</correctOption>
+    <correctOption>(C) Wunmi</correctOption>
+  </QuizQuestion>
+  <QuizQuestion>
+    <question>How old are you?</question>
+    <questionOption>
+      <string>(A) 20</string>
+      <string>(B) 30</string>
+      <string>(C) 40</string>
+      <string>(D) 50</string>
+      <string>(E) 60</string>
+    </questionOption>
+    <correctOption>(D) 50</correctOption>
+  </QuizQuestion>
+  <QuizQuestion>
+    <question>Where are you from?</question>
+    <questionOption>
+      <string>(A) Oyo</string>
+      <string>(B) Ibadan</string>
+      <string>(C) Osun</string>
+      <string>(D) Ogun</string>
+      <string>(E) Ede</string>
+    </questionOption>
+    <correctOption>(B) Ibadan</correctOption>
+  </QuizQuestion>
+  <QuizQuestion>
+    <question>Which school did you attend?</question>
+    <questionOption>
+      <string>(A) Ibadan boys</string>
+      <string>(B) command day</string>
+      <string>(C) Wesley college</string>
+      <string>(D) Olubadan</string>
+      <string>(E) Soun Academy</string>
+    </questionOption>
+    <correctOption>(D) Olubadan</correctOption>
+  </QuizQuestion>
+  <QuizQuestion>
+    <question>Who is your governor?</question>
+    <questionOption>
+      <string>(A) Seyi</string>
+      <string>(B) Sanwo</string>
+      <string>(C) Biodun</string>
+      <string>(D) Ajimobi</string>
+      <string>(E) Sooko</string>
+    </questionOption>
+    <correctOption>(C) Biodun</correctOption>
+  </QuizQuestion>
+  <QuizQuestion>
+    <question>What is the name of your president?</question>
+    <questionOption>
+      <string>(A) Olufalai</string>
+      <string>(B) Sabitu</string>
+      <string>(C) Olagoke</string>
+      <string>(D) Tinubu</string>
+      <string>(E) Buhari</string>
+    </questionOption>
+    <correctOption>(D) Tinubu</correctOption>
   </QuizQuestion>
 </ArrayOfQuizQuestion>

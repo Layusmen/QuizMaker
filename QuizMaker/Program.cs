@@ -8,11 +8,12 @@ namespace QuizMaker
 {
     internal class Program
     {
-        public static readonly Random random = new Random();
+        //public static readonly Random random = new Random();
 
         public static List<QuizQuestion> quizzes = new List<QuizQuestion>();
-        public static List<string> options = new List<string>();
-        public static QuizQuestion quiz = new QuizQuestion();
+        //public static 
+        
+        public static XmlSerializer writer = new XmlSerializer(typeof(List<QuizQuestion>));
         static void Main(string[] args)
         {
             
@@ -20,7 +21,7 @@ namespace QuizMaker
             char gameOption;
             bool keepPlaying = true;
             
-            XmlSerializer writer = new XmlSerializer(typeof(List<QuizQuestion>));
+           
             
             while (keepPlaying)
             {
@@ -33,11 +34,8 @@ namespace QuizMaker
                     UIMethods.PrintWelcome();
 
                     //Select what to do
-                    gameOption = char.ToUpper(Console.ReadKey().KeyChar);
+                    gameOption = UIMethods.GetSelectedOption();
 
-                    //Play Quizzes Logic
-                    //Logics.PlayQuizSelection(gameOption, quizzes, writer);
-                    
                     if (gameOption == Constants.PLAY_QUIZ)
                     {
                         //Play Quiz Prompt
@@ -45,7 +43,7 @@ namespace QuizMaker
 
                         quizzes = UIMethods.LoadQuizzes(writer);
                         
-                        UIMethods.QuizDisplay(quizzes, writer, random);
+                        UIMethods.QuizDisplay(quizzes, writer);
                     }
 
                     if (gameOption == Constants.START_ALPHABET)
@@ -63,24 +61,25 @@ namespace QuizMaker
                             // Insert More Quizzes to the Question Bank
                             UIMethods.PrintInsertQuizPrompt();
 
-                            quiz = Logics.CreateQuizQuestion(quiz);
+                           QuizQuestion quiz = Logics.CreateQuizQuestion();
 
-                            quiz.questionOption = UIMethods.CreateOptions(options);
-                            
+                            List <string> options = UIMethods.CreateOptions();
+
+                            quiz.questionOption = options;
+
                             int selectedOption = UIMethods.CreateRightOption(options);
                             
                             quiz.correctOption = UIMethods.GetSelectedOption(options, selectedOption);
                             
                             quizzes.Add(quiz);
-                            
+                            Console.Clear();
                             // Print Quiz Questions and Options
                             UIMethods.PrintQuiz(quizzes);
 
                             // Call SerializeSave Method
                             Logics.SerializeSave(quizzes, writer);
-
+                            
                             insertMoreQuiz = UIMethods.AddMoreQuizRequest(insertMoreQuiz);
-
                         }
                     }
                 }

@@ -115,32 +115,30 @@ namespace QuizMaker
         /// <param name="quizzes"></param>
         /// <param name="writer"></param>
         /// <param name="random"></param>
-        public static void QuizDisplay(List<QuizQuestion> quizzes, XmlSerializer writer, Random random)
+        public static void QuizDisplay(List<QuizQuestion> quizzes, XmlSerializer writer)
         {
-
             if (quizzes != null && quizzes.Any())
             {
-                //var random = new Random();
+               
                 int numQuestions = Constants.MAX_OPTIONS;
                 int money = 0;
                 int total = 0;
-                // list of available question indices
-                List<int> availableIndexes = Enumerable.Range(0, quizzes.Count).ToList();
+                Console.WriteLine($"Quizzes count: {quizzes.Count}");
 
                 for (int i = 0; i < numQuestions; i++)
                 {
-                    if (availableIndexes.Count == 0)
-                    {
-                        Console.WriteLine("You have answered all questions! Restarting quiz...");
-                        availableIndexes = Enumerable.Range(0, quizzes.Count).ToList();
-                    }
+                    Console.WriteLine("Iteration: {0}", i);
 
-                    // Select a random question from available ones
-                    int randomIndex = availableIndexes[random.Next(availableIndexes.Count)];
-
-                    // Display the question
-
+                   
+                    Random random = new Random();
+                    int randomIndex = random.Next(quizzes.Count);
                     var quiz = quizzes[randomIndex];
+
+
+
+
+
+
                     Console.WriteLine("Question: {0}", quiz.question);
                     Console.WriteLine("Options:");
                     int j = 0;
@@ -258,8 +256,9 @@ namespace QuizMaker
         /// </summary>
         /// <param name="options"></param>
         /// <returns></returns>
-        public static List<string> CreateOptions(List<string> options)
+        public static List<string> CreateOptions()
         {
+            List<string> options = new List<string>();
             int counter = 0;
             while (counter < Constants.MAX_OPTIONS)
             {
@@ -452,7 +451,16 @@ namespace QuizMaker
         {
             Console.WriteLine("\nThank you. You have the opportunity to answer 5 Questions?");
         }
-       
 
+        /// <summary>
+        /// Option Selected by the user
+        /// </summary>
+        /// <returns></returns>
+        public static char GetSelectedOption()
+        {
+            ConsoleKeyInfo keyInfo = Console.ReadKey();
+            char gameOption = char.ToUpper(keyInfo.KeyChar);
+            return gameOption;
+        }
     }
 }

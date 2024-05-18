@@ -15,15 +15,16 @@ namespace QuizMaker
         /// </summary>
         /// <param name="quiz"></param>
         /// <returns></returns>
-        public static QuizQuestion CreateQuizQuestion(QuizQuestion quiz)
+        public static QuizQuestion CreateQuizQuestion()
         {
             // Console to insert quiz question 
             string insertQuestion = UIMethods.InsertedInput();
-            if (insertQuestion != "")  //TODO: needs rethinking =)
+            QuizQuestion quiz = new QuizQuestion();
+            if(insertQuestion != "")  //TODO: needs rethinking =)
             {
                 quiz.question = insertQuestion;
             }
-            return quiz;
+            return quiz ;
         }
         
         /// <summary>
@@ -57,5 +58,6 @@ namespace QuizMaker
             }
             return quizzes;
         }
+
     }
 }
