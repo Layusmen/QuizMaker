@@ -5,21 +5,10 @@
     <questionOption>
       <string>(A) Dele</string>
       <string>(B) Wale</string>
-      <string>(C) Kunle</string>
+      <string>(C) Wunmu</string>
       <string>(D) Olayode</string>
-      <string>(E) Adio</string>
+      <string>(E) Maryam</string>
     </questionOption>
-    <correctOption>(E) Adio</correctOption>
-  </QuizQuestion>
-  <QuizQuestion>
-    <question>Where are you from?</question>
-    <questionOption>
-      <string>(A) Ede</string>
-      <string>(B) Ibadan</string>
-      <string>(C) Ila</string>
-      <string>(D) Ogun</string>
-      <string>(E) Oyo</string>
-    </questionOption>
-    <correctOption>(E) Oyo</correctOption>
+    <correctOption>(E) Maryam</correctOption>
   </QuizQuestion>
 </ArrayOfQuizQuestion>

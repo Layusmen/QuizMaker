@@ -1,5 +1,4 @@
 ﻿using System;
-
 using System.Text;
 using System.Collections.Generic;
 using System.Xml.Serialization;
@@ -26,29 +25,8 @@ namespace QuizMaker
         {
             Console.WriteLine($"\nPlease insert the Quiz questions followed by five ({Constants.MAX_OPTIONS}) options. \n");
         }
-        /// <summary>
-        /// Print Insert Quiz Questions Prompt to the user
-        /// </summary>
-        public static void PrintQuizOptionsPrompt()
-        {
-            Console.WriteLine("\nPlease insert options\n");
-        }
-        /// <summary>
-        /// Print Insert Correct Quiz Option Prompt to the user
-        /// </summary>
-        public static void PrintCorrectOptionPrompt()
-        {
-            Console.WriteLine("Insert the right Option:");
-        }
-
-        /// <summary>
-        /// Print Insert Correct Quiz Option Indicator Prompt to the user
-        /// </summary>
-        public static void PrintCorrectOptionIndicator()
-        {
-            Console.WriteLine("\nCorrect Answer is:");
-        } 
-
+        
+        
         /// <summary>
         /// Print Question Added Prompt to the user
         /// </summary>
@@ -58,11 +36,11 @@ namespace QuizMaker
         }
 
         /// <summary>
-        /// Inserted Options Print to the user
+        /// InsertedInput Options Print to the user
         /// </summary>
         public static void InsertedOptionsPrint()
         {
-            Console.WriteLine("\nThe Following are the Options Inserted: ");
+            Console.WriteLine("\nThe Following are the Options InsertedInput: ");
         }
 
         /// <summary>
@@ -80,30 +58,89 @@ namespace QuizMaker
         /// <param name="path"></param>
         /// <param name="writer"></param>
         /// <param name="random"></param>
-        public static void QuizDisplay(List<QuizQuestion> quizzes, string path, XmlSerializer writer, Random random)
+        public static List<QuizQuestion> LoadQuizzes(XmlSerializer writer)
         {
-            List<QuizQuestion> loadedQuizzes = DeserializeLoad(quizzes, writer);
+            List<QuizQuestion> quizzes = new List<QuizQuestion>(); // Initialize empty list
 
-            if (loadedQuizzes != null && loadedQuizzes.Any())
+            if (File.Exists(Constants.PATH)) // Check if file exists
+            {
+                using (FileStream file = File.OpenRead(Constants.PATH))
+                {
+                    try
+                    {
+                        Console.WriteLine("File path exists");
+                        quizzes = (List<QuizQuestion>)writer.Deserialize(file);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error deserializing file: {0}", ex.Message);
+                    }
+                }
+            }
+            return quizzes;
+        }
+
+        /// <summary>
+        /// Get Valid Key When Yes or otherwise is pressed
+        /// </summary>
+        /// <returns></returns>
+        public static string GetValidKey()
+        {
+            bool isValid = false;
+            string pressedKey = null;
+            while (!isValid)
+            {
+                ConsoleKeyInfo keyInfo = Console.ReadKey();
+
+                if (char.ToUpper(keyInfo.KeyChar) >= Constants.START_ALPHABET && char.ToUpper(keyInfo.KeyChar) <= Constants.END_ALPHABET)
+                {
+                    pressedKey = char.ToUpper(keyInfo.KeyChar).ToString();
+                    isValid = true;
+                }
+                else if (keyInfo.Key == ConsoleKey.Enter)
+                {
+                    Console.WriteLine("\nPlease press a key between A, B, C, D, or E.");
+                }
+                else
+                {
+                    Console.WriteLine("\nInvalid key. Please press A, B, C, D, or E.");
+                }
+            }
+            return pressedKey;
+
+        }
+        /// <summary>
+        /// Display Quizzes, Options and Correct Option to the user
+        /// </summary>
+        /// <param name="quizzes"></param>
+        /// <param name="writer"></param>
+        /// <param name="random"></param>
+        public static void QuizDisplay(List<QuizQuestion> quizzes, XmlSerializer writer, Random random)
+        {
+
+            if (quizzes != null && quizzes.Any())
             {
                 //var random = new Random();
                 int numQuestions = Constants.MAX_OPTIONS;
                 int money = 0;
                 int total = 0;
                 // list of available question indices
-                List<int> availableIndexes = Enumerable.Range(0, loadedQuizzes.Count).ToList();
+                List<int> availableIndexes = Enumerable.Range(0, quizzes.Count).ToList();
 
                 for (int i = 0; i < numQuestions; i++)
                 {
-                    // Check if all questions have all been answered
+                    if (availableIndexes.Count == 0)
+                    {
+                        Console.WriteLine("You have answered all questions! Restarting quiz...");
+                        availableIndexes = Enumerable.Range(0, quizzes.Count).ToList();
+                    }
 
-                    Logics.ResetIndexes(availableIndexes, loadedQuizzes);
                     // Select a random question from available ones
                     int randomIndex = availableIndexes[random.Next(availableIndexes.Count)];
 
                     // Display the question
 
-                    var quiz = loadedQuizzes[randomIndex];
+                    var quiz = quizzes[randomIndex];
                     Console.WriteLine("Question: {0}", quiz.question);
                     Console.WriteLine("Options:");
                     int j = 0;
@@ -115,7 +152,7 @@ namespace QuizMaker
                     Console.WriteLine("The correct option is" + quiz.correctOption);
                     Console.WriteLine("\nNow Select the Correct Option");
 
-                    string pressedKey = Logics.GetValidKey();
+                    string pressedKey = GetValidKey();
 
                     if (pressedKey == quiz.correctOption[1].ToString())
                     {
@@ -136,12 +173,35 @@ namespace QuizMaker
                 Console.WriteLine("No quizzes found in the file.");
             }
         }
-        
+
+        /// <summary>
+        /// Print Quiz Question and Options
+        /// </summary>
+        /// <param name="quizzes"></param>
+        public static void PrintQuiz(List<QuizQuestion> quizzes)
+        {
+            //Quiz Question Print
+            UIMethods.QuestionAddedPrint();
+            foreach (QuizQuestion quiz in quizzes)
+            {
+                Console.WriteLine(quiz.question);
+
+                UIMethods.InsertedOptionsPrint();
+
+                foreach (string option in quiz.questionOption)
+                {
+                    Console.WriteLine(option);
+                }
+                UIMethods.CorrectionOptionPrint();
+                Console.WriteLine(quiz.correctOption);
+            }
+        }
+
         /// <summary>
         /// Meant to collect input
         /// </summary>
         /// <returns></returns>
-        public static string Inserted()
+        public static string InsertedInput()
         {
             string insert = Console.ReadLine().Trim();
             return insert;
@@ -156,7 +216,7 @@ namespace QuizMaker
             string prompt;
             if (counter == 0)
             {
-                UIMethods.PrintQuizOptionsPrompt();
+                Console.WriteLine("\nPlease insert options\n");
             }
             else
             {
@@ -165,7 +225,7 @@ namespace QuizMaker
         }
 
         /// <summary>
-        /// Inserted Options Print to the user
+        /// InsertedInput Options Print to the user
         /// </summary>
         /// <param name="counter"></param>
         /// <param name="labeledOption"></param>
@@ -179,9 +239,64 @@ namespace QuizMaker
         /// </summary>
         /// <param name="options"></param>
         /// <returns></returns>
-        public static string CollectRightOption(List<string> options)
-        {
+        
 
+        public static string GetSelectedOption(List<string> options, int selectedOption)
+        {
+            if (selectedOption >= 1 && selectedOption <= options.Count)
+            {
+                return options[selectedOption - 1];
+            }
+            else
+            {
+                return null;
+            }
+        }
+        
+        /// <summary>
+        /// Add Option to the Quiz
+        /// </summary>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        public static List<string> CreateOptions(List<string> options)
+        {
+            int counter = 0;
+            while (counter < Constants.MAX_OPTIONS)
+            {
+                UIMethods.QuizOptionOutput(counter);
+
+                // Insert Option Console.
+                string insertedOption = UIMethods.InsertedInput();
+
+                //Invoke Option Labels
+                string[] optionLabels = Constants.OPTIONLABELS;
+
+                if (insertedOption != "")
+                {
+                    counter++;
+                    string labeledOption = $"{optionLabels[counter - 1]} {insertedOption}";
+                    options.Add(labeledOption);
+
+                    //Print InsertedInput Option
+                    UIMethods.OptionInserted(counter, labeledOption);
+                }
+
+                if (counter == Constants.MAX_OPTIONS)
+                {
+                    UIMethods.OptionRequiredInserted();
+                    break;
+                }
+            }
+            return options;
+        }
+
+        /// <summary>
+        /// Insert the right option to the quiz
+        /// </summary>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        public static int CreateRightOption(List<string> options)
+        {
             Console.WriteLine("\nNow Enter the Correct Option Index of the options inserted");
             int selectedOption;
             bool isValidInput = false;
@@ -199,40 +314,8 @@ namespace QuizMaker
                     Console.WriteLine("Invalid input. Please enter a number between 1 and 5.");
                 }
             } while (!isValidInput || selectedOption < 1 || selectedOption > Constants.MAX_OPTIONS);
-
-            string rightOption;
-            if (selectedOption >= 1 && selectedOption <= options.Count)
-            {
-                rightOption = options[selectedOption - 1];
-                Console.WriteLine("You selected: " + selectedOption);
-                return rightOption;
-            }
-
-            else
-            {
-                // possible out of range selectedOption
-                Console.WriteLine("An unexpected error occurred. No option selected.");
-                return null;
-            }
+            return selectedOption;
         }
-
-        /// <summary>
-        /// Save Question, Options anc Correct Option to the XML File.
-        /// Serialise the data to XML format.
-        /// </summary>
-        /// <param name="quizzes"></param>
-        /// <param name="path"></param>
-        /// <param name="writer"></param>
-        public static void SerializeSave(List<QuizQuestion> quizzes, XmlSerializer writer)
-        {
-            using (FileStream file = File.Create(Constants.PATH))
-            {
-                writer.Serialize(file, quizzes);
-            }
-            Console.WriteLine("Quizzes saved to file:");
-            writer.Serialize(Console.Out, quizzes);
-        }
-        
         /// <summary>
         /// Prompt to Add more quiz
         /// </summary>
@@ -263,7 +346,6 @@ namespace QuizMaker
             else
             {
                 Console.WriteLine("File Path Found");
-
                 using (FileStream file = File.OpenRead(Constants.PATH))
                 {
                     //XmlSerializer reader = new XmlSerializer(typeof(List<QuizQuestion>));
@@ -272,35 +354,7 @@ namespace QuizMaker
             }
             return quizzes;
         }
-        
-        /// <summary>
-        /// Print Deserialize Quiz Questions, Options and Correct Option  to the user.
-        /// </summary>
-        /// <param name="quizzes"></param>
-        public static void PrintQuizDeserialize(List<QuizQuestion> quizzes)
-        {
-            if (quizzes != null && quizzes.Any())
-            {
-                Console.WriteLine("Loaded Quiz Questions:");
-                foreach (var quiz in quizzes)
-                {
-                    // Access and display question
-                    Console.WriteLine("Question: {0}", quiz.question);
-                    Console.WriteLine("Options:");
-                    foreach (var option in quiz.questionOption)
-                    {
-                        Console.WriteLine("- {0}", option);
-                    }
-                    Console.WriteLine("Answer: {0}", quiz.correctOption);
-                    Console.WriteLine("...");
-                }
-            }
-            else
-            {
-                Console.WriteLine("No quizzes found in the file.");
-            }
-        }
-
+       
         /// <summary>
         /// Stop the software from running
         /// </summary>
@@ -318,7 +372,7 @@ namespace QuizMaker
         }
 
         /// <summary>
-        /// Inserted Key to Add to Quiz Bank
+        /// InsertedInput Key to Add to Quiz Bank
         /// </summary>
         /// <returns></returns>
         public static ConsoleKeyInfo AskToAddQuiz()
@@ -345,61 +399,60 @@ namespace QuizMaker
         }
 
         /// <summary>
-        /// Show how many quiz to play
-        /// </summary>
-        public static void NumberOfQuizToPlay()
-        {
-            Console.WriteLine("\nPlay Quiz Prompt");
-            Console.WriteLine("\nYou have the opportunity to answer 5 Questions?");
-        }
-
-        /// <summary>
-        /// Print Restart Quiz Prompt
-        /// </summary>
-        public static void PrintRestartQuiz()
-        {
-            Console.WriteLine("You have answered all questions! Restarting quiz...");
-        }
-
-        /// <summary>
-        /// Show Insert More Quiz is being inserted
-        /// </summary>
-        public static void InsertMoreQuizReturn(bool insertMoreQuiz)
-        {
-            Console.WriteLine($"Returning: {insertMoreQuiz}");
-        }
-
-        /// <summary>
         /// Required Option is being inserted
         /// </summary>
         public static void OptionRequiredInserted()
         {
-            Console.WriteLine("Needed Options Inserted");
+            Console.WriteLine("Needed Options InsertedInput");
         }
 
         /// <summary>
-        /// Check Question Bank Path Whether ther are Quizzes Saved Already
+        /// Check the validity of question bank path
         /// </summary>
-        /// <param name="path"></param>
-        /// <param name="quizzes"></param>
-        /// <param name="writer"></param>
-        public static void CheckQuestionBankPath(List<QuizQuestion> quizzes, XmlSerializer writer)
+        /// <returns></returns>
+        public static bool ValidateQuestionBankPath()
         {
             if (string.IsNullOrEmpty(Constants.PATH))
             {
                 Console.WriteLine("Path is empty");
+                return false;
             }
 
             if (!File.Exists(Constants.PATH))
             {
                 Console.WriteLine("No already saved quizzes");
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Load Quiz from 
+        /// </summary>
+        public static void LoadQuestionBankFromFile()
+        {
+            if (!File.Exists(Constants.PATH))
+            {
+                Console.WriteLine("\nFile Path Does Not Exist");
+                return;
             }
             else
             {
-                Console.WriteLine("\nSome Quizes already saved\n");
-                quizzes = UIMethods.DeserializeLoad(quizzes, writer);
+                Console.WriteLine("\nFile Path Found");
+                return;
             }
+            
         }
+
+        /// <summary>
+        /// Tell users the number of questions to be asked
+        /// </summary>
+        public static void NumberOfGameToPlayPrint()
+        {
+            Console.WriteLine("\nThank you. You have the opportunity to answer 5 Questions?");
+        }
+       
 
     }
 }
