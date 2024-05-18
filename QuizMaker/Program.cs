@@ -16,17 +16,13 @@ namespace QuizMaker
         public static XmlSerializer writer = new XmlSerializer(typeof(List<QuizQuestion>));
         static void Main(string[] args)
         {
-            
             bool insertMoreQuiz = true;
             char gameOption;
             bool keepPlaying = true;
-            
-           
-            
             while (keepPlaying)
             {
                 //Start up the software//
-                keepPlaying = UIMethods.StopPlayPrompt(insertMoreQuiz);
+                keepPlaying = UIMethods.GetStop(insertMoreQuiz);
 
                 if (keepPlaying)
                 {
@@ -35,7 +31,7 @@ namespace QuizMaker
 
                     //Select what to do
                     gameOption = UIMethods.GetSelectedOption();
-
+         
                     if (gameOption == Constants.PLAY_QUIZ)
                     {
                         //Play Quiz Prompt
@@ -80,13 +76,14 @@ namespace QuizMaker
                             Logics.SerializeSave(quizzes, writer);
                             
                             insertMoreQuiz = UIMethods.AddMoreQuizRequest(insertMoreQuiz);
+
                         }
                     }
                 }
                 else
                 {
-                    Console.Clear();
-                    break;
+                  Console.Clear();
+                 break;
                 }
             }
         }

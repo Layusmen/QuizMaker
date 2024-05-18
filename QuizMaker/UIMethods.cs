@@ -359,7 +359,7 @@ namespace QuizMaker
         /// </summary>
         /// <param name="insertMoreQuiz"></param>
         /// <returns></returns>
-        public static bool StopPlayPrompt(bool insertMoreQuiz)
+        public static bool GetStop(bool insertMoreQuiz)
         {
             Console.Write("\nDo you want to Go on with the Software? 'y' for yes, any other key for no): ");
             ConsoleKeyInfo key = Console.ReadKey(true);
