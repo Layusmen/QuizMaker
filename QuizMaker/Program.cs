@@ -35,7 +35,7 @@ namespace QuizMaker
                     UIMethods.DisplayQuiz(quizzes);
                 }
 
-                if (gameOption == Constants.START_ALPHABET)
+                if (gameOption == Constants.ADD_MORE_QUESTION_MODE)
                 {
 
                     //Quiz XML File Path

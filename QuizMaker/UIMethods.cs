@@ -14,8 +14,8 @@ namespace QuizMaker
             Console.WriteLine("\nWelcome to the Quiz Maker");
             Console.Write("\nWhat do you want to do?:");
             Console.Write($"({Constants.PLAY_QUIZ}) Play Quiz Game.");
-            Console.Write($"({Constants.START_ALPHABET}) To Add More to the question Bank.");
-            Console.Write($"\nPlease choose an Option ({Constants.PLAY_QUIZ} or {Constants.START_ALPHABET}): ");
+            Console.Write($"({Constants.ADD_MORE_QUESTION_MODE}) To Add More to the question Bank.");
+            Console.Write($"\nPlease choose an Option ({Constants.PLAY_QUIZ} or {Constants.ADD_MORE_QUESTION_MODE}): ");
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace QuizMaker
             {
                 ConsoleKeyInfo keyInfo = Console.ReadKey();
 
-                if (char.ToUpper(keyInfo.KeyChar) >= Constants.START_ALPHABET && char.ToUpper(keyInfo.KeyChar) <= Constants.END_ALPHABET)
+                if (char.ToUpper(keyInfo.KeyChar) >= Constants.ADD_MORE_QUESTION_MODE && char.ToUpper(keyInfo.KeyChar) <= Constants.LAST_OPTION)
                 {
                     pressedKey = char.ToUpper(keyInfo.KeyChar).ToString();
                     isValid = true;
