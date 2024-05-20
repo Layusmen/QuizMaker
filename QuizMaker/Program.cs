@@ -70,7 +70,6 @@ namespace QuizMaker
                         Logics.SerializeSave(quizzes, writer);
 
                         UIMethods.AddMoreQuizRequest();
-
                     }
                 }
             }

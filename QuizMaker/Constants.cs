@@ -10,6 +10,7 @@ namespace QuizMaker
         public const char START_ALPHABET = 'A';
         public const char END_ALPHABET = 'E';
         public const string PATH = @"..\..\..\QuestionBank.xml";
-        
+        public const char SMALl_LETTER_Y = 'y';
+        public const char CAPITAL_LETTER_Y = 'Y';
     }
 }
