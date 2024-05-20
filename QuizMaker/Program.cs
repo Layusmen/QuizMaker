@@ -33,7 +33,7 @@ namespace QuizMaker
 
                     quizzes = Logics.LoadQuizzes(writer);
 
-                    UIMethods.QuizDisplay(quizzes, writer);
+                    UIMethods.QuizDisplay(quizzes);
                 }
 
                 if (gameOption == Constants.START_ALPHABET)

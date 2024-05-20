@@ -86,7 +86,7 @@ namespace QuizMaker
         /// <param name="quizzes"></param>
         /// <param name="writer"></param>
         /// <param name="random"></param>
-        public static void QuizDisplay(List<QuizQuestion> quizzes, XmlSerializer writer)
+        public static void QuizDisplay(List<QuizQuestion> quizzes)
         {
             if (quizzes != null && quizzes.Any())
             {
@@ -104,11 +104,6 @@ namespace QuizMaker
                     Random random = new Random();
                     int randomIndex = random.Next(quizzes.Count);
                     var quiz = quizzes[randomIndex];
-
-
-
-
-
 
                     Console.WriteLine("Question: {0}", quiz.question);
                     Console.WriteLine("Options:");
