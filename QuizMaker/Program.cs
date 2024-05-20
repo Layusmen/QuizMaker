@@ -41,8 +41,7 @@ namespace QuizMaker
 
                     //Quiz XML File Path
                     UIMethods.ValidateQuestionBankPath();
-                    UIMethods.LoadQuestionBankFromFile();
-
+                    
                     // Deserialize XML File
                     Logics.DeserializeFile(quizzes, writer);
 

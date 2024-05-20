@@ -357,24 +357,6 @@ namespace QuizMaker
        }
 
         /// <summary>
-        /// Load Quiz from 
-        /// </summary>
-        public static void LoadQuestionBankFromFile()
-        {
-            if (!File.Exists(Constants.PATH))
-            {
-                Console.WriteLine("\nFile Path Does Not Exist");
-                return;
-            }
-            else
-            {
-                Console.WriteLine("\nFile Path Found");
-                return;
-            }
-            
-        }
-
-        /// <summary>
         /// Tell users the number of questions to be asked
         /// </summary>
         public static void NumberOfGameToPlayPrint()
