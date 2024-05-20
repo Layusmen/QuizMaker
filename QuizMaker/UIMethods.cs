@@ -25,8 +25,8 @@ namespace QuizMaker
         {
             Console.WriteLine($"\nPlease insert the Quiz questions followed by five ({Constants.MAX_OPTIONS}) options. \n");
         }
-        
-        
+
+
         /// <summary>
         /// Print Question Added Prompt to the user
         /// </summary>
@@ -90,7 +90,7 @@ namespace QuizMaker
         {
             if (quizzes != null && quizzes.Any())
             {
-               
+
                 int numQuestions = Constants.MAX_OPTIONS;
                 int money = 0;
                 int total = 0;
@@ -100,7 +100,7 @@ namespace QuizMaker
                 {
                     Console.WriteLine("Iteration: {0}", i);
 
-                   
+
                     Random random = new Random();
                     int randomIndex = random.Next(quizzes.Count);
                     var quiz = quizzes[randomIndex];
@@ -203,7 +203,7 @@ namespace QuizMaker
         /// </summary>
         /// <param name="options"></param>
         /// <returns></returns>
-        
+
 
         public static string GetSelectedOption(List<string> options, int selectedOption)
         {
@@ -216,7 +216,7 @@ namespace QuizMaker
                 return null;
             }
         }
-        
+
         /// <summary>
         /// Add Option to the Quiz
         /// </summary>
@@ -330,7 +330,7 @@ namespace QuizMaker
             return key.KeyChar == Constants.SMALl_LETTER_Y || key.KeyChar == Constants.CAPITAL_LETTER_Y;
         }
 
-        
+
         /// <summary>
         /// Required Option is being inserted
         /// </summary>
@@ -354,7 +354,7 @@ namespace QuizMaker
             {
                 Console.WriteLine("No already saved quizzes");
             }
-       }
+        }
 
         /// <summary>
         /// Tell users the number of questions to be asked
@@ -373,6 +373,34 @@ namespace QuizMaker
             ConsoleKeyInfo keyInfo = Console.ReadKey();
             char gameOption = char.ToUpper(keyInfo.KeyChar);
             return gameOption;
+        }
+
+        public static void SaveCompleteQuiz(List<QuizQuestion> quizzes)
+        {
+
+            while (UIMethods.AddMoreQuizRequest())
+            {
+                // Insert More Quizzes to the Question Bank
+                UIMethods.PrintInsertQuizPrompt();
+
+                QuizQuestion quiz = Logics.CreateQuizQuestion();
+
+                List<string> options = UIMethods.CreateOptions();
+
+                quiz.questionOption = options;
+
+                int selectOption = UIMethods.CreateRightOption(options);
+
+                quiz.correctOption = UIMethods.GetSelectedOption(options, selectOption);
+
+                quizzes.Add(quiz);
+                Console.Clear();
+                // Print Quiz Questions and Options
+                UIMethods.PrintQuiz(quizzes);
+
+                // Call SaveSerialize Method
+                Logics.SaveSerialize(quizzes, Logics.writer);
+            }
         }
     }
 }

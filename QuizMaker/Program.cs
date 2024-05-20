@@ -44,31 +44,7 @@ namespace QuizMaker
                     // Deserialize XML File
                     Logics.DeserializeFile(quizzes);
 
-                    while (UIMethods.AddMoreQuizRequest())
-                    {
-                        // Insert More Quizzes to the Question Bank
-                        UIMethods.PrintInsertQuizPrompt();
-
-                        QuizQuestion quiz = Logics.CreateQuizQuestion();
-
-                        List<string> options = UIMethods.CreateOptions();
-
-                        quiz.questionOption = options;
-
-                        int selectOption = UIMethods.CreateRightOption(options);
-
-                        quiz.correctOption = UIMethods.GetSelectedOption(options, selectOption);
-
-                        quizzes.Add(quiz);
-                        Console.Clear();
-                        // Print Quiz Questions and Options
-                        UIMethods.PrintQuiz(quizzes);
-
-                        // Call SaveSerialize Method
-                        Logics.SaveSerialize(quizzes, Logics.writer);
-
-                        UIMethods.AddMoreQuizRequest();
-                    }
+                    UIMethods.SaveCompleteQuiz(quizzes);
                 }
             }
         }
