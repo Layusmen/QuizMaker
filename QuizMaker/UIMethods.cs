@@ -320,7 +320,7 @@ namespace QuizMaker
         /// </summary>
         /// <param name="insertMoreQuiz"></param>
         /// <returns></returns>
-        public static bool AddMoreQuizRequest(bool insertMoreQuiz)
+        public static bool AddMoreQuizRequest()
         {
             Console.Write("\nDo you want to add more quiz: 'y' for yes, any other key for no): ");
             ConsoleKeyInfo key = Console.ReadKey();
@@ -359,15 +359,22 @@ namespace QuizMaker
         /// </summary>
         /// <param name="insertMoreQuiz"></param>
         /// <returns></returns>
-        public static bool GetStop(bool insertMoreQuiz)
+        public static bool GetStop1(bool insertMoreQuiz)
         {
-            Console.Write("\nDo you want to Go on with the Software? 'y' for yes, any other key for no): ");
+            Console.Write("\nDo you keep on with the Software? 'y' for yes, any other key for no): ");
             ConsoleKeyInfo key = Console.ReadKey(true);
 
             // Check if the pressed key is any key except lowercase 'y'
             insertMoreQuiz = key.KeyChar == 'y' || key.KeyChar == 'Y';
             Console.WriteLine($"Pressed key: {key.KeyChar}");
             return insertMoreQuiz;
+        }
+
+        public static bool GetStop()
+        {
+            Console.Write("\nDo you want to Go on with the Software? 'y' for yes, any other key for no): ");
+            ConsoleKeyInfo key = Console.ReadKey();
+            return key.KeyChar == 'y' || key.KeyChar == 'Y';
         }
 
         /// <summary>
