@@ -343,22 +343,18 @@ namespace QuizMaker
         /// Check the validity of question bank path
         /// </summary>
         /// <returns></returns>
-        public static bool ValidateQuestionBankPath()
+        public static void ValidateQuestionBankPath()
         {
             if (string.IsNullOrEmpty(Constants.PATH))
             {
                 Console.WriteLine("Path is empty");
-                return false;
             }
 
             if (!File.Exists(Constants.PATH))
             {
                 Console.WriteLine("No already saved quizzes");
-                return false;
             }
-
-            return true;
-        }
+       }
 
         /// <summary>
         /// Load Quiz from 
