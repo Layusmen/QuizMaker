@@ -40,7 +40,7 @@ namespace QuizMaker
         public static QuizQuestion CreateQuizQuestion()
         {
             // Console to insert quiz question 
-            string insertQuestion = UIMethods.InsertedInput();
+            string insertQuestion = UIMethods.InsertNeededOptions();
             QuizQuestion quiz = new QuizQuestion();
             if(insertQuestion != "")  //TODO: needs rethinking =)
             {
@@ -56,7 +56,7 @@ namespace QuizMaker
         /// <param name="quizzes"></param>
         /// <param name="path"></param>
         /// <param name="writer"></param>
-        public static void SerializeSave(List<QuizQuestion> quizzes, XmlSerializer writer)
+        public static void SaveSerialize(List<QuizQuestion> quizzes, XmlSerializer writer)
         {
             using (FileStream file = File.Create(Constants.PATH))
             {

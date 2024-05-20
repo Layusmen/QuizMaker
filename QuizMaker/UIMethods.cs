@@ -36,11 +36,11 @@ namespace QuizMaker
         }
 
         /// <summary>
-        /// InsertedInput Options Print to the user
+        /// InsertNeededOptions Options Print to the user
         /// </summary>
-        public static void InsertedOptionsPrint()
+        public static void InsertOptionsPrint()
         {
-            Console.WriteLine("\nThe Following are the Options InsertedInput: ");
+            Console.WriteLine("\nThe Following are the Options InsertNeededOptions: ");
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace QuizMaker
         /// <param name="quizzes"></param>
         /// <param name="writer"></param>
         /// <param name="random"></param>
-        public static void QuizDisplay(List<QuizQuestion> quizzes)
+        public static void DisplayQuiz(List<QuizQuestion> quizzes)
         {
             if (quizzes != null && quizzes.Any())
             {
@@ -150,7 +150,7 @@ namespace QuizMaker
             {
                 Console.WriteLine(quiz.question);
 
-                UIMethods.InsertedOptionsPrint();
+                UIMethods.InsertOptionsPrint();
 
                 foreach (string option in quiz.questionOption)
                 {
@@ -165,7 +165,7 @@ namespace QuizMaker
         /// Meant to collect input
         /// </summary>
         /// <returns></returns>
-        public static string InsertedInput()
+        public static string InsertNeededOptions()
         {
             string insert = Console.ReadLine().Trim();
             return insert;
@@ -189,7 +189,7 @@ namespace QuizMaker
         }
 
         /// <summary>
-        /// InsertedInput Options Print to the user
+        /// InsertNeededOptions Options Print to the user
         /// </summary>
         /// <param name="counter"></param>
         /// <param name="labeledOption"></param>
@@ -231,18 +231,18 @@ namespace QuizMaker
                 UIMethods.QuizOptionOutput(counter);
 
                 // Insert Option Console.
-                string insertedOption = UIMethods.InsertedInput();
+                string insertOption = UIMethods.InsertNeededOptions();
 
                 //Invoke Option Labels
                 string[] optionLabels = Constants.OPTIONLABELS;
 
-                if (insertedOption != "")
+                if (insertOption != "")
                 {
                     counter++;
-                    string labeledOption = $"{optionLabels[counter - 1]} {insertedOption}";
+                    string labeledOption = $"{optionLabels[counter - 1]} {insertOption}";
                     options.Add(labeledOption);
 
-                    //Print InsertedInput Option
+                    //Print InsertNeededOptions Option
                     UIMethods.OptionInserted(counter, labeledOption);
                 }
 
@@ -336,7 +336,7 @@ namespace QuizMaker
         /// </summary>
         public static void OptionRequiredInserted()
         {
-            Console.WriteLine("Needed Options InsertedInput");
+            Console.WriteLine("Needed Options InsertNeededOptions");
         }
 
         /// <summary>

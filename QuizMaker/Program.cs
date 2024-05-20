@@ -33,7 +33,7 @@ namespace QuizMaker
 
                     quizzes = Logics.LoadQuizzes(writer);
 
-                    UIMethods.QuizDisplay(quizzes);
+                    UIMethods.DisplayQuiz(quizzes);
                 }
 
                 if (gameOption == Constants.START_ALPHABET)
@@ -57,17 +57,17 @@ namespace QuizMaker
 
                         quiz.questionOption = options;
 
-                        int selectedOption = UIMethods.CreateRightOption(options);
+                        int selectOption = UIMethods.CreateRightOption(options);
 
-                        quiz.correctOption = UIMethods.GetSelectedOption(options, selectedOption);
+                        quiz.correctOption = UIMethods.GetSelectedOption(options, selectOption);
 
                         quizzes.Add(quiz);
                         Console.Clear();
                         // Print Quiz Questions and Options
                         UIMethods.PrintQuiz(quizzes);
 
-                        // Call SerializeSave Method
-                        Logics.SerializeSave(quizzes, writer);
+                        // Call SaveSerialize Method
+                        Logics.SaveSerialize(quizzes, writer);
 
                         UIMethods.AddMoreQuizRequest();
                     }
