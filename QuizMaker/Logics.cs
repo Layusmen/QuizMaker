@@ -9,7 +9,29 @@ namespace QuizMaker
 {
 
     internal class Logics
-    {  
+    {
+
+        /// <summary>
+        /// Quiz DIsplay Print to user
+        /// </summary>
+        /// <param name="quizzes"></param>
+        /// <param name="path"></param>
+        /// <param name="writer"></param>
+        /// <param name="random"></param>
+        public static List<QuizQuestion> LoadQuizzes(XmlSerializer writer)
+        {
+            List<QuizQuestion> quizzes = new List<QuizQuestion>(); // Initialize empty list
+
+            if (File.Exists(Constants.PATH)) // Check if file exists
+            {
+                using (FileStream file = File.OpenRead(Constants.PATH))
+                {
+                    quizzes = (List<QuizQuestion>)writer.Deserialize(file);
+                }
+            }
+            return quizzes;
+        }
+
         /// <summary>
         /// Create Quiz Questions
         /// </summary>

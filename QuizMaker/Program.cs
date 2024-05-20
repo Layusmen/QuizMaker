@@ -31,7 +31,7 @@ namespace QuizMaker
                     //Play Quiz Prompt
                     UIMethods.NumberOfGameToPlayPrint();
 
-                    quizzes = UIMethods.LoadQuizzes(writer);
+                    quizzes = Logics.LoadQuizzes(writer);
 
                     UIMethods.QuizDisplay(quizzes, writer);
                 }

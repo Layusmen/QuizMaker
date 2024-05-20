@@ -52,35 +52,6 @@ namespace QuizMaker
         }
 
         /// <summary>
-        /// Quiz DIsplay Print to user
-        /// </summary>
-        /// <param name="quizzes"></param>
-        /// <param name="path"></param>
-        /// <param name="writer"></param>
-        /// <param name="random"></param>
-        public static List<QuizQuestion> LoadQuizzes(XmlSerializer writer)
-        {
-            List<QuizQuestion> quizzes = new List<QuizQuestion>(); // Initialize empty list
-
-            if (File.Exists(Constants.PATH)) // Check if file exists
-            {
-                using (FileStream file = File.OpenRead(Constants.PATH))
-                {
-                    try
-                    {
-                        Console.WriteLine("File path exists");
-                        quizzes = (List<QuizQuestion>)writer.Deserialize(file);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Error deserializing file: {0}", ex.Message);
-                    }
-                }
-            }
-            return quizzes;
-        }
-
-        /// <summary>
         /// Get Valid Key When Yes or otherwise is pressed
         /// </summary>
         /// <returns></returns>
