@@ -10,7 +10,6 @@ namespace QuizMaker
     {
         public static List<QuizQuestion> quizzes = new List<QuizQuestion>();
 
-        public static XmlSerializer writer = new XmlSerializer(typeof(List<QuizQuestion>));
         static void Main(string[] args)
         {
             char gameOption;
@@ -31,7 +30,7 @@ namespace QuizMaker
                     //Play Quiz Prompt
                     UIMethods.NumberOfGameToPlayPrint();
 
-                    quizzes = Logics.LoadQuizzes(writer);
+                    quizzes = Logics.LoadQuizzes(Logics.writer);
 
                     UIMethods.DisplayQuiz(quizzes);
                 }
@@ -43,7 +42,7 @@ namespace QuizMaker
                     UIMethods.ValidateQuestionBankPath();
                     
                     // Deserialize XML File
-                    Logics.DeserializeFile(quizzes, writer);
+                    Logics.DeserializeFile(quizzes);
 
                     while (UIMethods.AddMoreQuizRequest())
                     {
@@ -66,7 +65,7 @@ namespace QuizMaker
                         UIMethods.PrintQuiz(quizzes);
 
                         // Call SaveSerialize Method
-                        Logics.SaveSerialize(quizzes, writer);
+                        Logics.SaveSerialize(quizzes, Logics.writer);
 
                         UIMethods.AddMoreQuizRequest();
                     }

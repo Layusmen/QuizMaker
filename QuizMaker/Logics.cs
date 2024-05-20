@@ -10,7 +10,7 @@ namespace QuizMaker
 
     internal class Logics
     {
-
+        public static XmlSerializer writer = new XmlSerializer(typeof(List<QuizQuestion>));
         /// <summary>
         /// Quiz DIsplay Print to user
         /// </summary>
@@ -72,11 +72,11 @@ namespace QuizMaker
         /// <param name="quizzes"></param>
         /// <param name="writer"></param>
         /// <returns></returns>
-        public static List<QuizQuestion> DeserializeFile(List<QuizQuestion> quizzes, XmlSerializer writer)
+        public static List<QuizQuestion> DeserializeFile(List<QuizQuestion> quizzes)
         {
             using (FileStream file = File.OpenRead(Constants.PATH))
             {
-                quizzes = (List<QuizQuestion>)writer.Deserialize(file);
+                quizzes = (List<QuizQuestion>)Logics.writer.Deserialize(file);
             }
             return quizzes;
         }
