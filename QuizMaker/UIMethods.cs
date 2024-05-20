@@ -364,33 +364,7 @@ namespace QuizMaker
             return key.KeyChar == Constants.SMALl_LETTER_Y || key.KeyChar == Constants.CAPITAL_LETTER_Y;
         }
 
-        /// <summary>
-        /// InsertedInput Key to Add to Quiz Bank
-        /// </summary>
-        /// <returns></returns>
-        public static ConsoleKeyInfo AskToAddQuiz()
-        {
-            Console.Write("\nDo you want to add more quiz: 'y' for yes, any other key for no): ");
-            ConsoleKeyInfo key = Console.ReadKey();
-            return key;
-        }
-
-        /// <summary>
-        /// Enter Key Pressed Prompt
-        /// </summary>
-        public static void EnterKeyPressed()
-        {
-            Console.WriteLine("\nPlease press a key between A, B, C, D, or E.");
-        }
-
-        /// <summary>
-        /// Indicate that an Invalid Key was Pressed
-        /// </summary>
-        public static void InvalidKeyPressed()
-        {
-            Console.WriteLine("\nInvalid key. Please press A, B, C, D, or E.");
-        }
-
+        
         /// <summary>
         /// Required Option is being inserted
         /// </summary>
