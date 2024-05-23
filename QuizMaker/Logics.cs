@@ -76,7 +76,7 @@ namespace QuizMaker
         {
             using (FileStream file = File.OpenRead(Constants.PATH))
             {
-                quizzes = (List<QuizQuestion>)Logics.writer.Deserialize(file);
+                quizzes = (List<QuizQuestion>)writer.Deserialize(file);
             }
             return quizzes;
         }

@@ -146,18 +146,18 @@ namespace QuizMaker
         public static void PrintQuiz(List<QuizQuestion> quizzes)
         {
             //Quiz Question Print
-            UIMethods.QuestionAddedPrint();
+            QuestionAddedPrint();
             foreach (QuizQuestion quiz in quizzes)
             {
                 Console.WriteLine(quiz.question);
 
-                UIMethods.InsertOptionsPrint();
+                InsertOptionsPrint();
 
                 foreach (string option in quiz.questionOption)
                 {
                     Console.WriteLine(option);
                 }
-                UIMethods.CorrectionOptionPrint();
+                CorrectionOptionPrint();
                 Console.WriteLine(quiz.correctOption);
             }
         }
@@ -229,10 +229,10 @@ namespace QuizMaker
             int counter = 0;
             while (counter < Constants.MAX_OPTIONS)
             {
-                UIMethods.QuizOptionOutput(counter);
+                QuizOptionOutput(counter);
 
                 // Insert Option Console.
-                string insertOption = UIMethods.InsertNeededOptions();
+                string insertOption = InsertNeededOptions();
 
                 //Invoke Option Labels
                 string[] optionLabels = Constants.OPTIONLABELS;
@@ -244,12 +244,12 @@ namespace QuizMaker
                     options.Add(labeledOption);
 
                     //Print InsertNeededOptions Option
-                    UIMethods.OptionInserted(counter, labeledOption);
+                    OptionInserted(counter, labeledOption);
                 }
 
                 if (counter == Constants.MAX_OPTIONS)
                 {
-                    UIMethods.OptionRequiredInserted();
+                    OptionRequiredInserted();
                     break;
                 }
             }
@@ -353,25 +353,25 @@ namespace QuizMaker
         public static void SaveCompleteQuiz(List<QuizQuestion> quizzes)
         {
 
-            while (UIMethods.AddMoreQuizRequest())
+            while (AddMoreQuizRequest())
             {
                 // Insert More Quizzes to the Question Bank
-                UIMethods.PrintInsertQuizPrompt();
+                PrintInsertQuizPrompt();
 
                 QuizQuestion quiz = Logics.CreateQuizQuestion();
 
-                List<string> options = UIMethods.CreateOptions();
+                List<string> options = CreateOptions();
 
                 quiz.questionOption = options;
 
-                int selectOption = UIMethods.CreateRightOption(options);
+                int selectOption = CreateRightOption(options);
 
-                quiz.correctOption = UIMethods.GetSelectedOption(options, selectOption);
+                quiz.correctOption = GetSelectedOption(options, selectOption);
 
                 quizzes.Add(quiz);
                 Console.Clear();
                 // Print Quiz Questions and Options
-                UIMethods.PrintQuiz(quizzes);
+                PrintQuiz(quizzes);
 
                 // Call SaveSerialize Method
                 Logics.SaveSerialize(quizzes);
