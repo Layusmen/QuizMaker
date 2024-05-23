@@ -71,11 +71,11 @@ namespace QuizMaker
                 }
                 else if (keyInfo.Key == ConsoleKey.Enter)
                 {
-                    Console.WriteLine("\nPlease press a key between A, B, C, D, or E.");
+                    Console.WriteLine($"\nPlease press a key between {Constants.KEY_OPTIONS}.");
                 }
                 else
                 {
-                    Console.WriteLine("\nInvalid key. Please press A, B, C, D, or E.");
+                    Console.WriteLine($"\n\"Invalid key. Please press{Constants.KEY_OPTIONS}.");
                 }
             }
             return pressedKey;
