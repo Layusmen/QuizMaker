@@ -374,7 +374,7 @@ namespace QuizMaker
                 UIMethods.PrintQuiz(quizzes);
 
                 // Call SaveSerialize Method
-                Logics.SaveSerialize(quizzes, Logics.writer);
+                Logics.SaveSerialize(quizzes);
             }
         }
     }

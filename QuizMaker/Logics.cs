@@ -56,7 +56,7 @@ namespace QuizMaker
         /// <param name="quizzes"></param>
         /// <param name="path"></param>
         /// <param name="writer"></param>
-        public static void SaveSerialize(List<QuizQuestion> quizzes, XmlSerializer writer)
+        public static void SaveSerialize(List<QuizQuestion> quizzes)
         {
             using (FileStream file = File.Create(Constants.PATH))
             {
