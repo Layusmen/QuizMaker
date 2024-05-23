@@ -294,32 +294,7 @@ namespace QuizMaker
             // Check if the pressed key is 'y' for yes
             return key.KeyChar == Constants.SMALl_LETTER_Y || key.KeyChar == Constants.CAPITAL_LETTER_Y;
         }
-        /// <summary>
-        /// Deserialize Load the Quiz Questions from the XML File.
-        /// </summary>
-        /// <param name="quizzes"></param>
-        /// <param name="path"></param>
-        /// <param name="writer"></param>
-        /// <returns></returns>
-        public static List<QuizQuestion> DeserializeLoad(List<QuizQuestion> quizzes, XmlSerializer writer)
-        {
-            if (!File.Exists(Constants.PATH)) // Check if file exists
-            {
-                Console.WriteLine("File Path Does Not Exist");
-                return null;
-            }
-            else
-            {
-                Console.WriteLine("File Path Found");
-                using (FileStream file = File.OpenRead(Constants.PATH))
-                {
-                    //XmlSerializer reader = new XmlSerializer(typeof(List<QuizQuestion>));
-                    quizzes = (List<QuizQuestion>)writer.Deserialize(file);
-                }
-            }
-            return quizzes;
-        }
-
+       
         /// <summary>
         /// Stop the software from running
         /// </summary>
@@ -330,7 +305,6 @@ namespace QuizMaker
             ConsoleKeyInfo key = Console.ReadKey();
             return key.KeyChar == Constants.SMALl_LETTER_Y || key.KeyChar == Constants.CAPITAL_LETTER_Y;
         }
-
 
         /// <summary>
         /// Required Option is being inserted
