@@ -6,6 +6,7 @@ namespace QuizMaker
 {
     internal class UIMethods
     {
+        public static Random random = new Random();
         /// <summary>
         /// Print Welcome message and menu options to the user
         /// </summary>
@@ -101,7 +102,7 @@ namespace QuizMaker
                     Console.WriteLine("Iteration: {0}", i);
 
 
-                    Random random = new Random();
+                    //Random random = new Random();
                     int randomIndex = random.Next(quizzes.Count);
                     var quiz = quizzes[randomIndex];
 
