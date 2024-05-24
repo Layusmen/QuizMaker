@@ -92,7 +92,10 @@ namespace QuizMaker
         {
             if (quizzes != null && quizzes.Any())
             {
-                int numQuestions = Constants.MAX_OPTIONS;
+                int numQuestions = quizzes.Count;
+
+                    //Constants.MAX_OPTIONS;
+
                 int money = 0;
                 Console.WriteLine($"Quizzes count: {quizzes.Count}");
 

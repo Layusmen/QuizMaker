@@ -29,7 +29,12 @@ namespace QuizMaker
                     quizzes = (List<QuizQuestion>)writer.Deserialize(file);
                 }
             }
+
+            //Play Quiz Prompt
+            UIMethods.NumberOfGameToPlayPrint();
+
             return quizzes;
+            
         }
 
         /// <summary>

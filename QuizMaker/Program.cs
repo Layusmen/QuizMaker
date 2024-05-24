@@ -27,9 +27,6 @@ namespace QuizMaker
 
                 if (gameOption == Constants.PLAY_QUIZ)
                 {
-                    //Play Quiz Prompt
-                    UIMethods.NumberOfGameToPlayPrint();
-
                     quizzes = Logics.LoadQuizzes(Logics.writer);
 
                     UIMethods.DisplayQuiz(quizzes);
