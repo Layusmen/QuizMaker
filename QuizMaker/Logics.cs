@@ -10,7 +10,11 @@ namespace QuizMaker
 
     internal class Logics
     {
+        /// <summary>
+        /// XML Serializer
+        /// </summary>
         public static XmlSerializer writer = new XmlSerializer(typeof(List<QuizQuestion>));
+        
         /// <summary>
         /// Quiz DIsplay Print to user
         /// </summary>
@@ -18,21 +22,19 @@ namespace QuizMaker
         /// <param name="path"></param>
         /// <param name="writer"></param>
         /// <param name="random"></param>
-        public static List<QuizQuestion> LoadQuizzes(XmlSerializer writer)
+        public static List<QuizQuestion> ReadQuizzesFromFile(XmlSerializer writer)
         {
-            List<QuizQuestion> quizzes = new List<QuizQuestion>(); // Initialize empty list
+            // Initialize empty list
+            List<QuizQuestion> quizzes = new List<QuizQuestion>(); 
 
-            if (File.Exists(Constants.PATH)) // Check if file exists
+            // Check if file exists
+            if (File.Exists(Constants.PATH)) 
             {
                 using (FileStream file = File.OpenRead(Constants.PATH))
                 {
                     quizzes = (List<QuizQuestion>)writer.Deserialize(file);
                 }
             }
-
-            //Play Quiz Prompt
-            UIMethods.NumberOfGameToPlayPrint();
-
             return quizzes;
             
         }
@@ -42,12 +44,10 @@ namespace QuizMaker
         /// </summary>
         /// <param name="quiz"></param>
         /// <returns></returns>
-        public static QuizQuestion CreateQuizQuestion()
+        public static QuizQuestion CreateQuizQuestion(string insertQuestion)
         {
-            // Console to insert quiz question 
-            string insertQuestion = UIMethods.InsertNeededOptions();
             QuizQuestion quiz = new QuizQuestion();
-            if(insertQuestion != "")  //TODO: needs rethinking =)
+            if(insertQuestion != "")
             {
                 quiz.question = insertQuestion;
             }
@@ -61,7 +61,7 @@ namespace QuizMaker
         /// <param name="quizzes"></param>
         /// <param name="path"></param>
         /// <param name="writer"></param>
-        public static void SaveSerialize(List<QuizQuestion> quizzes)
+        public static void SaveQuizzes(List<QuizQuestion> quizzes)
         {
             using (FileStream file = File.Create(Constants.PATH))
             {
@@ -70,21 +70,5 @@ namespace QuizMaker
 
             writer.Serialize(Console.Out, quizzes);
         }
-
-        /// <summary>
-        /// Deserialize the XML File.
-        /// </summary>
-        /// <param name="quizzes"></param>
-        /// <param name="writer"></param>
-        /// <returns></returns>
-        public static List<QuizQuestion> DeserializeFile(List<QuizQuestion> quizzes)
-        {
-            using (FileStream file = File.OpenRead(Constants.PATH))
-            {
-                quizzes = (List<QuizQuestion>)writer.Deserialize(file);
-            }
-            return quizzes;
-        }
-
     }
 }

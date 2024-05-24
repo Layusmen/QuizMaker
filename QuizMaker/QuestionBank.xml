@@ -3,34 +3,34 @@
   <QuizQuestion>
     <question>What is your name?</question>
     <questionOption>
-      <string>(A) Wale</string>
+      <string>(A) Olayode</string>
       <string>(B) Kunle</string>
-      <string>(C) adio</string>
-      <string>(D) Alani</string>
-      <string>(E) Adisa</string>
+      <string>(C) Qadim</string>
+      <string>(D) Salam</string>
+      <string>(E) Aleem</string>
     </questionOption>
-    <correctOption>(E) Adisa</correctOption>
+    <correctOption>(A) Olayode</correctOption>
   </QuizQuestion>
   <QuizQuestion>
     <question>Where are you from?</question>
     <questionOption>
-      <string>(A) Ede</string>
-      <string>(B) Ibadan</string>
-      <string>(C) Ijesa</string>
-      <string>(D) Ogun</string>
-      <string>(E) Ila</string>
+      <string>(A) Lagos</string>
+      <string>(B) Togo</string>
+      <string>(C) Kano</string>
+      <string>(D) Ibadan</string>
+      <string>(E) Oyo</string>
     </questionOption>
-    <correctOption>(B) Ibadan</correctOption>
+    <correctOption>(D) Ibadan</correctOption>
   </QuizQuestion>
   <QuizQuestion>
-    <question>Who is your father?</question>
+    <question>How old are you?</question>
     <questionOption>
-      <string>(A) Supoto</string>
-      <string>(B) Tajudeen</string>
-      <string>(C) Olaniyi</string>
-      <string>(D) Akala</string>
-      <string>(E) Lawal</string>
+      <string>(A) 10</string>
+      <string>(B) 11</string>
+      <string>(C) 14</string>
+      <string>(D) 15</string>
+      <string>(E) 34</string>
     </questionOption>
-    <correctOption>(D) Akala</correctOption>
+    <correctOption>(E) 34</correctOption>
   </QuizQuestion>
 </ArrayOfQuizQuestion>

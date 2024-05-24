@@ -17,7 +17,7 @@ namespace QuizMaker
             //Start up the software//
 
 
-            while (UIMethods.GetStop())
+            while (UIMethods.IsUserRequestingStop())
             {
                 //Welcome Message
                 UIMethods.PrintWelcome();
@@ -27,7 +27,10 @@ namespace QuizMaker
 
                 if (gameOption == Constants.PLAY_QUIZ)
                 {
-                    quizzes = Logics.LoadQuizzes(Logics.writer);
+                    quizzes = Logics.ReadQuizzesFromFile(Logics.writer);
+
+                    //Play Quiz Prompt
+                    UIMethods.DisplayAvailableQuizToPlay(quizzes);
 
                     UIMethods.DisplayQuiz(quizzes);
                 }
@@ -36,10 +39,10 @@ namespace QuizMaker
                 {
 
                     //Quiz XML File Path
-                    UIMethods.ValidateQuestionBankPath();
-                    
+                    UIMethods.ReportMissingQuestionBank();
+
                     // Deserialize XML File
-                    Logics.DeserializeFile(quizzes);
+                    Logics.ReadQuizzesFromFile(Logics.writer);
 
                     UIMethods.SaveCompleteQuiz(quizzes);
                 }
