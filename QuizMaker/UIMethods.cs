@@ -107,7 +107,7 @@ namespace QuizMaker
                     int randomIndex = new Random().Next(quizzes.Count);
                     var quiz = quizzes[randomIndex];
 
-                    bool isCorrect = AskQuestion(quiz);
+                    bool isCorrect = IsAskQuestion(quiz);
                     money += isCorrect ? 1 : 0;
                 }
 
@@ -125,7 +125,7 @@ namespace QuizMaker
         /// <param name="quiz"></param>
         /// <returns></returns>
 
-        public static bool AskQuestion(QuizQuestion quiz)
+        public static bool IsAskQuestion(QuizQuestion quiz)
         {
             Console.WriteLine("Question: {0}", quiz.question);
             Console.WriteLine("Options:");
@@ -303,7 +303,7 @@ namespace QuizMaker
         /// </summary>
         /// <param name="insertMoreQuiz"></param>
         /// <returns></returns>
-        public static bool PromptForAddingMoreQuizzes()
+        public static bool IsPromptForAddingMoreQuizzes()
         {
             Console.Write($"\nDo you want to add more quiz: {Constants.SMALl_LETTER_Y} or {Constants.CAPITAL_LETTER_Y} for yes, any other key for no): ");
             ConsoleKeyInfo key = Console.ReadKey();
@@ -373,7 +373,7 @@ namespace QuizMaker
         public static void EnableQuizCreationAndSave(List<QuizQuestion> quizzes)
         {
 
-            while (PromptForAddingMoreQuizzes())
+            while (IsPromptForAddingMoreQuizzes())
             {
                 // Insert More Quizzes to the Question Bank
                 
