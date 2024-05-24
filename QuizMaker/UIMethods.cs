@@ -6,6 +6,9 @@ namespace QuizMaker
 {
     internal class UIMethods
     {
+        /// <summary>
+        /// Create Random Quiz
+        /// </summary>
         public static Random random = new Random();
         /// <summary>
         /// Print Welcome message and menu options to the user
@@ -206,7 +209,7 @@ namespace QuizMaker
         /// </summary>
         /// <param name="counter"></param>
         /// <param name="labeledOption"></param>
-        public static void OptionInserted(int counter, string labeledOption)
+        public static void ConfirmOptionInput(int counter, string labeledOption)
         {
             Console.WriteLine($"\nOption {counter} inserted: {labeledOption}");
         }
@@ -256,7 +259,7 @@ namespace QuizMaker
                     options.Add(labeledOption);
 
                     //Print InsertNeededOptions Option
-                    OptionInserted(counter, labeledOption);
+                    ConfirmOptionInput(counter, labeledOption);
                 }
 
                 if (counter == Constants.MAX_OPTIONS)
@@ -300,7 +303,7 @@ namespace QuizMaker
         /// </summary>
         /// <param name="insertMoreQuiz"></param>
         /// <returns></returns>
-        public static bool AddMoreQuizRequest()
+        public static bool PromptForAddingMoreQuizzes()
         {
             Console.Write($"\nDo you want to add more quiz: {Constants.SMALl_LETTER_Y} or {Constants.CAPITAL_LETTER_Y} for yes, any other key for no): ");
             ConsoleKeyInfo key = Console.ReadKey();
@@ -367,10 +370,10 @@ namespace QuizMaker
         /// Completely save quiz after the whole process
         /// </summary>
         /// <param name="quizzes"></param>
-        public static void SaveCompleteQuiz(List<QuizQuestion> quizzes)
+        public static void EnableQuizCreationAndSave(List<QuizQuestion> quizzes)
         {
 
-            while (AddMoreQuizRequest())
+            while (PromptForAddingMoreQuizzes())
             {
                 // Insert More Quizzes to the Question Bank
                 

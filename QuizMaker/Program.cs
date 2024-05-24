@@ -44,7 +44,7 @@ namespace QuizMaker
                     // Deserialize XML File
                     Logics.ReadQuizzesFromFile(Logics.writer);
 
-                    UIMethods.SaveCompleteQuiz(quizzes);
+                    UIMethods.EnableQuizCreationAndSave(quizzes);
                 }
             }
         }
