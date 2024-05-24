@@ -16,7 +16,6 @@ namespace QuizMaker
 
             //Start up the software//
 
-
             while (UIMethods.IsUserRequestingStop())
             {
                 //Welcome Message

@@ -379,7 +379,7 @@ namespace QuizMaker
                 
                 PrintInsertQuizPrompt();
 
-                string insertQuestion = UIMethods.InsertNeededOptions();
+                string insertQuestion = InsertNeededOptions();
 
                 QuizQuestion quiz = Logics.CreateQuizQuestion(insertQuestion);
 
