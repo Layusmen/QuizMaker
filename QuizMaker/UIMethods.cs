@@ -81,6 +81,7 @@ namespace QuizMaker
             return pressedKey;
 
         }
+        
         /// <summary>
         /// Display Quizzes, Options and Correct Option to the user
         /// </summary>
@@ -91,52 +92,60 @@ namespace QuizMaker
         {
             if (quizzes != null && quizzes.Any())
             {
-
                 int numQuestions = Constants.MAX_OPTIONS;
                 int money = 0;
-                int total = 0;
                 Console.WriteLine($"Quizzes count: {quizzes.Count}");
 
                 for (int i = 0; i < numQuestions; i++)
                 {
-                    Console.WriteLine("Iteration: {0}", i);
-
-
-                    //Random random = new Random();
-                    int randomIndex = random.Next(quizzes.Count);
+                    int randomIndex = new Random().Next(quizzes.Count);
                     var quiz = quizzes[randomIndex];
 
-                    Console.WriteLine("Question: {0}", quiz.question);
-                    Console.WriteLine("Options:");
-                    int j = 0;
-                    foreach (var option in quiz.questionOption)
-                    {
-                        Console.WriteLine(option);
-                        j++;
-                    }
-                    Console.WriteLine("The correct option is" + quiz.correctOption);
-                    Console.WriteLine("\nNow Select the Correct Option");
-
-                    string pressedKey = GetValidKey();
-
-                    if (pressedKey == quiz.correctOption[1].ToString())
-                    {
-                        money += 1;
-                        Console.WriteLine($"\nYou won {money}");
-                        Console.WriteLine("Correct! You pressed " + pressedKey);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Incorrect. The correct option was " + quiz.correctOption);
-                    }
+                    bool isCorrect = AskQuestion(quiz);
+                    money += isCorrect ? 1 : 0;
                 }
-                total = money;
-                Console.WriteLine($"Total money won {total}");
+
+                MoneyWon(money);
             }
             else
             {
                 Console.WriteLine("No quizzes found in the file.");
             }
+        }
+
+        /// <summary>
+        /// ASK Question
+        /// </summary>
+        /// <param name="quiz"></param>
+        /// <returns></returns>
+
+        public static bool AskQuestion(QuizQuestion quiz)
+        {
+            Console.WriteLine("Question: {0}", quiz.question);
+            Console.WriteLine("Options:");
+            int j = 0;
+            foreach (var option in quiz.questionOption)
+            {
+                Console.WriteLine(option);
+                j++;
+            }
+
+            Console.WriteLine("The correct option is" + quiz.correctOption);
+            Console.WriteLine("\nNow Select the Correct Option");
+
+            string pressedKey = GetValidKey();
+            return pressedKey == quiz.correctOption[1].ToString();
+        }
+        /// <summary>
+        /// Total Money Won Calculation
+        /// </summary>
+        /// <param name="money"></param>
+
+        public static void MoneyWon (int money)
+        {
+            int total = 0;
+            total = money;
+            Console.WriteLine($"Total money won {total}");
         }
 
         /// <summary>
