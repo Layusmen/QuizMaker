@@ -13,7 +13,5 @@ namespace QuizMaker
         public const char SMALl_LETTER_Y = 'y';
         public const char CAPITAL_LETTER_Y = 'Y';
         public const string KEY_OPTIONS = "Invalid key. Please press A, B, C, D, or E";
-
-
     }
 }
