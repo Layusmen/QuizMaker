@@ -307,10 +307,10 @@ namespace QuizMaker
         /// <returns></returns>
         public static bool IsPromptForAddingMoreQuizzes()
         {
-            Console.Write($"\nDo you want to add more quiz: {Constants.SMALl_LETTER_Y} or {Constants.CAPITAL_LETTER_Y} for yes, any other key for no): ");
+            Console.Write($"\nDo you want to add more quiz: {Constants.SMALl_YES} or {Constants.CAPITAL_YES} for yes, any other key for no): ");
             ConsoleKeyInfo key = Console.ReadKey();
             // Check if the pressed key is 'y' for yes
-            return key.KeyChar == Constants.SMALl_LETTER_Y || key.KeyChar == Constants.CAPITAL_LETTER_Y;
+            return key.KeyChar == Constants.SMALl_YES || key.KeyChar == Constants.CAPITAL_YES;
         }
 
         /// <summary>
@@ -319,9 +319,9 @@ namespace QuizMaker
         /// <returns></returns>
         public static bool IsUserRequestingStop()
         {
-            Console.Write($"\nDo you want to Go on with the Software? {Constants.SMALl_LETTER_Y} or {Constants.CAPITAL_LETTER_Y} for yes, any other key for no): ");
+            Console.Write($"\nDo you want to Go on with the Software? {Constants.SMALl_YES} or {Constants.CAPITAL_YES} for yes, any other key for no): ");
             ConsoleKeyInfo key = Console.ReadKey();
-            return key.KeyChar == Constants.SMALl_LETTER_Y || key.KeyChar == Constants.CAPITAL_LETTER_Y;
+            return key.KeyChar == Constants.SMALl_YES || key.KeyChar == Constants.CAPITAL_YES;
         }
 
         /// <summary>

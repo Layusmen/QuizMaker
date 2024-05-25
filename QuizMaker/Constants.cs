@@ -10,8 +10,8 @@ namespace QuizMaker
         public const char ADD_MORE_QUESTION_MODE = 'A';
         public const char LAST_OPTION = 'E';
         public const string PATH = @"..\..\..\QuestionBank.xml";
-        public const char SMALl_LETTER_Y = 'y';
-        public const char CAPITAL_LETTER_Y = 'Y';
+        public const char SMALl_YES = 'y';
+        public const char CAPITAL_YES = 'Y';
         public const string KEY_OPTIONS = "Invalid key. Please press A, B, C, D, or E";
         public const string EMPTY_STRING = "";
     }
