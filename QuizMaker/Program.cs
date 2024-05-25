@@ -31,12 +31,12 @@ namespace QuizMaker
                     //Play Quiz Prompt
                     UIMethods.DisplayAvailableQuizToPlay(quizzes);
 
-
                     UIMethods.DisplayQuiz(quizzes);
                 }
 
                 if (gameOption == Constants.ADD_MORE_QUESTION_MODE)
                 {
+
                     //Quiz XML File Path
                     UIMethods.ReportMissingQuestionBank();
 

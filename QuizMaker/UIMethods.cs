@@ -84,7 +84,7 @@ namespace QuizMaker
             return pressedKey;
 
         }
-        
+
         /// <summary>
         /// Display Quizzes, Options and Correct Option to the user
         /// </summary>
@@ -97,8 +97,6 @@ namespace QuizMaker
             {
                 int numQuestions = quizzes.Count;
 
-                    //Constants.MAX_OPTIONS;
-
                 int money = 0;
                 Console.WriteLine($"Quizzes count: {quizzes.Count}");
 
@@ -106,11 +104,12 @@ namespace QuizMaker
                 {
                     int randomIndex = new Random().Next(quizzes.Count);
                     var quiz = quizzes[randomIndex];
+                    bool isCorrect = DiplayAnswer(quiz);
+                    string message = isCorrect ? "\nThe answer is correct!" : "\nThe answer is not correct.";
 
-                    bool isCorrect = IsAskQuestion(quiz);
+                    Console.WriteLine(message);
                     money += isCorrect ? 1 : 0;
                 }
-
                 MoneyWon(money);
             }
             else
@@ -120,34 +119,51 @@ namespace QuizMaker
         }
 
         /// <summary>
-        /// ASK Question
+        /// Display Question
         /// </summary>
         /// <param name="quiz"></param>
         /// <returns></returns>
 
-        public static bool IsAskQuestion(QuizQuestion quiz)
+        public static void DiplayQuestion(QuizQuestion quiz)
         {
             Console.WriteLine("Question: {0}", quiz.question);
             Console.WriteLine("Options:");
+        }
+
+        /// <summary>
+        /// Display Answer
+        /// </summary>
+        /// <param name="quiz"></param>
+        /// <returns></returns>
+        public static bool DiplayAnswer(QuizQuestion quiz)
+        {
             int j = 0;
             foreach (var option in quiz.questionOption)
             {
                 Console.WriteLine(option);
                 j++;
             }
+            return GetUserAnswerAndEvaluate(quiz);
+        }
 
+        /// <summary>
+        /// Get User Answer and Evaluate
+        /// </summary>
+        /// <param name="quiz"></param>
+        /// <returns></returns>
+        public static bool IsGetUserAnswerAndEvaluate(QuizQuestion quiz)
+        {
             Console.WriteLine("The correct option is" + quiz.correctOption);
             Console.WriteLine("\nNow Select the Correct Option");
-
             string pressedKey = GetValidKey();
             return pressedKey == quiz.correctOption[1].ToString();
         }
+
         /// <summary>
         /// Total Money Won Calculation
         /// </summary>
         /// <param name="money"></param>
-
-        public static void MoneyWon (int money)
+        public static void MoneyWon(int money)
         {
             int total = 0;
             total = money;
@@ -310,7 +326,7 @@ namespace QuizMaker
             // Check if the pressed key is 'y' for yes
             return key.KeyChar == Constants.SMALl_LETTER_Y || key.KeyChar == Constants.CAPITAL_LETTER_Y;
         }
-       
+
         /// <summary>
         /// Stop the software from running
         /// </summary>
@@ -376,7 +392,7 @@ namespace QuizMaker
             while (IsPromptForAddingMoreQuizzes())
             {
                 // Insert More Quizzes to the Question Bank
-                
+
                 PrintInsertQuizPrompt();
 
                 string insertQuestion = InsertNeededOptions();
