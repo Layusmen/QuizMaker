@@ -20,9 +20,7 @@ namespace QuizMaker
             Console.Write("\nWhat do you want to do?:");
             Console.Write($"({Constants.PLAY_QUIZ}) Play Quiz Game.");
             Console.Write($"({Constants.ADD_MORE_QUESTION_MODE}) To Add More to the question Bank.");
-            Console.Write($"\nPlease choose an Option ({Constants.PLAY_QUIZ} or {Constants.ADD_MORE_QUESTION_MODE}):
-
-);
+            Console.Write($"\nPlease choose an Option ({Constants.PLAY_QUIZ} or {Constants.ADD_MORE_QUESTION_MODE}):");
         }
 
         /// <summary>
@@ -32,7 +30,6 @@ namespace QuizMaker
         {
             Console.WriteLine($"\nPlease insert the Quiz questions followed by five ({Constants.MAX_OPTIONS}) options. \n");
         }
-
 
         /// <summary>
         /// Print Question Added Prompt to the user

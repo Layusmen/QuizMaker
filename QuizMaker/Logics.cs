@@ -33,7 +33,6 @@ namespace QuizMaker
                 }
             }
             return quizzes;
-            
         }
 
        /// <summary>
@@ -61,7 +60,6 @@ namespace QuizMaker
             {
                 writer.Serialize(file, quizzes);
             }
-
             writer.Serialize(Console.Out, quizzes);
         }
     }
