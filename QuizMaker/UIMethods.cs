@@ -102,7 +102,7 @@ namespace QuizMaker
 
                 for (int i = 0; i < numQuestions; i++)
                 {
-                    int randomIndex = new Random().Next(quizzes.Count);
+                    int randomIndex =  random.Next(quizzes.Count);
                     var quiz = quizzes[randomIndex];
                     bool isCorrect = DiplayAnswer(quiz);
                     string message = isCorrect ? "\nThe answer is correct!" : "\nThe answer is not correct.";
@@ -143,7 +143,7 @@ namespace QuizMaker
                 Console.WriteLine(option);
                 j++;
             }
-            return GetUserAnswerAndEvaluate(quiz);
+            return IsGetUserAnswerAndEvaluate(quiz);
         }
 
         /// <summary>
