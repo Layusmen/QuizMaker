@@ -26,22 +26,22 @@ namespace QuizMaker
 
                 if (gameOption == Constants.PLAY_QUIZ)
                 {
-                    quizzes = Logics.ReadQuizzesFromFile(Logics.writer);
+                    quizzes = Logics.ReadQuizzesFromFile();
 
                     //Play Quiz Prompt
                     UIMethods.DisplayAvailableQuizToPlay(quizzes);
+
 
                     UIMethods.DisplayQuiz(quizzes);
                 }
 
                 if (gameOption == Constants.ADD_MORE_QUESTION_MODE)
                 {
-
                     //Quiz XML File Path
                     UIMethods.ReportMissingQuestionBank();
 
                     // Deserialize XML File
-                    Logics.ReadQuizzesFromFile(Logics.writer);
+                    quizzes = Logics.ReadQuizzesFromFile();
 
                     UIMethods.EnableQuizCreationAndSave(quizzes);
                 }

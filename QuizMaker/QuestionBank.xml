@@ -33,4 +33,26 @@
     </questionOption>
     <correctOption>(E) 34</correctOption>
   </QuizQuestion>
+  <QuizQuestion>
+    <question>Where is Lagos?</question>
+    <questionOption>
+      <string>(A) South West</string>
+      <string>(B) South South</string>
+      <string>(C) North East</string>
+      <string>(D) North West</string>
+      <string>(E) Sahara</string>
+    </questionOption>
+    <correctOption>(A) South West</correctOption>
+  </QuizQuestion>
+  <QuizQuestion>
+    <question>Who is your president?</question>
+    <questionOption>
+      <string>(A) Dele</string>
+      <string>(B) Tinubu</string>
+      <string>(C) Ojo</string>
+      <string>(D) Bola Deji</string>
+      <string>(E) Akintunle</string>
+    </questionOption>
+    <correctOption>(B) Tinubu</correctOption>
+  </QuizQuestion>
 </ArrayOfQuizQuestion>

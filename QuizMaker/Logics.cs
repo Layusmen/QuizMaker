@@ -22,7 +22,7 @@ namespace QuizMaker
         /// <param name="path"></param>
         /// <param name="writer"></param>
         /// <param name="random"></param>
-        public static List<QuizQuestion> ReadQuizzesFromFile(XmlSerializer writer)
+        public static List<QuizQuestion> ReadQuizzesFromFile()
         {
             // Initialize empty list
             List<QuizQuestion> quizzes = new List<QuizQuestion>(); 
