@@ -10,6 +10,7 @@ namespace QuizMaker
         /// Create Random Quiz
         /// </summary>
         public static Random random = new Random();
+
         /// <summary>
         /// Print Welcome message and menu options to the user
         /// </summary>
@@ -123,7 +124,6 @@ namespace QuizMaker
         /// </summary>
         /// <param name="quiz"></param>
         /// <returns></returns>
-
         public static void DiplayQuestion(QuizQuestion quiz)
         {
             Console.WriteLine("Question: {0}", quiz.question);
@@ -235,7 +235,6 @@ namespace QuizMaker
         /// </summary>
         /// <param name="options"></param>
         /// <returns></returns>
-
 
         public static string GetSelectedOption(List<string> options, int selectedOption)
         {
@@ -388,7 +387,6 @@ namespace QuizMaker
         /// <param name="quizzes"></param>
         public static void EnableQuizCreationAndSave(List<QuizQuestion> quizzes)
         {
-
             while (IsPromptForAddingMoreQuizzes())
             {
                 // Insert More Quizzes to the Question Bank

@@ -9,7 +9,6 @@ namespace QuizMaker
     internal class Program
     {
         public static List<QuizQuestion> quizzes = new List<QuizQuestion>();
-
         static void Main(string[] args)
         {
             char gameOption;
@@ -36,7 +35,6 @@ namespace QuizMaker
 
                 if (gameOption == Constants.ADD_MORE_QUESTION_MODE)
                 {
-
                     //Quiz XML File Path
                     UIMethods.ReportMissingQuestionBank();
 
