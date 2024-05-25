@@ -14,7 +14,7 @@ This is a program that allows you to create and play your own quizzes. You can:
 1. **Prerequisites:** 
   - This program is written in C# and requires a C# compiler or a development environment that supports C# to run.
 2. **Running the QuizMaker:**
-   - (Instructions specific to your development environment would go here)
+   - Run the console, and follow the displayed prompt.
 3. **Creating a Quiz:**
    - The program will guide you through the process of adding questions and answers.
    - You can add as many questions as you like to create your quiz.
