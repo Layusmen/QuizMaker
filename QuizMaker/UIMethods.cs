@@ -366,7 +366,7 @@ namespace QuizMaker
         /// <summary>
         /// Tell users the number of questions to be asked
         /// </summary>
-        public static void DisplayAvailableQuizToPlay(List<QuizQuestion> quizzes)
+        public static void DisplayNumberOfAvailableQuizzesToPlay(List<QuizQuestion> quizzes)
         {
             Console.WriteLine($"\nThank you. You have the opportunity to answer {quizzes.Count} Questions?");
         }

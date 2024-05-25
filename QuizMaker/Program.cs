@@ -29,7 +29,7 @@ namespace QuizMaker
                     quizzes = Logics.ReadQuizzesFromFile();
 
                     //Play Quiz Prompt
-                    UIMethods.DisplayAvailableQuizToPlay(quizzes);
+                    UIMethods.DisplayNumberOfAvailableQuizzesToPlay(quizzes);
 
                     UIMethods.DisplayQuiz(quizzes);
                 }
