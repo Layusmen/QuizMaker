@@ -16,12 +16,9 @@ namespace QuizMaker
         public static XmlSerializer writer = new XmlSerializer(typeof(List<QuizQuestion>));
         
         /// <summary>
-        /// Quiz DIsplay Print to user
+        /// Read Quizzes from XML File
         /// </summary>
-        /// <param name="quizzes"></param>
-        /// <param name="path"></param>
-        /// <param name="writer"></param>
-        /// <param name="random"></param>
+        /// <returns></returns>
         public static List<QuizQuestion> ReadQuizzesFromFile()
         {
             // Initialize empty list
@@ -39,15 +36,15 @@ namespace QuizMaker
             
         }
 
-        /// <summary>
-        /// Create Quiz Questions
-        /// </summary>
-        /// <param name="quiz"></param>
-        /// <returns></returns>
+       /// <summary>
+       /// Create QuizQuestion Object
+       /// </summary>
+       /// <param name="insertQuestion"></param>
+       /// <returns></returns>
         public static QuizQuestion CreateQuizQuestion(string insertQuestion)
         {
             QuizQuestion quiz = new QuizQuestion();
-            if(insertQuestion != "")
+            if(insertQuestion != Constants.EMPTY_STRING)
             {
                 quiz.question = insertQuestion;
             }
@@ -55,12 +52,9 @@ namespace QuizMaker
         }
         
         /// <summary>
-        /// Save Question, Options anc Correct Option to the XML File.
-        /// Serialise the data to XML format.
+        /// Save Quizzes to XML File
         /// </summary>
         /// <param name="quizzes"></param>
-        /// <param name="path"></param>
-        /// <param name="writer"></param>
         public static void SaveQuizzes(List<QuizQuestion> quizzes)
         {
             using (FileStream file = File.Create(Constants.PATH))

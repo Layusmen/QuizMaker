@@ -20,7 +20,9 @@ namespace QuizMaker
             Console.Write("\nWhat do you want to do?:");
             Console.Write($"({Constants.PLAY_QUIZ}) Play Quiz Game.");
             Console.Write($"({Constants.ADD_MORE_QUESTION_MODE}) To Add More to the question Bank.");
-            Console.Write($"\nPlease choose an Option ({Constants.PLAY_QUIZ} or {Constants.ADD_MORE_QUESTION_MODE}): ");
+            Console.Write($"\nPlease choose an Option ({Constants.PLAY_QUIZ} or {Constants.ADD_MORE_QUESTION_MODE}):
+
+);
         }
 
         /// <summary>
@@ -87,11 +89,9 @@ namespace QuizMaker
         }
 
         /// <summary>
-        /// Display Quizzes, Options and Correct Option to the user
+        ///  Display Quizzes, Options and Correct Option to the user
         /// </summary>
         /// <param name="quizzes"></param>
-        /// <param name="writer"></param>
-        /// <param name="random"></param>
         public static void DisplayQuiz(List<QuizQuestion> quizzes)
         {
             if (quizzes != null && quizzes.Any())
@@ -105,7 +105,7 @@ namespace QuizMaker
                 {
                     int randomIndex =  random.Next(quizzes.Count);
                     var quiz = quizzes[randomIndex];
-                    bool isCorrect = DiplayAnswer(quiz);
+                    bool isCorrect = DiplayQuestionAndAnswer(quiz);
                     string message = isCorrect ? "\nThe answer is correct!" : "\nThe answer is not correct.";
 
                     Console.WriteLine(message);
@@ -124,19 +124,10 @@ namespace QuizMaker
         /// </summary>
         /// <param name="quiz"></param>
         /// <returns></returns>
-        public static void DiplayQuestion(QuizQuestion quiz)
+        public static bool DiplayQuestionAndAnswer(QuizQuestion quiz)
         {
             Console.WriteLine("Question: {0}", quiz.question);
             Console.WriteLine("Options:");
-        }
-
-        /// <summary>
-        /// Display Answer
-        /// </summary>
-        /// <param name="quiz"></param>
-        /// <returns></returns>
-        public static bool DiplayAnswer(QuizQuestion quiz)
-        {
             int j = 0;
             foreach (var option in quiz.questionOption)
             {
@@ -231,11 +222,11 @@ namespace QuizMaker
         }
 
         /// <summary>
-        /// Collecting the right option from the user
+        /// Collect Selected Option
         /// </summary>
         /// <param name="options"></param>
+        /// <param name="selectedOption"></param>
         /// <returns></returns>
-
         public static string GetSelectedOption(List<string> options, int selectedOption)
         {
             if (selectedOption >= 1 && selectedOption <= options.Count)
@@ -249,9 +240,8 @@ namespace QuizMaker
         }
 
         /// <summary>
-        /// Add Option to the Quiz
+        /// Create Options to the Quiz
         /// </summary>
-        /// <param name="options"></param>
         /// <returns></returns>
         public static List<string> CreateOptions()
         {
@@ -267,7 +257,7 @@ namespace QuizMaker
                 //Invoke Option Labels
                 string[] optionLabels = Constants.OPTIONLABELS;
 
-                if (insertOption != "")
+                if (insertOption != Constants.EMPTY_STRING)
                 {
                     counter++;
                     string labeledOption = $"{optionLabels[counter - 1]} {insertOption}";
@@ -287,7 +277,7 @@ namespace QuizMaker
         }
 
         /// <summary>
-        /// Insert the right option to the quiz
+        /// Validate and Get the right options.
         /// </summary>
         /// <param name="options"></param>
         /// <returns></returns>
@@ -346,7 +336,7 @@ namespace QuizMaker
         }
 
         /// <summary>
-        /// Check the validity of question bank path
+        /// Report Missing Question Bank
         /// </summary>
         /// <returns></returns>
         public static void ReportMissingQuestionBank()
@@ -363,7 +353,7 @@ namespace QuizMaker
         }
 
         /// <summary>
-        /// Tell users the number of questions to be asked
+        /// Tell users the number of questions to be played
         /// </summary>
         public static void DisplayNumberOfAvailableQuizzesToPlay(List<QuizQuestion> quizzes)
         {
